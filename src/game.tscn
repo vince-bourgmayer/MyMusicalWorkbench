@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c83dntkgxhewv"]
+[gd_scene load_steps=3 format=3 uid="uid://c83dntkgxhewv"]
 
 [ext_resource type="PackedScene" uid="uid://cp17pf1yv3rwi" path="res://src/scenes/world.tscn" id="1_7uq6d"]
+[ext_resource type="PackedScene" uid="uid://3vbphrw7sk3j" path="res://src/scenes/player.tscn" id="2_3msxb"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -8,3 +9,7 @@
 anchor_mode = 0
 
 [node name="World" parent="." instance=ExtResource("1_7uq6d")]
+
+[node name="Player" parent="." instance=ExtResource("2_3msxb")]
+position = Vector2(150, 150)
+scale = Vector2(2, 2)
