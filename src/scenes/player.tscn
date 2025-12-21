@@ -224,7 +224,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v4rts"]
-size = Vector2(32, 32)
+size = Vector2(20, 32)
 
 [node name="Player" type="CharacterBody2D"]
 safe_margin = 0.001
@@ -232,7 +232,9 @@ script = ExtResource("1_v4rts")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vwic4")
-animation = &"idle_down"
+animation = &"walk_down"
+frame = 4
+frame_progress = 0.45324245
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_v4rts")
