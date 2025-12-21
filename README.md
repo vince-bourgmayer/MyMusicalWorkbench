@@ -22,3 +22,6 @@ Not accepting external contributions yet.
 ## License
 The code located in the `src` folder is released under the MIT License.  
 All assets (art, audio, text) are **not** covered by the MIT License and remain proprietary.
+
+## Credits
+Thanks to Kettoman for the character's spritesheet:  https://kettoman.itch.io/free-pixel-characters-pack-32x32
