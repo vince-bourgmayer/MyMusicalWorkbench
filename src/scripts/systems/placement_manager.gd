@@ -28,6 +28,9 @@ func _process(_delta: float) -> void:
 	if placeholder.visible: # Si visible, suivre le joueur
 		var offset = Vector2(0, 66)  # décalage devant le joueur
 		placeholder.global_position = player.global_position + offset
+		
+func checkPlace() -> bool:
+	return placeholder.is_position_valid
 
 #func toggle_placeholder_visibility(visible: bool):
 	#placeholder.visible = visible

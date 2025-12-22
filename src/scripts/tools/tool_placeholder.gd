@@ -38,15 +38,11 @@ func _process(_delta: float) -> void:
 	pass
 
 
-func _on_base_area_body_entered(body: Node2D) -> void:
-	print("placeholder collision entered")
-	# Ici on vérifie seulement les collisions avec les murs / obstacles
+func _on_base_area_body_entered(_body: Node2D) -> void:
 	is_position_valid = false
 	update_color(is_position_valid)
 
 
-func _on_base_area_body_exited(body: Node2D) -> void:
-	print("placeholder collision exited")
-
+func _on_base_area_body_exited(_body: Node2D) -> void:
 	is_position_valid = true
 	update_color(is_position_valid)

@@ -15,9 +15,13 @@ anchor_mode = 0
 [node name="World" parent="." instance=ExtResource("1_7uq6d")]
 
 [node name="Player" parent="." instance=ExtResource("2_3msxb")]
+top_level = true
 position = Vector2(150, 150)
 scale = Vector2(2, 2)
 
 [node name="ToolPlaceholder" parent="." instance=ExtResource("4_7omc5")]
+visible = false
 
 [node name="Table" parent="." instance=ExtResource("5_km1yn")]
+visible = false
+collision_mask = 11

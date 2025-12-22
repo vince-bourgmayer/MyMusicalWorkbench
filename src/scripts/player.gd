@@ -16,6 +16,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	movement_system.move(self, $AnimatedSprite2D)
 	
-	if Input.is_action_just_released("place_tool"):
+	if Input.is_action_just_released("try_place_tool"):
 		get_parent().toggle_placeholder()
+		
+	if Input.is_action_just_released("place_tool"):
+		get_parent().try_to_place_tool()
 		

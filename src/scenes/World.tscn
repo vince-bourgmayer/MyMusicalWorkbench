@@ -200,5 +200,7 @@ tile_set = SubResource("TileSet_dq5wt")
 
 [node name="TileMapLayer_tools" type="TileMapLayer" parent="."]
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAACAAMAAQABAAAAAAAEAAoAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAEAAoAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_1l6e7")
+
+[node name="Tools" type="Node" parent="."]
