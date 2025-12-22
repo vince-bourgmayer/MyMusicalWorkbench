@@ -1,6 +1,10 @@
 # My Musical workbench
 A hands-on journey into lutherie
 
+Early prototype screenshot
+<img width="895" height="641" alt="Early prototype screenshot" src="https://github.com/user-attachments/assets/108c105a-a9a6-49a0-95c7-51a881416eff" />
+
+
 ## What it is
 Small prototype for a 2D indie game about crafting stringed musical instruments
 
@@ -24,4 +28,6 @@ The code located in the `src` folder is released under the MIT License.
 All assets (art, audio, text) are **not** covered by the MIT License and remain proprietary.
 
 ## Credits
-Thanks to Kettoman for the character's spritesheet:  https://kettoman.itch.io/free-pixel-characters-pack-32x32
+- Thanks to Kettoman for the character's spritesheet:  https://kettoman.itch.io/free-pixel-characters-pack-32x32
+- Thanks to Open Window (dathanboardman@gmail.com) for the metal mania font https://www.1001fonts.com/metal-mania-font.html
+- Thanks to Godot team!
