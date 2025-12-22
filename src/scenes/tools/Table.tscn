@@ -14,7 +14,8 @@ region = Rect2(64, 15.5, 64, 32)
 size = Vector2(61, 20)
 
 [node name="ToolBase" instance=ExtResource("1_ncptb")]
-collision_mask = 9
+collision_layer = 8
+collision_mask = 8
 tool_size = Vector2(64, 32)
 
 [node name="BaseCollision" parent="." index="0"]
@@ -25,11 +26,12 @@ shape = SubResource("RectangleShape2D_c21qm")
 texture = SubResource("AtlasTexture_15vvx")
 
 [node name="TopArea" parent="." index="2"]
-collision_layer = 8
-collision_mask = 8
+collision_layer = 0
+collision_mask = 0
 monitoring = false
 monitorable = false
 
 [node name="TopCollision" parent="TopArea" index="0"]
 position = Vector2(-0.5, -15)
 shape = SubResource("RectangleShape2D_15vvx")
+disabled = true

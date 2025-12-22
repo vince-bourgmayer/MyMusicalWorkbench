@@ -31,7 +31,7 @@ func set_direction(p_direction: Vector2):
 	direction = p_direction
 
 func change_raycast_direction():
-	$Raycast.target_position = direction.normalized() * 24
+	$Raycast.target_position = direction.normalized() * 16
 	
 func _process(_delta: float) -> void:
 	movement_system.move_character(self)

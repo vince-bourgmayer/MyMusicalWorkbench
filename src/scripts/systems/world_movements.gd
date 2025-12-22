@@ -8,11 +8,10 @@ extends Node
 @export var speed := 100
 
 var velocity := Vector2.ZERO
-var isWalking:= false
 
 func move_character(character: CharacterBody2D):
 	velocity = Vector2.ZERO
-	isWalking = true
+	var isWalking = true
 	if Input.is_action_pressed("move_right"):
 		velocity = Vector2.RIGHT
 		character.set_direction(Vector2.RIGHT)
