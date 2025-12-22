@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://c83dntkgxhewv"]
+[gd_scene load_steps=6 format=3 uid="uid://c83dntkgxhewv"]
 
 [ext_resource type="PackedScene" uid="uid://cp17pf1yv3rwi" path="res://src/scenes/World.tscn" id="1_7uq6d"]
+[ext_resource type="Script" uid="uid://bnhj745v7xsmq" path="res://src/game.gd" id="1_lqjwq"]
 [ext_resource type="PackedScene" uid="uid://3vbphrw7sk3j" path="res://src/scenes/Player.tscn" id="2_3msxb"]
+[ext_resource type="PackedScene" uid="uid://dagirnw3qypp1" path="res://src/scenes/tools/ToolPlaceHolder.tscn" id="4_7omc5"]
+[ext_resource type="PackedScene" uid="uid://dxxphm3k2tr85" path="res://src/scenes/tools/Table.tscn" id="5_km1yn"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
+script = ExtResource("1_lqjwq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -13,3 +17,7 @@ anchor_mode = 0
 [node name="Player" parent="." instance=ExtResource("2_3msxb")]
 position = Vector2(150, 150)
 scale = Vector2(2, 2)
+
+[node name="ToolPlaceholder" parent="." instance=ExtResource("4_7omc5")]
+
+[node name="Table" parent="." instance=ExtResource("5_km1yn")]

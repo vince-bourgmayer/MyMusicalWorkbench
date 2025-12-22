@@ -9,7 +9,7 @@ region = Rect2(64, 15.5, 64, 32)
 
 [node name="ToolBase" instance=ExtResource("1_ncptb")]
 collision_mask = 9
-tool_size = Vector2(128, 64)
+tool_size = Vector2(64, 32)
 
 [node name="Sprite2D" type="Sprite2D" parent="visual" index="0"]
 texture = SubResource("AtlasTexture_15vvx")
