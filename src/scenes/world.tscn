@@ -159,7 +159,7 @@ sources/0 = SubResource("TileSetAtlasSource_tvkxc")
 texture = ExtResource("3_tvkxc")
 texture_region_size = Vector2i(64, 48)
 1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23.436478, -14.746548, 0, -14.219885, 23.436478, -13.956553, 23.699806, 15.273211, -23.173145, 16.063204)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.544445, -14.338385, 31.225811, -14.657015, 32.181705, 23.578674, -31.225813, 23.897308)
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0 = 0
@@ -175,10 +175,10 @@ texture_region_size = Vector2i(64, 48)
 5:0/0 = 0
 4:0/0 = 0
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23.436478, -14.746548, 0, -14.219885, 23.436478, -13.956553, 23.699806, 15.273211, -23.173145, 16.063204)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.544445, -14.338385, 31.225811, -14.657015, 32.181705, 23.578674, -31.225813, 23.897308)
 
 [sub_resource type="TileSet" id="TileSet_1l6e7"]
-tile_size = Vector2i(48, 32)
+tile_size = Vector2i(64, 16)
 physics_layer_0/collision_layer = 8
 physics_layer_0/collision_mask = 8
 sources/1 = SubResource("TileSetAtlasSource_dq5wt")
@@ -198,5 +198,5 @@ tile_set = SubResource("TileSet_dq5wt")
 
 [node name="TileMapLayer_tools" type="TileMapLayer" parent="."]
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAACAAMAAQABAAAAAAACAAEAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAACAAMAAQABAAAAAAAEAAoAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_1l6e7")
