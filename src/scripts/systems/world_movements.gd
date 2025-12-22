@@ -5,7 +5,7 @@
 # -----------------------------------------------------------------------------
 extends Node
 
-@export var speed := 200
+@export var speed := 100
 
 var velocity := Vector2.ZERO
 var direction := "down"
@@ -60,3 +60,6 @@ func play_idle(animated_sprite: AnimatedSprite2D):
 	if current_anim != idle_anim:
 		animated_sprite.play(idle_anim)
 		current_anim = idle_anim
+
+func get_direction():
+	return direction

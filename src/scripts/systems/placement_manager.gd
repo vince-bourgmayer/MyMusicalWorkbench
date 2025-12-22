@@ -10,7 +10,7 @@ class_name PlacementManager
 var placeholder: Node2D
 var player: Node2D
 
-
+var placeholder_offset = Vector2(0,66)
 var current_tool_scene: PackedScene
 
 #@onready var player = get_parent().get_node("Player")
@@ -26,11 +26,22 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if placeholder.visible: # Si visible, suivre le joueur
-		var offset = Vector2(0, 66)  # décalage devant le joueur
-		placeholder.global_position = player.global_position + offset
+		placeholder.global_position = player.global_position + compute_offset()
 		
 func checkPlace() -> bool:
 	return placeholder.is_position_valid
+
+func compute_offset():
+	var direction = player.get_direction()
+	if direction == "up":
+		placeholder_offset.x = 0
+		placeholder_offset.y = -66
+	elif direction == "down":
+		placeholder_offset.x = 0
+		placeholder_offset.y = 66 
+	return placeholder_offset
+
+	
 
 #func toggle_placeholder_visibility(visible: bool):
 	#placeholder.visible = visible

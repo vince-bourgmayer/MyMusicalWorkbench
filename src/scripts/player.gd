@@ -22,3 +22,5 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_released("place_tool"):
 		get_parent().try_to_place_tool()
 		
+func get_direction()->String:
+	return movement_system.get_direction()
