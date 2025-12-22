@@ -23,8 +23,6 @@ func toggle_placeholder():
 	print("button X pressed")
 	if is_tool_to_place:
 		$ToolPlaceholder.visible = !$ToolPlaceholder.visible
-
-		
 	
 func try_to_place_tool():
 	var canPlace = placementManager.checkPlace()

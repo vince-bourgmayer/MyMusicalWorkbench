@@ -25,3 +25,9 @@ visible = false
 [node name="Table" parent="." instance=ExtResource("5_km1yn")]
 visible = false
 collision_mask = 11
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
