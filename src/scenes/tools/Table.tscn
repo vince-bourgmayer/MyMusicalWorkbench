@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxxphm3k2tr85"]
+
+[ext_resource type="PackedScene" uid="uid://dupwy5svhjxpj" path="res://src/scenes/tools/ToolBase.tscn" id="1_ncptb"]
+[ext_resource type="Texture2D" uid="uid://rinjr36yu8bt" path="res://assets/tilesets/tools.svg" id="2_c21qm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c21qm"]
+size = Vector2(60, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15vvx"]
+atlas = ExtResource("2_c21qm")
+region = Rect2(64, 15.5, 64, 32)
+
+[node name="ToolBase" instance=ExtResource("1_ncptb")]
+collision_mask = 9
+tool_size = Vector2(64, 32)
+
+[node name="BaseColision" parent="." index="0"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_c21qm")
+
+[node name="Sprite2D" type="Sprite2D" parent="visual" index="0"]
+texture = SubResource("AtlasTexture_15vvx")
+
+[node name="TopArea" parent="." index="2"]
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+monitorable = false
+
+[node name="TopColision" parent="TopArea" index="0"]
+position = Vector2(-1, 3)
+disabled = true
