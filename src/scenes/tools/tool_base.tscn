@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dupwy5svhjxpj"]
+
+[ext_resource type="Script" uid="uid://dpqx0hy4dijcj" path="res://src/scripts/tools/tool_base.gd" id="1_ucycs"]
+
+[node name="ToolBase" type="StaticBody2D"]
+script = ExtResource("1_ucycs")
+
+[node name="BaseColision" type="CollisionShape2D" parent="."]
+
+[node name="visual" type="Node2D" parent="."]
+
+[node name="TopArea" type="Area2D" parent="."]
+
+[node name="TopColision" type="CollisionShape2D" parent="TopArea"]
