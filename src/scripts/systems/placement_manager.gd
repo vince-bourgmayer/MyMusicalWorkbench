@@ -28,10 +28,10 @@ func checkPlace() -> bool:
 
 func compute_offset():
 	var direction = player.get_direction()
-	if direction == "up":
+	if direction == Vector2.UP:
 		placeholder_offset.x = 0
 		placeholder_offset.y = -66
-	elif direction == "down":
+	elif direction == Vector2.DOWN:
 		placeholder_offset.x = 0
 		placeholder_offset.y = 66 
 	return placeholder_offset
