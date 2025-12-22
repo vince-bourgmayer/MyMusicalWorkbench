@@ -31,12 +31,6 @@ func update_color(isValid: bool):
 		$Visual.modulate = color_valid
 	else:
 		$Visual.modulate = color_invalid
-		
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
 
 func _on_base_area_body_entered(_body: Node2D) -> void:
 	is_position_valid = false

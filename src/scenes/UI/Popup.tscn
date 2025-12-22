@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://cue34sxmerl3m"]
+
+[ext_resource type="Script" uid="uid://6ytc830ongqm" path="res://src/scripts/UI/popup.gd" id="1_67fn5"]
+[ext_resource type="FontFile" uid="uid://c58dmr6ddp3k8" path="res://assets/fonts/MetalMania-Regular.ttf" id="1_gb1pr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67fn5"]
+bg_color = Color(0.05490196, 0.09019608, 0.18039216, 0.94509804)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.73, 0.6312067, 0.30660003, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Popup" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_67fn5")
+
+[node name="Panel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.5
+offset_top = -143.5
+offset_right = 270.5
+offset_bottom = 143.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_67fn5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 23
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_gb1pr")
+theme_override_font_sizes/font_size = 26
+text = "You just got some space to build your first guitar.
+
+You don’t have much yet, but let's go step by step.
+
+Where should I put the workbench ?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press X to enable place mode then A to place.
+
+Press A to close this popup"
+horizontal_alignment = 1
+vertical_alignment = 1
