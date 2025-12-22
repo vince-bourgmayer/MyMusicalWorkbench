@@ -14,7 +14,6 @@ var is_idle := true
 
 func move(character: CharacterBody2D, animated_sprite: AnimatedSprite2D):
 	velocity = Vector2.ZERO
-
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
 		handle_walk(animated_sprite, "walk_right")

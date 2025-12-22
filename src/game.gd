@@ -13,25 +13,19 @@ func _ready() -> void:
 	$ToolPlaceholder.set_size($Table.tool_size)
 	placementManager.init($Player, $ToolPlaceholder)
 	add_child(placementManager)
+	showPopup()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
 	
 func toggle_placeholder():
-	print("button X pressed")
 	if is_tool_to_place:
 		$ToolPlaceholder.visible = !$ToolPlaceholder.visible
 	
 func try_to_place_tool():
 	var canPlace = placementManager.checkPlace()
 	if !is_tool_to_place:
-		print("nothing to place")
 		return
 		
 	if canPlace :
-		print("you can place here")
 		var table = $Table
 		remove_child($Table)
 		$World/Tools.add_child(table)
@@ -43,3 +37,12 @@ func try_to_place_tool():
 		remove_child($ToolPlaceholder)
 	else:
 		print("you can't place here")
+
+func showPopup():
+	$Player.set_process_input(false)
+	$UI/Popup.show()
+	$UI/Popup._popup_closed.connect(_on_popup_closed)
+
+func _on_popup_closed():
+	print("pop up is closed")
+	$UI/Popup.queue_free()
