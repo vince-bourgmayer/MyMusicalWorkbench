@@ -4,28 +4,24 @@
 # License: MIT
 # -----------------------------------------------------------------------------
 extends CharacterBody2D
+class_name Player
 
 const idle_animation = "idle_"
 const walk_animation = "walk_"
 
 var direction := Vector2.DOWN
 var animation := ""
-var movement_system
+@onready var movement_system = preload("res://src/scripts/systems/world_movements.gd").new()
+@onready var raycast = $Raycast
 
 func _ready() -> void:
-	movement_system = preload("res://src/scripts/systems/world_movements.gd").new()
+
+	movement_system.set_character(self)
 	add_child(movement_system)
 
+## should be moved elsewhere. not a part of this class task
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_released("try_place_tool"):
-		get_parent().toggle_placeholder()
-		
-	if event.is_action_released("place_tool"):
-		get_parent().try_to_place_tool()
-		
-	if event.is_action_released("interact_with_tool"):
-		if $Raycast.is_colliding():
-			print("We got a collision sir")
+	movement_system.unhandled_input(event)
 
 func set_direction(p_direction: Vector2):
 	direction = p_direction
@@ -34,7 +30,7 @@ func change_raycast_direction():
 	$Raycast.target_position = direction.normalized() * 16
 	
 func _process(_delta: float) -> void:
-	movement_system.move_character(self)
+	movement_system.move_character()
 	change_raycast_direction()
 	
 func get_direction()->Vector2:

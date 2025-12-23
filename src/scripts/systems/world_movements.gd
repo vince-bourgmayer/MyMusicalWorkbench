@@ -8,28 +8,47 @@ extends Node
 @export var speed := 100
 
 var velocity := Vector2.ZERO
+var player: Player
 
-func move_character(character: CharacterBody2D):
+func set_character(p_character: Player):
+	player = p_character
+	
+func move_character():
 	velocity = Vector2.ZERO
 	var isWalking = true
 	if Input.is_action_pressed("move_right"):
 		velocity = Vector2.RIGHT
-		character.set_direction(Vector2.RIGHT)
+		player.set_direction(Vector2.RIGHT)
 	elif Input.is_action_pressed("move_left"):
 		velocity = Vector2.LEFT
-		character.set_direction(Vector2.LEFT)
+		player.set_direction(Vector2.LEFT)
 	elif Input.is_action_pressed("move_down"):
 		velocity = Vector2.DOWN
-		character.set_direction(Vector2.DOWN)
+		player.set_direction(Vector2.DOWN)
 	elif Input.is_action_pressed("move_up"):
 		velocity = Vector2.UP
-		character.set_direction(Vector2.UP)
+		player.set_direction(Vector2.UP)
 	else:
 		isWalking = false
 		
-	character.play_animation(isWalking)
+	player.play_animation(isWalking)
 
 	# --- Déplacement ---
 	velocity = velocity.normalized() * speed
-	character.velocity = velocity
-	character.move_and_slide()
+	player.velocity = velocity
+	player.move_and_slide()
+
+# should be moved elsewhere. not a part of this class task
+func unhandled_input(event: InputEvent) -> void:
+	if event.is_action_released("try_place_tool"):
+		player.get_parent().toggle_placeholder()
+
+		
+	if event.is_action_released("place_tool"):
+		player.get_parent().try_to_place_tool()
+
+		
+	if event.is_action_released("interact_with_tool"):
+		if player.raycast.is_colliding():
+			print("We got a collision sir")
+			player.get_parent().interact_with_tool()
