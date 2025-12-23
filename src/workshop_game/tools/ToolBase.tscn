@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dupwy5svhjxpj"]
 
-[ext_resource type="Script" uid="uid://dpqx0hy4dijcj" path="res://src/scripts/tools/tool_base.gd" id="1_ucycs"]
+[ext_resource type="Script" uid="uid://dpqx0hy4dijcj" path="res://src/workshop_game/tools/tool_base.gd" id="1_ucycs"]
 
 [node name="ToolBase" type="StaticBody2D"]
 script = ExtResource("1_ucycs")
