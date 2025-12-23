@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-# player.gd
+# character.gd
 # Copyright (c) 2025 Vincent Bourgmayer
 # License: MIT
 # -----------------------------------------------------------------------------
@@ -11,7 +11,7 @@ const walk_animation = "walk_"
 
 var direction := Vector2.DOWN
 var animation := ""
-@onready var movement_system = preload("res://src/scripts/systems/world_movements.gd").new()
+@onready var movement_system = preload("res://src/workshop_game/core/world_movements.gd").new()
 @onready var raycast = $Raycast
 
 func _ready() -> void:

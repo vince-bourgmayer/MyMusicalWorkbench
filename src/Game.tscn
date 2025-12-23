@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c83dntkgxhewv"]
+[gd_scene load_steps=4 format=3 uid="uid://c83dntkgxhewv"]
 
-[ext_resource type="PackedScene" uid="uid://cp17pf1yv3rwi" path="res://src/scenes/World.tscn" id="1_7uq6d"]
 [ext_resource type="Script" uid="uid://bnhj745v7xsmq" path="res://src/game.gd" id="1_lqjwq"]
-[ext_resource type="PackedScene" uid="uid://3vbphrw7sk3j" path="res://src/scenes/Player.tscn" id="2_3msxb"]
-[ext_resource type="PackedScene" uid="uid://dagirnw3qypp1" path="res://src/scenes/tools/ToolPlaceHolder.tscn" id="4_7omc5"]
-[ext_resource type="PackedScene" uid="uid://dxxphm3k2tr85" path="res://src/scenes/tools/Table.tscn" id="5_km1yn"]
-[ext_resource type="PackedScene" uid="uid://cue34sxmerl3m" path="res://src/scenes/UI/Popup.tscn" id="6_eu8jo"]
+[ext_resource type="PackedScene" uid="uid://2jsv77v1ovbm" path="res://src/workshop_game/WorkshopGame.tscn" id="3_lqjwq"]
+[ext_resource type="PackedScene" uid="uid://cue34sxmerl3m" path="res://src/ui/Popup.tscn" id="6_eu8jo"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_lqjwq")
@@ -13,19 +10,7 @@ script = ExtResource("1_lqjwq")
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="World" parent="." instance=ExtResource("1_7uq6d")]
-
-[node name="Player" parent="." instance=ExtResource("2_3msxb")]
-top_level = true
-position = Vector2(150, 150)
-scale = Vector2(2, 2)
-
-[node name="ToolPlaceholder" parent="." instance=ExtResource("4_7omc5")]
-visible = false
-
-[node name="Table" parent="." instance=ExtResource("5_km1yn")]
-visible = false
-collision_mask = 11
+[node name="WorkshopGame" parent="." instance=ExtResource("3_lqjwq")]
 
 [node name="UI" type="CanvasLayer" parent="."]
 

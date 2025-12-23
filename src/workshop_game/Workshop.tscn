@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=4 uid="uid://cp17pf1yv3rwi"]
 
 [ext_resource type="Texture2D" uid="uid://bleykcbhsdthj" path="res://assets/tilesets/floor.svg" id="1_w561s"]
-[ext_resource type="Script" uid="uid://bo4gtmnec1ds8" path="res://src/scripts/world.gd" id="1_y5cph"]
+[ext_resource type="Script" uid="uid://bo4gtmnec1ds8" path="res://src/workshop_game/workshop.gd" id="1_y5cph"]
 [ext_resource type="Texture2D" uid="uid://cv7pau6gfnopa" path="res://assets/tilesets/walls.png" id="2_p8qt8"]
 [ext_resource type="Texture2D" uid="uid://rinjr36yu8bt" path="res://assets/tilesets/tools.svg" id="3_tvkxc"]
 

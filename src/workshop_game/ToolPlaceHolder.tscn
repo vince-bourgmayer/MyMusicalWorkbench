@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dagirnw3qypp1"]
 
-[ext_resource type="Script" uid="uid://dub5afru184eo" path="res://src/scripts/tools/tool_placeholder.gd" id="1_dlwek"]
+[ext_resource type="Script" uid="uid://dub5afru184eo" path="res://src/workshop_game/tool_placeholder.gd" id="1_dlwek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlwek"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dxxphm3k2tr85"]
 
-[ext_resource type="PackedScene" uid="uid://dupwy5svhjxpj" path="res://src/scenes/tools/ToolBase.tscn" id="1_ncptb"]
+[ext_resource type="PackedScene" uid="uid://dupwy5svhjxpj" path="res://src/workshop_game/tools/ToolBase.tscn" id="1_ncptb"]
 [ext_resource type="Texture2D" uid="uid://rinjr36yu8bt" path="res://assets/tilesets/tools.svg" id="2_c21qm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c21qm"]
