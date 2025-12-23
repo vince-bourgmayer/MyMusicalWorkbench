@@ -6,7 +6,17 @@ Early prototype screenshot
 
 
 ## What it is
-Small prototype for a 2D indie game about crafting stringed musical instruments
+Small prototype for a 2D indie game about crafting stringed musical instruments.
+
+### game mechanics
+#### POC
+- Workshop management: Place a workbench somewhere in the workshop and interact with it
+- Crafting guitar: handsaw the guitar body following template
+#### Ideas
+- Workshop management: Buy, and place tools where you want. Set up show room, painting area, etc. 
+- Customer management: Get request and try to build instrument that match the best
+- Crafting guitar: mini-games for tasks like sanding, sawing, or tuning the guitar.
+- Handling weather condition: keep you workshop dry, free of dust, not too warm nor cold
 
 ## Why this project exists
 This project was created as a way to stay active as a developer while exploring the intersection between technology and artistic craftsmanship.
@@ -28,6 +38,6 @@ The code located in the `src` folder is released under the MIT License.
 All assets (art, audio, text) are **not** covered by the MIT License and remain proprietary.
 
 ## Credits
-- Thanks to Kettoman for the character's spritesheet:  https://kettoman.itch.io/free-pixel-characters-pack-32x32
-- Thanks to Open Window (dathanboardman@gmail.com) for the metal mania font https://www.1001fonts.com/metal-mania-font.html
-- Thanks to Godot team!
+- Thanks to Kettoman for the character's spritesheet: [itch.io](https://kettoman.itch.io/free-pixel-characters-pack-32x32)
+- Thanks to Open Window for the metal mania font [1001fonts.com](https://www.1001fonts.com/metal-mania-font.html)
+- Thanks to Godot team! [Godot engine](https://godotengine.org/fr/)
