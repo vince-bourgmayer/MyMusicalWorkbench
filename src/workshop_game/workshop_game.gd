@@ -18,12 +18,10 @@ func _ready() -> void:
 	placementManager.init($Player, $ToolPlaceholder)
 	add_child(placementManager)
 
-# should move into world.gd
 func toggle_placeholder():
 	if is_tool_to_place:
 		$ToolPlaceholder.visible = !$ToolPlaceholder.visible
 
-# should move into world.gd
 func try_to_place_tool():
 	var canPlace = placementManager.checkPlace()
 	if !is_tool_to_place:
@@ -43,7 +41,7 @@ func try_to_place_tool():
 		print("you can't place here")
 
 func interact_with_tool():
-	popup_requested.emit("You're going to use the table as a workbench", "Press A to close")
+	popup_requested.emit("You're going to use the table as a workbench", "Press A to start")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
