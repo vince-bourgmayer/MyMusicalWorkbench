@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c83dntkgxhewv"]
 
-[ext_resource type="PackedScene" uid="uid://cp17pf1yv3rwi" path="res://src/scenes/World.tscn" id="1_7uq6d"]
+[ext_resource type="PackedScene" uid="uid://cp17pf1yv3rwi" path="res://src/workshop_game/Workshop.tscn" id="1_7uq6d"]
 [ext_resource type="Script" uid="uid://bnhj745v7xsmq" path="res://src/game.gd" id="1_lqjwq"]
 [ext_resource type="PackedScene" uid="uid://3vbphrw7sk3j" path="res://src/scenes/Player.tscn" id="2_3msxb"]
 [ext_resource type="PackedScene" uid="uid://dagirnw3qypp1" path="res://src/scenes/tools/ToolPlaceHolder.tscn" id="4_7omc5"]
