@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c83dntkgxhewv"]
+[gd_scene load_steps=5 format=3 uid="uid://c83dntkgxhewv"]
 
 [ext_resource type="Script" uid="uid://bnhj745v7xsmq" path="res://src/game.gd" id="1_lqjwq"]
 [ext_resource type="PackedScene" uid="uid://2jsv77v1ovbm" path="res://src/workshop_game/WorkshopGame.tscn" id="3_lqjwq"]
+[ext_resource type="PackedScene" uid="uid://uivdbrhwviue" path="res://src/tool_game/ToolGame.tscn" id="4_7omc5"]
 [ext_resource type="PackedScene" uid="uid://cue34sxmerl3m" path="res://src/ui/Popup.tscn" id="6_eu8jo"]
 
 [node name="Game" type="Node2D"]
@@ -21,3 +22,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ToolGame" parent="." instance=ExtResource("4_7omc5")]
