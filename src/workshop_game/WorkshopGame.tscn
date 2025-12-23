@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://k6teq1vilrqu" path="res://src/workshop_game/workshop_game.gd" id="1_7dfru"]
 [ext_resource type="PackedScene" uid="uid://cp17pf1yv3rwi" path="res://src/workshop_game/Workshop.tscn" id="1_ihonk"]
-[ext_resource type="PackedScene" uid="uid://3vbphrw7sk3j" path="res://src/workshop_game/Player.tscn" id="2_7dfru"]
+[ext_resource type="PackedScene" uid="uid://3vbphrw7sk3j" path="res://src/workshop_game/Character.tscn" id="2_7dfru"]
 [ext_resource type="PackedScene" uid="uid://dagirnw3qypp1" path="res://src/workshop_game/ToolPlaceHolder.tscn" id="3_b456t"]
 [ext_resource type="PackedScene" uid="uid://dxxphm3k2tr85" path="res://src/workshop_game/tools/Table.tscn" id="4_rnvgr"]
 
