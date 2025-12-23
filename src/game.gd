@@ -15,11 +15,12 @@ func _ready() -> void:
 	add_child(placementManager)
 	showPopup()
 
-	
+# should move into world.gd
 func toggle_placeholder():
 	if is_tool_to_place:
 		$ToolPlaceholder.visible = !$ToolPlaceholder.visible
-	
+
+# should move into world.gd
 func try_to_place_tool():
 	var canPlace = placementManager.checkPlace()
 	if !is_tool_to_place:
@@ -38,6 +39,10 @@ func try_to_place_tool():
 	else:
 		print("you can't place here")
 
+func interact_with_tool():
+	$UI/Popup.updateText("You're going to use the table as a workbench", "Press A to close")
+	showPopup()
+
 func showPopup():
 	$Player.set_process_input(false)
 	$UI/Popup.show()
@@ -45,4 +50,4 @@ func showPopup():
 
 func _on_popup_closed():
 	print("pop up is closed")
-	$UI/Popup.queue_free()
+	$UI/Popup.hide()

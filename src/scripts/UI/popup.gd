@@ -15,3 +15,8 @@ func _input(event: InputEvent) -> void:
 		hide()
 		get_viewport().set_input_as_handled()
 		_popup_closed.emit()
+
+func updateText(text1:String, text2: String):
+	$Panel/MarginContainer/VBoxContainer/Label.text = text1
+	$Panel/MarginContainer/VBoxContainer/Label2.text = text2
+	$Panel.reset_size()

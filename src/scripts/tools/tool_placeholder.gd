@@ -36,7 +36,6 @@ func _on_base_area_body_entered(_body: Node2D) -> void:
 	is_position_valid = false
 	update_color(is_position_valid)
 
-
 func _on_base_area_body_exited(_body: Node2D) -> void:
 	is_position_valid = true
 	update_color(is_position_valid)
