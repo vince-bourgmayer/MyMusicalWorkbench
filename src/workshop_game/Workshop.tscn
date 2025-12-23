@@ -184,7 +184,7 @@ physics_layer_0/collision_layer = 8
 physics_layer_0/collision_mask = 8
 sources/1 = SubResource("TileSetAtlasSource_dq5wt")
 
-[node name="World" type="Node2D"]
+[node name="Workshop" type="Node2D"]
 script = ExtResource("1_y5cph")
 
 [node name="TileMapLayer_ground" type="TileMapLayer" parent="."]
@@ -203,4 +203,4 @@ scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAEAAoAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_1l6e7")
 
-[node name="Tools" type="Node" parent="."]
+[node name="Tools" type="Node2D" parent="."]

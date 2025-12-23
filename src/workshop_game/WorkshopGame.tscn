@@ -1,15 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://2jsv77v1ovbm"]
+[gd_scene load_steps=5 format=3 uid="uid://2jsv77v1ovbm"]
 
 [ext_resource type="Script" uid="uid://k6teq1vilrqu" path="res://src/workshop_game/workshop_game.gd" id="1_7dfru"]
 [ext_resource type="PackedScene" uid="uid://cp17pf1yv3rwi" path="res://src/workshop_game/Workshop.tscn" id="1_ihonk"]
 [ext_resource type="PackedScene" uid="uid://3vbphrw7sk3j" path="res://src/workshop_game/Character.tscn" id="2_7dfru"]
 [ext_resource type="PackedScene" uid="uid://dagirnw3qypp1" path="res://src/workshop_game/ToolPlaceHolder.tscn" id="3_b456t"]
-[ext_resource type="PackedScene" uid="uid://dxxphm3k2tr85" path="res://src/workshop_game/tools/Table.tscn" id="4_rnvgr"]
 
 [node name="WorkshopGame" type="Node2D"]
 script = ExtResource("1_7dfru")
 
-[node name="World" parent="." instance=ExtResource("1_ihonk")]
+[node name="Workshop" parent="." instance=ExtResource("1_ihonk")]
 
 [node name="Player" parent="." instance=ExtResource("2_7dfru")]
 top_level = true
@@ -18,7 +17,3 @@ scale = Vector2(2, 2)
 
 [node name="ToolPlaceholder" parent="." instance=ExtResource("3_b456t")]
 visible = false
-
-[node name="Table" parent="." instance=ExtResource("4_rnvgr")]
-visible = false
-collision_mask = 11

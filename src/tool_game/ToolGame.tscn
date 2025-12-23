@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://uivdbrhwviue"]
+
+[ext_resource type="Script" uid="uid://dssrv28j8r1ke" path="res://src/tool_game/tool_game.gd" id="1_tyb42"]
+[ext_resource type="Texture2D" uid="uid://crj6yrwdnv24y" path="res://icon.svg" id="2_xoef6"]
+
+[node name="ToolGame" type="Node2D"]
+script = ExtResource("1_tyb42")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(79, 72)
+texture = ExtResource("2_xoef6")
