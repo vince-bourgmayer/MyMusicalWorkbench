@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://3vbphrw7sk3j" path="res://src/scenes/Player.tscn" id="2_3msxb"]
 [ext_resource type="PackedScene" uid="uid://dagirnw3qypp1" path="res://src/scenes/tools/ToolPlaceHolder.tscn" id="4_7omc5"]
 [ext_resource type="PackedScene" uid="uid://dxxphm3k2tr85" path="res://src/scenes/tools/Table.tscn" id="5_km1yn"]
-[ext_resource type="PackedScene" uid="uid://cue34sxmerl3m" path="res://src/scenes/UI/Popup.tscn" id="6_eu8jo"]
+[ext_resource type="PackedScene" uid="uid://cue34sxmerl3m" path="res://src/ui/Popup.tscn" id="6_eu8jo"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_lqjwq")

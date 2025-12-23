@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cue34sxmerl3m"]
 
-[ext_resource type="Script" uid="uid://6ytc830ongqm" path="res://src/scripts/UI/popup.gd" id="1_67fn5"]
+[ext_resource type="Script" uid="uid://6ytc830ongqm" path="res://src/ui/popup.gd" id="1_67fn5"]
 [ext_resource type="FontFile" uid="uid://c58dmr6ddp3k8" path="res://assets/fonts/MetalMania-Regular.ttf" id="1_gb1pr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67fn5"]
