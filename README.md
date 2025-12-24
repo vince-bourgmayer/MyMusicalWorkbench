@@ -2,7 +2,8 @@
 A hands-on journey into lutherie
 
 Early prototype screenshot
-<img width="895" height="641" alt="Early prototype screenshot" src="https://github.com/user-attachments/assets/108c105a-a9a6-49a0-95c7-51a881416eff" />
+
+<img width="671" height="477" alt="Early prototype screenshot" src="https://github.com/user-attachments/assets/9e0ab8f8-c368-45f9-b146-8e9e4ccc567c" />
 
 
 ## What it is
