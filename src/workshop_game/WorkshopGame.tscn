@@ -13,7 +13,6 @@ script = ExtResource("1_7dfru")
 [node name="Player" parent="." instance=ExtResource("2_7dfru")]
 top_level = true
 position = Vector2(150, 150)
-scale = Vector2(1.5, 1.5)
 
 [node name="ToolPlaceholder" parent="." instance=ExtResource("3_b456t")]
 visible = false
