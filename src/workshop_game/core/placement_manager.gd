@@ -10,7 +10,7 @@ class_name PlacementManager
 var placeholder: Node2D
 var player: Node2D
 
-var placeholder_offset = Vector2(0,66)
+var placeholder_offset = Vector2(0,60)
 
 func init(playerScene: Node2D, placeHolderScene: Node2D):
 	placeholder = placeHolderScene
@@ -30,8 +30,8 @@ func compute_offset():
 	var direction = player.get_direction()
 	if direction == Vector2.UP:
 		placeholder_offset.x = 0
-		placeholder_offset.y = -66
+		placeholder_offset.y = -60
 	elif direction == Vector2.DOWN:
 		placeholder_offset.x = 0
-		placeholder_offset.y = 66 
+		placeholder_offset.y = 60
 	return placeholder_offset

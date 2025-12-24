@@ -1,37 +1,39 @@
 [gd_scene load_steps=6 format=3 uid="uid://dxxphm3k2tr85"]
 
 [ext_resource type="PackedScene" uid="uid://dupwy5svhjxpj" path="res://src/workshop_game/tools/ToolBase.tscn" id="1_ncptb"]
-[ext_resource type="Texture2D" uid="uid://rinjr36yu8bt" path="res://assets/tilesets/tools.svg" id="2_c21qm"]
+[ext_resource type="Texture2D" uid="uid://bjf3vfkel0p3v" path="res://assets/tilesets/tools.png" id="2_j7lcw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c21qm"]
-size = Vector2(61, 32)
+size = Vector2(87, 46)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_15vvx"]
-atlas = ExtResource("2_c21qm")
-region = Rect2(64, 15.5, 64, 32)
+atlas = ExtResource("2_j7lcw")
+region = Rect2(96, 24, 96, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15vvx"]
-size = Vector2(61, 20)
+size = Vector2(83, 19)
 
 [node name="ToolBase" instance=ExtResource("1_ncptb")]
 collision_layer = 8
 collision_mask = 8
-tool_size = Vector2(64, 32)
+tool_size = Vector2(87, 46)
 
 [node name="BaseCollision" parent="." index="0"]
-position = Vector2(-0.5, 1)
+position = Vector2(-1.5, 1)
 shape = SubResource("RectangleShape2D_c21qm")
 
 [node name="Sprite2D" type="Sprite2D" parent="visual" index="0"]
 texture = SubResource("AtlasTexture_15vvx")
 
 [node name="TopArea" parent="." index="2"]
+visible = false
 collision_layer = 0
 collision_mask = 0
 monitoring = false
 monitorable = false
 
 [node name="TopCollision" parent="TopArea" index="0"]
-position = Vector2(-0.5, -15)
+visible = false
+position = Vector2(-1.5, -14.5)
 shape = SubResource("RectangleShape2D_15vvx")
 disabled = true

@@ -16,3 +16,4 @@ position = Vector2(150, 150)
 
 [node name="ToolPlaceholder" parent="." instance=ExtResource("3_b456t")]
 visible = false
+scale = Vector2(1, 1)
