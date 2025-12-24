@@ -14,6 +14,7 @@
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
@@ -28,8 +29,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="2.8284272"
-     inkscape:cx="12.374368"
-     inkscape:cy="117.5565"
+     inkscape:cx="32.526911"
+     inkscape:cy="86.443802"
      inkscape:window-width="1920"
      inkscape:window-height="1018"
      inkscape:window-x="0"
@@ -38,6 +39,14 @@
      inkscape:current-layer="layer1" />
   <defs
      id="defs1024">
+    <linearGradient
+       id="linearGradient10201"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#996b3f;stop-opacity:1;"
+         offset="0"
+         id="stop10199" />
+    </linearGradient>
     <linearGradient
        id="linearGradient4688"
        inkscape:swatch="solid">
@@ -54,6 +63,15 @@
          offset="0"
          id="stop4521" />
     </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient10201"
+       id="linearGradient10203"
+       x1="-0.00048119644"
+       y1="31.211549"
+       x2="17.066105"
+       y2="31.211549"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <g
      inkscape:label="Calque 1"
@@ -200,7 +218,7 @@
       </g>
     </g>
     <rect
-       style="fill:#999999;fill-opacity:1;stroke:#343434;stroke-width:1.05833;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.05833, 1.05833;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+       style="fill:#999999;fill-opacity:1;stroke:none;stroke-width:1.05833;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.05833, 1.05833;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
        id="rect1570"
        width="15.875"
        height="15.875"
@@ -225,7 +243,17 @@
        inkscape:label="wood_floor" />
     <path
        id="path5803"
-       style="fill:#996b3f;fill-opacity:1;stroke:#5b3e23;stroke-width:0.576438;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:20.955;stroke-opacity:1;paint-order:stroke fill markers"
-       d="m 2.8152482,31.39678 -0.08373,-5.023481 m 10.2144258,-0.08373 -0.08373,-5.023481 M -2.7838135e-7,31.480509 16.933333,31.396779 M -2.7838135e-7,26.373299 16.933333,26.289569 M 0,21.266089 16.933333,21.182359" />
+       style="display:inline;fill:#996b3f;fill-opacity:1;stroke:#5b3e23;stroke-width:0.26666665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:20.955;stroke-opacity:1;paint-order:stroke fill markers"
+       d="M 2.8372425,23.481555 2.7528584,21.0546 M 13.047084,21.014152 12.9627,18.587197 M 0,23.522006 17.065624,23.481555 M 0,21.0546 17.065624,21.014148 M 2.821875e-7,18.587194 17.065624,18.546742" />
+    <path
+       id="path10195"
+       style="display:inline;fill:#996b3f;fill-opacity:1;stroke:#5b3e23;stroke-width:0.266667;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:20.955;stroke-opacity:1;paint-order:stroke fill markers"
+       d="M 7.2338253,28.708727 7.1492393,26.119444 M 9.4924471,26.113559 9.376265,23.499781 M -4.55e-7,28.751585 17.065624,28.708727 M -4.55e-7,26.137398 17.065624,26.09454 M -1.75e-7,23.52321 17.065624,23.480352"
+       sodipodi:nodetypes="cccccccccc" />
+    <path
+       id="path10197"
+       style="display:inline;fill:url(#linearGradient10203);fill-opacity:1;stroke:#5b3e23;stroke-width:0.266667;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:20.955;stroke-opacity:1;paint-order:stroke fill markers"
+       d="m 4.6461336,33.702207 -0.02249,-2.48134 m 6.365202,-0.01517 0.102091,-2.481636 M -4.275e-7,33.713282 17.065624,33.672601 M -4.275e-7,31.231889 17.065624,31.191208 M -1.475e-7,28.750497 17.065624,28.709816"
+       sodipodi:nodetypes="cccccccccc" />
   </g>
 </svg>
