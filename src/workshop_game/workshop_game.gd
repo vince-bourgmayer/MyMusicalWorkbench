@@ -18,7 +18,6 @@ var table_instance : Node2D
 func _ready() -> void:
 	table_instance = table_scene.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
 	table_instance.visible = true
-	table_instance.scale = Vector2(2,2)
 	$ToolPlaceholder.set_size(table_instance.tool_size)
 	placementManager.init($Player, $ToolPlaceholder)
 	add_child(placementManager)
