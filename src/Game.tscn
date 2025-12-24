@@ -12,6 +12,7 @@ script = ExtResource("1_lqjwq")
 anchor_mode = 0
 
 [node name="WorkshopGame" parent="." instance=ExtResource("3_lqjwq")]
+scale = Vector2(1.5, 1.5)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
