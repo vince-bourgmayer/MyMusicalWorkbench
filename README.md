@@ -3,16 +3,20 @@ A hands-on journey into lutherie
 
 Early prototype screenshot
 
-<img width="671" height="477" alt="Early prototype screenshot" src="https://github.com/user-attachments/assets/9e0ab8f8-c368-45f9-b146-8e9e4ccc567c" />
-
+![World](screenshots/step4.jpg)
+![Handsaw](screenshots/step10.jpg)
 
 ## What it is
-Small prototype for a 2D indie game about crafting stringed musical instruments.
+This repository is a POC for a small 2D indie game prototype about crafting stringed musical instruments.
+It is intentionally kept raw.
 
 ### game mechanics
 #### POC
 - Workshop management: Place a workbench somewhere in the workshop and interact with it
-- Crafting guitar: handsaw the guitar body following template
+- Crafting guitar: handsaw the guitar body's blank:
+	- Define cut line
+	- Push/pull the saw
+
 #### Ideas
 - Workshop management: Buy, and place tools where you want. Set up show room, painting area, etc. 
 - Customer management: Get request and try to build instrument that match the best
