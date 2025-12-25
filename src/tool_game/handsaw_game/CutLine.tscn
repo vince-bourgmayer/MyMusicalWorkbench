@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjwqiftymlmgw"]
+
+[sub_resource type="GDScript" id="GDScript_w66gc"]
+script/source = "extends Node2D
+class_name Cutline
+
+@onready var edgeDetector = $EdgeDetector
+
+var direction := 0 # -1 backward, 0 idle, 1 forward
+var current_angle := 0
+var rotation_speed := 0.02
+
+
+func _ready() -> void:
+	pass
+
+func _process(delta: float) -> void:
+	#if direction < 0: # rotate left
+		 #current_angle -= rotation_speed
+	#elif direction > 0: 
+		 #current_angle += rotation_speed
+	#else :
+		#pass
+	#
+	pass
+	
+func set_direction(p_direction:int):
+	direction = p_direction
+"
+
+[node name="CutLine" type="Node2D"]
+script = SubResource("GDScript_w66gc")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 160)
+width = 4.0
+default_color = Color(0.003921569, 0.6901961, 0.6862745, 1)
+
+[node name="EdgeDetector" type="RayCast2D" parent="."]
