@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cjwqiftymlmgw"]
+
+[node name="CutLine" type="Node2D"]
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(20, 24, 78, 160)
+width = 4.0
+default_color = Color(0.0056611504, 0.0056611514, 0.00566115, 1)
