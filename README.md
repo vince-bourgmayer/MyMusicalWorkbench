@@ -32,11 +32,20 @@ Through lutherie-inspired gameplay, it aims to share an experience that values e
 Early prototype / design phase.  
 The project is currently focused on core mechanics and experimentation.
 
+🔧 Status: handsaw mechanic playable
+🚧 Still missing: return to world, success criteria, GUI
+
 ## Concept, Design & Creative Direction :
 © Vincent Bourgmayer
 
 ## Contributions
-Not accepting external contributions yet.
+Issues welcome (bug reports / ideas)
+PRs optional but expected to be messy :)
+
+### How to run
+1. Open with Godot 4.5.1
+2. Run main scene: `Game.tscn` or `HandsawGame.tscn`
+3. Interact with the workbench
 
 ## License
 The code located in the `src` folder is released under the MIT License.  
