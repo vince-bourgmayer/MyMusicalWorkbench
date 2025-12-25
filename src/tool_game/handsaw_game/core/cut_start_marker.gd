@@ -12,9 +12,10 @@ var current_segment_index := 0
 var relative_position := 0.0 # used for lerp, it's the position on the current segment
 
 var direction = 0 # -1 backward, 0 idle, +1 forward
+var color:Color = Color.RED
 
-
-func _init() -> void:
+func _init(_color:Color = Color.RED) -> void:
+	color = _color
 	pass
 	
 func _process(delta: float) -> void:
@@ -25,7 +26,7 @@ func set_path(segments: Array[Segment]) -> void:
 	update_position()
 
 func _draw() -> void:
-	draw_circle(Vector2.ZERO, 5, Color.ROYAL_BLUE)
+	draw_circle(Vector2.ZERO, 5, color)
 
 # --- DÉPLACEMENT ---
 func move_along_path(delta: float):

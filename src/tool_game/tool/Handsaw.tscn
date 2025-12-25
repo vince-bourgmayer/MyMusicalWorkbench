@@ -5,28 +5,8 @@
 [node name="Handsaw" type="Node2D"]
 script = ExtResource("1_ven2d")
 
-[node name="proto 1" type="Node2D" parent="."]
-visible = false
-
-[node name="Blade" type="Polygon2D" parent="proto 1"]
-color = Color(0.59717613, 0.59717613, 0.5971761, 1)
-polygon = PackedVector2Array(-9.536743e-07, -5.722046e-06, 0.008362066, 200.36649, -15.783946, 248.32104, -7.9553237, 30.90263)
-uv = PackedVector2Array(-192, 8, -192, 272, -232.00002, 328, -216, 23.999996)
-
-[node name="handle_side" type="Polygon2D" parent="proto 1"]
-color = Color(0.8210364, 0.19791952, 0.2976124, 1)
-polygon = PackedVector2Array(-2.7509115, 200, -8.119558, 210.13652, -9.825155, 224.18784, -16.196156, 231.53886, -15.888594, 242.40425, -16.324722, 257.477, -9.776871, 264.21707, -2.7399845, 263.87436)
-uv = PackedVector2Array(-3.0236588, 200.0148, -9.9477005, 215.87311, -8.942604, 225.70078, -7.937996, 227.63042, -13.7452545, 241.14346, -17.207275, 253.31638, -12.739723, 271.15143, -4.2529297, 271.69125)
-
-[node name="handle_Top" type="Polygon2D" parent="proto 1"]
-color = Color(0.6862745, 0.14117648, 0.23529412, 1)
-polygon = PackedVector2Array(-2.7871568, 199.9921, 3.3670483, 200.00697, 3.3897295, 264.04773, -2.9617012, 263.9775)
-uv = PackedVector2Array(-4.3518524, 200.4598, 5.6221313, 200.13278, 6.0384216, 239.89438, -5.5278625, 240.24487)
-
-[node name="Hand" type="Polygon2D" parent="proto 1"]
-
 [node name="visual" type="Node2D" parent="."]
-position = Vector2(0, -148)
+position = Vector2(0, -100)
 
 [node name="Blade_side" type="Polygon2D" parent="visual"]
 color = Color(0.59717613, 0.59717613, 0.5971761, 1)
@@ -57,3 +37,8 @@ uv = PackedVector2Array(4.3071823, 264.30453, 5.023781, 215.94768, 6.596405, 214
 color = Color(0.043263286, 0.14179102, 0.2590969, 1)
 polygon = PackedVector2Array(12.400165, 294.21085, -10.953681, 294.63766, -13.188171, 326.1346, 15.6632395, 325.6201)
 uv = PackedVector2Array(12.236656, 294.04733, -13.569809, 294.31064, -13.188171, 326.1346, 17.134811, 326.60114)
+
+[node name="CutPointMarker" type="Polygon2D" parent="."]
+color = Color(1, 0.21176471, 0, 1)
+polygon = PackedVector2Array(8.000006, 0, 16.066994, -5.2943025, 16.052217, 4.8729634)
+uv = PackedVector2Array(0, 0, 24.000008, -24, 24.000008, 24.000004)

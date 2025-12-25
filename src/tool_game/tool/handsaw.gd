@@ -10,7 +10,7 @@ var visual_origin : Vector2
 var action := 0 # 0: idle, 1: push, 2: pull
 var action_distance := 0 # La distance parcouru par la scie > 0 : push distance, < 0 : pull distance
 
-const sawblade_length:= 105 # depend on the sawblade's length
+const sawblade_length:= 100 # depend on the sawblade's length
 const distance_per_frame := 15 # speed of the sawing movement
 
 
