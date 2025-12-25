@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://co70nfo7nvkox"]
+
+[ext_resource type="PackedScene" uid="uid://uivdbrhwviue" path="res://src/tool_game/ToolGame.tscn" id="1_sujg8"]
+[ext_resource type="Texture2D" uid="uid://cg78abq0gylbo" path="res://assets/woods/body_blank/ashbody_1_300x425.png" id="2_d6vd3"]
+[ext_resource type="Script" uid="uid://8b3o3qw8d28x" path="res://src/tool_game/handsaw_game/handsaw_game.gd" id="2_ydnle"]
+[ext_resource type="PackedScene" uid="uid://cwjeojfaayj50" path="res://src/tool_game/tool/Handsaw.tscn" id="3_ydnle"]
+
+[node name="HandsawGame" instance=ExtResource("1_sujg8")]
+script = ExtResource("2_ydnle")
+
+[node name="Body_Blank" type="Sprite2D" parent="." index="0"]
+position = Vector2(305, 292)
+texture = ExtResource("2_d6vd3")
+
+[node name="Handsaw" parent="." index="1" instance=ExtResource("3_ydnle")]
+position = Vector2(432.00003, 149)
