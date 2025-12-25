@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://cwjeojfaayj50"]
+[gd_scene load_steps=2 format=3 uid="uid://cwjeojfaayj50"]
+
+[ext_resource type="Script" uid="uid://b0e7fnbtvnqe0" path="res://src/tool_game/tool/handsaw.gd" id="1_ven2d"]
 
 [node name="Handsaw" type="Node2D"]
+script = ExtResource("1_ven2d")
 
 [node name="proto 1" type="Node2D" parent="."]
 visible = false
@@ -22,34 +25,35 @@ uv = PackedVector2Array(-4.3518524, 200.4598, 5.6221313, 200.13278, 6.0384216, 2
 
 [node name="Hand" type="Polygon2D" parent="proto 1"]
 
-[node name="proto 2" type="Node2D" parent="."]
+[node name="visual" type="Node2D" parent="."]
+position = Vector2(0, -148)
 
-[node name="Blade_side" type="Polygon2D" parent="proto 2"]
+[node name="Blade_side" type="Polygon2D" parent="visual"]
 color = Color(0.59717613, 0.59717613, 0.5971761, 1)
 polygon = PackedVector2Array(-0.11602798, -0.00051615015, 0.008362066, 200.36649, -4.432646, 199.93697, -1.5636485, 20.794865)
 uv = PackedVector2Array(-192, 8, -192, 272, -232.00002, 328, -216, 23.999996)
 
-[node name="handle_side" type="Polygon2D" parent="proto 2"]
+[node name="handle_side" type="Polygon2D" parent="visual"]
 color = Color(0.91305745, 0.2649604, 0.35532165, 1)
 polygon = PackedVector2Array(-4.6044083, 199.91339, -6.678054, 233.36865, -6.6150875, 256.8776, -4.5926647, 263.94125)
 uv = PackedVector2Array(-4.3518524, 200.4598, 5.6221313, 200.13278, 6.0384216, 239.89438, -5.5278625, 240.24487)
 
-[node name="handle_top" type="Polygon2D" parent="proto 2"]
+[node name="handle_top" type="Polygon2D" parent="visual"]
 color = Color(0.6862745, 0.14117648, 0.23529412, 1)
 polygon = PackedVector2Array(-4.6044083, 199.91339, 3.4120216, 199.9329, 3.4090872, 263.93015, -4.5926647, 263.94125)
 uv = PackedVector2Array(-4.3518524, 200.4598, 5.6221313, 200.13278, 6.0384216, 239.89438, -5.5278625, 240.24487)
 
-[node name="Blade_top" type="Polygon2D" parent="proto 2"]
+[node name="Blade_top" type="Polygon2D" parent="visual"]
 color = Color(0.2123048, 0.21230483, 0.21230477, 1)
 polygon = PackedVector2Array(0.22656155, -0.015630722, 0.3500516, 206.61935, -0.45076948, 206.61444, -0.15078498, -0.00414896)
 uv = PackedVector2Array(-192, 8, -192, 272, -232.00002, 328, -216, 23.999996)
 
-[node name="Hand" type="Polygon2D" parent="proto 2"]
+[node name="Hand" type="Polygon2D" parent="visual"]
 color = Color(0.8352941, 0.6627451, 0.5411765, 1)
 polygon = PackedVector2Array(3.596503, 263.7969, 4.008525, 232.79056, 3.034507, 218.31462, 5.3404694, 217.01617, 7.841846, 219.03333, 11.6548195, 232.79662, 12.694889, 243.92372, 15, 255, 14.209532, 277.68436, 10.303628, 294.81567, -8.134105, 295.33884, -14.831547, 278.7878, -13.18246, 259.5663, -13.50056, 245.09775, -11.481343, 239.90053, -6.1534705, 239.45079, -4.7874813, 245.492, -5.207441, 263.28073, -0.44580084, 264.50168)
 uv = PackedVector2Array(4.3071823, 264.30453, 5.023781, 215.94768, 6.596405, 214.43819, 8.802784, 215.25769, 9.685337, 222.88547, 11.598373, 234.55022, 13.273544, 238.79399, 12.938515, 244.26622, 13.050873, 280.00168, 10.593292, 297.42267, -21.239792, 296.0443, -28.24968, 261.3454, -31.046791, 243.61426, -16.683258, 223.02654, -10.219681, 219.43565, -5.431839, 222.06897, -7.3469696, 233.081, -6.6287994, 263.4838, -1.3595314, 264.90778)
 
-[node name="Polygon2D" type="Polygon2D" parent="proto 2"]
+[node name="Polygon2D" type="Polygon2D" parent="visual"]
 color = Color(0.043263286, 0.14179102, 0.2590969, 1)
 polygon = PackedVector2Array(12.400165, 294.21085, -10.953681, 294.63766, -13.188171, 326.1346, 15.6632395, 325.6201)
 uv = PackedVector2Array(12.236656, 294.04733, -13.569809, 294.31064, -13.188171, 326.1346, 17.134811, 326.60114)
