@@ -1,3 +1,8 @@
+# -----------------------------------------------------------------------------
+# handsaw_game.gd
+# Copyright (c) 2025 Vincent Bourgmayer
+# License: MIT
+# -----------------------------------------------------------------------------
 extends ToolGame
 class_name HandsawGame
 
@@ -38,7 +43,7 @@ func _process(_delta: float) -> void:
 		cutline.set_point_position(0, cutStartMarker.position)
 		cutline.set_point_position(1, cutEndMarker.position)
 
-func _unhandled_input(event: InputEvent) -> void:
+func handle_specific_input(event: InputEvent) -> void:
 	if currentState == gameState.SET_START:
 		handleStartInputs(event, cutStartMarker)
 	elif currentState == gameState.SET_ANGLE:

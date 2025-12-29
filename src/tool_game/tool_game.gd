@@ -12,3 +12,13 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	pass
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not is_visible_in_tree():
+		return
+	else:
+		handle_specific_input(event)
+		
+		
+func handle_specific_input(event: InputEvent) -> void:
+	pass # Overide in child

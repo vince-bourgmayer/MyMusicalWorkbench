@@ -14,7 +14,9 @@ const openToolGame_popup = 2
 func _ready() -> void:
 	pause_tool_game()
 	workshopGame.popup_requested.connect(_on_popup_requested)
+	$UI/Popup._popup_closed.connect(_on_popup_closed)
 	showPopup()
+	
 
 func _on_popup_requested(text1:String, text2:String, code: int):
 	$UI/Popup.setCode(code)
@@ -23,10 +25,8 @@ func _on_popup_requested(text1:String, text2:String, code: int):
 
 func showPopup():
 	$UI/Popup.show()
-	$UI/Popup._popup_closed.connect(_on_popup_closed)
 
 func _on_popup_closed(code: int):
-	print("pop up is closed")
 	$UI/Popup.hide()
 	if code == openToolGame_popup:
 		pause_workshop_game()
@@ -47,8 +47,8 @@ func pause_workshop_game():
 
 func start_tool_game():
 	print("Open Tool game scene")
-	$ToolGame.set_process(true)
 	$ToolGame.set_visible(true)
+	$ToolGame.set_process(true)
 
 func pause_tool_game():
 	print("pause Tool game scene")
