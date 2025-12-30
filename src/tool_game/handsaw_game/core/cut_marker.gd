@@ -58,3 +58,18 @@ func update_position() -> void:
 	
 func set_direction(p_direction: int):
 	direction = p_direction
+
+func split_current_segment():
+	#1 on créé deux segment à partir des 3 points
+	var second_Half = path_segments[current_segment_index]
+	second_Half.start = global_position
+	
+	path_segments[current_segment_index].end = global_position
+	path_segments.insert(current_segment_index+1, second_Half)
+	
+func _on_endPoint_set():
+	var second_Half = path_segments[current_segment_index]
+	second_Half.start = global_position
+	
+	path_segments[current_segment_index].end = global_position
+	path_segments.insert(current_segment_index+1, second_Half)

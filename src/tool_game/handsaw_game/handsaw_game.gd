@@ -6,17 +6,16 @@
 extends ToolGame
 class_name HandsawGame
 
-enum gameState { SET_START, SET_ANGLE, SET_CUT }
+enum gameState { SET_START_POINT, SET_END_POINT, SET_CUT }
 
 @onready var handsaw = $Handsaw
 @onready var woodboard = $Woodboard
+const sawing_progress_step = 0.01
 
-
-var currentState: gameState = gameState.SET_START
+var currentState: gameState = gameState.SET_START_POINT
 var cutStartMarker: CutMarker
 var cutEndMarker: CutMarker
 var cutline : Line2D = Line2D.new()
-
 var cut_increment := 0.0 # step of the cut progress
 
 func _ready() -> void:
@@ -38,38 +37,57 @@ func _ready() -> void:
 	
 	handsaw.top_level = true
 
+func start_new_cut():
+	cutStartMarker.set_direction(0)
+	cutEndMarker.set_direction(0)
+	cutStartMarker.visible = true
+	cutEndMarker.visible = true
+	handsaw.visible = false
+	currentState = gameState.SET_START_POINT
+	
+func set_start_point():
+	cutStartMarker.split_current_segment()
+	currentState = gameState.SET_END_POINT
+	cutEndMarker.visible = true
+	cutline.visible = true
+	
+func set_end_point():
+	cutEndMarker.split_current_segment()
+	cutStartMarker.visible = false
+	cutEndMarker.visible = false
+	place_saw_for_action()
+	currentState = gameState.SET_CUT
+		
+func place_saw_for_action():
+	handsaw.position = cutStartMarker.position
+	handsaw.rotate(get_cutline_angle())
+	handsaw.visible = true
+
 func _process(_delta: float) -> void:
-	if currentState == gameState.SET_ANGLE:
+	if currentState == gameState.SET_END_POINT:
 		cutline.set_point_position(0, cutStartMarker.position)
 		cutline.set_point_position(1, cutEndMarker.position)
 
 func handle_specific_input(event: InputEvent) -> void:
-	if currentState == gameState.SET_START:
+	if currentState == gameState.SET_START_POINT:
 		handleStartInputs(event, cutStartMarker)
-	elif currentState == gameState.SET_ANGLE:
+	elif currentState == gameState.SET_END_POINT:
 		handleStartInputs(event, cutEndMarker)
 	elif currentState == gameState.SET_CUT:
 		handleCutInputs(event)
 
 func handleStartInputs(event: InputEvent, marker: CutMarker) -> void:
 	if event.is_action_pressed("move_up"):
-		marker.set_direction(+1)
-	elif event.is_action_pressed("move_down"):
 		marker.set_direction(-1)
+	elif event.is_action_pressed("move_down"):
+		marker.set_direction(1)
 	elif event.is_action_released("move_up") || event.is_action_released("move_down"):
 		marker.set_direction(0)
 	if event.is_action_released("place_tool"):
-		if currentState == gameState.SET_START:
-			currentState = gameState.SET_ANGLE
-			cutEndMarker.visible = true
-			cutline.visible = true
-		elif currentState == gameState.SET_ANGLE:
-			cutStartMarker.visible = false
-			cutEndMarker.visible = false
-			currentState = gameState.SET_CUT
-			var cut_angle = get_cutline_angle()
-			handsaw.position = cutStartMarker.position
-			handsaw.rotate(cut_angle)
+		if currentState == gameState.SET_START_POINT:
+			set_start_point()
+		elif currentState == gameState.SET_END_POINT:
+			set_end_point()
 
 
 func handleCutInputs(event: InputEvent) -> void:
@@ -82,9 +100,13 @@ func handleCutInputs(event: InputEvent) -> void:
 
 func make_progress():
 	if cut_increment < 1.0:
-		cut_increment+= 0.001
-		print(cut_increment)
+		cut_increment+= sawing_progress_step
 		handsaw.position = cutStartMarker.position.lerp(cutEndMarker.position, cut_increment)
+	else: #cut is finished
+		cutStartMarker.visible = true
+		cutEndMarker.visible = true
+		handsaw.visible = false
+		start_new_cut()
 
 func get_cutline_angle() -> float:
 	return ((cutStartMarker.position - cutEndMarker.position).angle_to(Vector2(0,1)) +3.141593 )* -1
