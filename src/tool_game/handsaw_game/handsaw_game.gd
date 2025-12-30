@@ -13,18 +13,18 @@ enum gameState { SET_START, SET_ANGLE, SET_CUT }
 
 
 var currentState: gameState = gameState.SET_START
-var cutStartMarker: CutStartMarker
-var cutEndMarker: CutStartMarker
+var cutStartMarker: CutMarker
+var cutEndMarker: CutMarker
 var cutline : Line2D = Line2D.new()
 
 var cut_increment := 0.0 # step of the cut progress
 
 func _ready() -> void:
-	cutStartMarker = CutStartMarker.new()
+	cutStartMarker = CutMarker.new()
 	cutStartMarker.set_path(woodboard.get_remaining_wood_border())
 	add_child(cutStartMarker)
 	
-	cutEndMarker = CutStartMarker.new(Color.BLUE)
+	cutEndMarker = CutMarker.new(Color.BLUE)
 	cutEndMarker.set_path(woodboard.get_remaining_wood_border())
 	cutEndMarker.visible = false
 	add_child(cutEndMarker)
@@ -51,7 +51,7 @@ func handle_specific_input(event: InputEvent) -> void:
 	elif currentState == gameState.SET_CUT:
 		handleCutInputs(event)
 
-func handleStartInputs(event: InputEvent, marker: CutStartMarker) -> void:
+func handleStartInputs(event: InputEvent, marker: CutMarker) -> void:
 	if event.is_action_pressed("move_up"):
 		marker.set_direction(+1)
 	elif event.is_action_pressed("move_down"):

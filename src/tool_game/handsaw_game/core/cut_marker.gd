@@ -4,7 +4,7 @@
 # License: MIT
 # -----------------------------------------------------------------------------
 extends Marker2D
-class_name CutStartMarker
+class_name CutMarker
 
 const MOVEMENT_SPEED = 1
 var path_segments : Array[Segment] = [] # Segment that define the path for the marker. 
