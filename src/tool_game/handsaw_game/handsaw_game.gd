@@ -10,6 +10,7 @@ enum gameState { SET_START_POINT, SET_END_POINT, SET_CUT }
 
 @onready var handsaw = $Handsaw
 @onready var woodboard = $Woodboard
+@onready var visualMarkers = $VisualMarkers
 const sawing_progress_step = 0.01
 
 var currentState: gameState = gameState.SET_START_POINT
@@ -22,18 +23,20 @@ var cut_increment := 0.0 # step of the cut progress
 func _ready() -> void:
 	cutStartMarker = CutMarker.new()
 	cutStartMarker.set_path(woodboard.get_remaining_wood_border())
-	add_child(cutStartMarker)
+	visualMarkers.add_child(cutStartMarker)
 	
 	cutEndMarker = CutMarker.new(Color.BLUE)
 	cutEndMarker.set_path(woodboard.get_remaining_wood_border())
 	cutEndMarker.visible = false
-	add_child(cutEndMarker)	
+	visualMarkers.add_child(cutEndMarker)	
 	handsaw.top_level = true
 	
 func start_new_cut():
 	handsaw.rotate(handsaw.rotation*-1)
 	cut_increment = 0.0
+	cutStartMarker.set_path(woodboard.get_remaining_wood_border())
 	cutStartMarker.set_direction(0)
+	cutEndMarker.set_path(woodboard.get_remaining_wood_border())
 	cutEndMarker.set_direction(0)
 	
 	cutStartMarker.visible = true
@@ -57,7 +60,7 @@ func set_start_point():
 	cutlines.append(cutline)
 	current_cutline_index += 1
 	
-	add_child(cutlines[current_cutline_index])
+	visualMarkers.add_child(cutlines[current_cutline_index])
 	
 func set_end_point():
 	cutEndMarker.split_current_segment()
@@ -67,7 +70,7 @@ func set_end_point():
 	currentState = gameState.SET_CUT
 		
 func place_saw_for_action():
-	handsaw.position = cutStartMarker.position
+	handsaw.position = cutStartMarker.global_position
 	handsaw.rotate(get_cutline_angle())
 	handsaw.visible = true
 
@@ -111,9 +114,10 @@ func handleCutInputs(event: InputEvent) -> void:
 func make_progress():
 	if cut_increment < 1.0:
 		cut_increment+= sawing_progress_step
-		handsaw.position = cutStartMarker.position.lerp(cutEndMarker.position, cut_increment)
+		handsaw.position = cutStartMarker.global_position.lerp(cutEndMarker.global_position, cut_increment)
 	else: #cut is finished
 		cutlines[current_cutline_index].default_color = Color.BLACK
+		woodboard.add_new_cut(cutStartMarker.position, cutEndMarker.position)
 		start_new_cut()
 
 func get_cutline_angle() -> float:

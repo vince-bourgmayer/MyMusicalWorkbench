@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 	move_along_path(delta)
 	
 func set_path(segments: Array[Segment]) -> void:
+	current_segment_index = 0
 	path_segments = segments
 	update_position()
 

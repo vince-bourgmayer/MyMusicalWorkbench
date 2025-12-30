@@ -9,6 +9,10 @@
 script = ExtResource("2_ydnle")
 
 [node name="Woodboard" parent="." index="0" instance=ExtResource("4_d6vd3")]
+position = Vector2(305, 292)
 
 [node name="Handsaw" parent="." index="1" instance=ExtResource("3_ydnle")]
-position = Vector2(432.00003, 149)
+visible = false
+
+[node name="VisualMarkers" type="Node2D" parent="." index="2"]
+position = Vector2(152, 81)

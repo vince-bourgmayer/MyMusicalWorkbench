@@ -7,15 +7,19 @@
 script = ExtResource("1_d7usl")
 
 [node name="Body_Blank" type="Sprite2D" parent="."]
-position = Vector2(305, 292)
 texture = ExtResource("1_ghdje")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-305, -292)
 
 [node name="BodyShape" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2(157, 91)
 polygon = PackedVector2Array(171, 50, 123, 50, 118, 61, 108, 67, 95, 63, 84, 57, 75, 43, 74, 14, 66, 2, 57, -3, 42, 1, 31, 15, 23, 42, 23, 69, 35, 112, 48, 156, 47, 177, 35, 214, 10, 274, 6, 297, 5, 330, 19, 359, 36, 376, 65, 391, 88, 397, 107, 399, 170, 400, 202, 398, 228, 395, 260, 379, 281, 358, 288, 333, 290, 305, 284, 274, 277, 251, 274, 242, 261, 216, 251, 183, 251, 170, 265, 135, 273, 113, 274, 76, 262, 58, 246, 48, 234, 63, 229, 86, 219, 101, 198, 106, 183, 103, 176, 92, 176, 58)
 
-[node name="RemainingWoodBorder" type="CollisionPolygon2D" parent="."]
-visible = false
-polygon = PackedVector2Array(453, 503, 155, 504, 155, 80, 454, 80)
+[node name="BorderArea2D" type="Area2D" parent="."]
+position = Vector2(-153, -211)
+monitoring = false
+monitorable = false
+
+[node name="RemainingWoodBorder" type="CollisionPolygon2D" parent="BorderArea2D"]
+polygon = PackedVector2Array(3, -1, 302, -1, 303, 422, 3, 423)
