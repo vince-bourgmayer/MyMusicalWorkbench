@@ -59,17 +59,25 @@ func update_position() -> void:
 func set_direction(p_direction: int):
 	direction = p_direction
 
-func split_current_segment():
+func split_current_segment(): # split the current segment at this marker position
+	relative_position = 1.0
+
+	#print("[Before split] current index:", current_segment_index, ": ", path_segments[current_segment_index].start, ";", path_segments[current_segment_index].end)
+	#dump_segments()
 	#1 on créé deux segment à partir des 3 points
-	var second_Half = path_segments[current_segment_index]
-	second_Half.start = global_position
+	var second_Half = path_segments[current_segment_index].duplicate()
+	second_Half.start = position
 	
-	path_segments[current_segment_index].end = global_position
+	path_segments[current_segment_index].end = position 
 	path_segments.insert(current_segment_index+1, second_Half)
+	update_position()
 	
-func _on_endPoint_set():
-	var second_Half = path_segments[current_segment_index]
-	second_Half.start = global_position
-	
-	path_segments[current_segment_index].end = global_position
-	path_segments.insert(current_segment_index+1, second_Half)
+	#print("[After split] current index:", current_segment_index, ": ", path_segments[current_segment_index].start, ";", path_segments[current_segment_index].end)
+	#dump_segments()
+
+
+func dump_segments():
+	print("=====Dumping segments=====\n[")
+	for i in path_segments:
+		print("		(", i.start, ";", i.end, ")," )
+	print("]\n\n")

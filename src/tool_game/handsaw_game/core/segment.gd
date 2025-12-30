@@ -8,3 +8,6 @@ var end: Vector2
 func _init(s: Vector2, e: Vector2):
 	start = s
 	end = e
+
+func duplicate() -> Segment:
+	return Segment.new(start, end)
