@@ -1,6 +1,11 @@
 # My Musical workbench
 A hands-on journey into lutherie
 
+
+
+🎥 Demo video  
+https://github.com/vince-bourgmayer/MyMusicalWorkbench/raw/main/screenshots/MyMusicalWorkbench_demo_03012026_compressed.mp4
+
 Early prototype screenshot
 
 ![World](screenshots/step4.jpg)
