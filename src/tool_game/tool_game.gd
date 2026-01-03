@@ -6,6 +6,8 @@
 extends Node2D
 class_name ToolGame
 
+signal popup_requested(text1: String, text2:String)
+
 func _ready() -> void:
 	pass 
 

@@ -8,6 +8,7 @@ extends Node2D
 const startMessage_popup = 0
 const openWorkshopGame_popup = 1
 const openToolGame_popup = 2
+const handSawGame_popup = 3
 
 @onready var workshopGame = $WorkshopGame
 
@@ -35,22 +36,31 @@ func _on_popup_closed(code: int):
 		pause_tool_game()
 		start_workshop_game()
 
+		
+
 func start_workshop_game():
 	print("Open Workshop game scene")
 	$WorkshopGame.set_process(true)
 	$WorkshopGame.set_visible(true)
+	$WorkshopGame.popup_requested.connect(_on_popup_requested)
+	$ToolGame.disconnect("popup_requested", _on_popup_requested)
 
 func pause_workshop_game():
 	print("pause workshop game scene")
 	$WorkshopGame.set_process(false)
 	$WorkshopGame.set_visible(false)
+	$WorkshopGame.disconnect("popup_requested", _on_popup_requested)
 
 func start_tool_game():
 	print("Open Tool game scene")
 	$ToolGame.set_visible(true)
 	$ToolGame.set_process(true)
+	$ToolGame.popup_requested.connect(_on_popup_requested)
+	$WorkshopGame.disconnect("popup_requested", _on_popup_requested)
 
 func pause_tool_game():
 	print("pause Tool game scene")
 	$ToolGame.set_process(false)
 	$ToolGame.set_visible(false)
+	$ToolGame.disconnect("popup_requested", _on_popup_requested)
+	
