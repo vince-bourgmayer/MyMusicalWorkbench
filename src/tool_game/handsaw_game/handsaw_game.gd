@@ -36,10 +36,8 @@ func start_new_cut():
 	cut_increment = 0.0
 	cutStartMarker.set_path(woodboard.get_remaining_wood_border())
 	cutStartMarker.set_direction(0)
-	cutStartMarker.covered_distance = 0.0
 	cutEndMarker.set_path(woodboard.get_remaining_wood_border())
 	cutEndMarker.set_direction(0)
-	cutEndMarker.covered_distance=0
 	
 	cutStartMarker.visible = true
 	cutEndMarker.visible = false
@@ -47,7 +45,7 @@ func start_new_cut():
 	
 	currentState = gameState.SET_START_POINT
 	
-func set_start_point():
+func set_start_point(): # user validates the start point
 	cutStartMarker.split_current_segment()
 	currentState = gameState.SET_END_POINT
 	cutEndMarker.visible = true
@@ -63,13 +61,20 @@ func set_start_point():
 	
 	visualMarkers.add_child(cutlines[current_cutline_index])
 	
-func set_end_point():
+func set_end_point(): # user validates end Point
 	cutEndMarker.split_current_segment()
 	cutStartMarker.visible = false
 	cutEndMarker.visible = false
 	place_saw_for_action()
 	currentState = gameState.SET_CUT
 		
+func cancel_set_end_point(): # user cancelled the set_end_point action
+	cutEndMarker.visible = false
+	visualMarkers.remove_child(cutlines[current_cutline_index])
+	cutlines.remove_at(current_cutline_index)
+	currentState = gameState.SET_START_POINT
+	current_cutline_index -= 1
+	
 func place_saw_for_action():
 	handsaw.position = cutStartMarker.global_position
 	handsaw.rotate(get_cutline_angle())
@@ -102,6 +107,11 @@ func handleStartInputs(event: InputEvent, marker: CutMarker) -> void:
 			set_start_point()
 		elif currentState == gameState.SET_END_POINT:
 			set_end_point()
+			
+	if event.is_action_released("ui_cancel"):
+		marker.set_direction(0)
+		if currentState == gameState.SET_END_POINT:
+			cancel_set_end_point()
 
 func handleCutInputs(event: InputEvent) -> void:
 	if event.is_action_pressed("push_saw"):
