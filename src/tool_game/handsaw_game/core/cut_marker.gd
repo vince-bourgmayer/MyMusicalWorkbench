@@ -36,7 +36,6 @@ func move_along_path(delta: float):
 	while relative_position > 1.0:
 		move_to_next_segment()
 		relative_position -= 1.0 # Don't reset to 0 to avoid raw change
-
 	while relative_position < 0.0:
 		move_to_previous_segment()
 		relative_position += 1.0
@@ -55,7 +54,7 @@ func update_position() -> void:
 	var start = segment.start
 	var end = segment.end
 	
-	position = start.lerp(end, relative_position)
+	position = start.lerp(end, relative_position) # issue: smaller segment takes longer to go through
 	
 func set_direction(p_direction: int):
 	direction = p_direction
@@ -63,8 +62,6 @@ func set_direction(p_direction: int):
 func split_current_segment(): # split the current segment at this marker position
 	relative_position = 1.0
 
-	#print("[Before split] current index:", current_segment_index, ": ", path_segments[current_segment_index].start, ";", path_segments[current_segment_index].end)
-	#dump_segments()
 	#1 on créé deux segment à partir des 3 points
 	var second_Half = path_segments[current_segment_index].duplicate()
 	second_Half.start = position
@@ -72,10 +69,6 @@ func split_current_segment(): # split the current segment at this marker positio
 	path_segments[current_segment_index].end = position 
 	path_segments.insert(current_segment_index+1, second_Half)
 	update_position()
-	
-	#print("[After split] current index:", current_segment_index, ": ", path_segments[current_segment_index].start, ";", path_segments[current_segment_index].end)
-	#dump_segments()
-
 
 func dump_segments():
 	print("=====Dumping segments=====\n[")

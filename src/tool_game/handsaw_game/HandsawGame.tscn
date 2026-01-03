@@ -15,4 +15,4 @@ position = Vector2(305, 292)
 visible = false
 
 [node name="VisualMarkers" type="Node2D" parent="." index="2"]
-position = Vector2(152, 81)
+position = Vector2(305, 292)

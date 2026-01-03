@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
 # handsaw_game.gd
-# Copyright (c) 2025 Vincent Bourgmayer
+# Copyright (c) 2025-2026 Vincent Bourgmayer
 # License: MIT
 # -----------------------------------------------------------------------------
 extends ToolGame
@@ -36,8 +36,10 @@ func start_new_cut():
 	cut_increment = 0.0
 	cutStartMarker.set_path(woodboard.get_remaining_wood_border())
 	cutStartMarker.set_direction(0)
+	cutStartMarker.covered_distance = 0.0
 	cutEndMarker.set_path(woodboard.get_remaining_wood_border())
 	cutEndMarker.set_direction(0)
+	cutEndMarker.covered_distance=0
 	
 	cutStartMarker.visible = true
 	cutEndMarker.visible = false
@@ -45,7 +47,6 @@ func start_new_cut():
 	
 	currentState = gameState.SET_START_POINT
 	
-
 func set_start_point():
 	cutStartMarker.split_current_segment()
 	currentState = gameState.SET_END_POINT
@@ -101,7 +102,6 @@ func handleStartInputs(event: InputEvent, marker: CutMarker) -> void:
 			set_start_point()
 		elif currentState == gameState.SET_END_POINT:
 			set_end_point()
-
 
 func handleCutInputs(event: InputEvent) -> void:
 	if event.is_action_pressed("push_saw"):
