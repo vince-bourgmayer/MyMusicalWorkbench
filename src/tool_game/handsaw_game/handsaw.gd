@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
 # handsaw.gd
-# Copyright (c) 2025 Vincent Bourgmayer
+# Copyright (c) 2025-2026 Vincent Bourgmayer
 # License: MIT
 # -----------------------------------------------------------------------------
 extends Node2D
@@ -13,12 +13,9 @@ var action_distance := 0 # La distance parcouru par la scie > 0 : push distance,
 const sawblade_length:= 100 # depend on the sawblade's length
 const distance_per_frame := 15 # speed of the sawing movement
 
-
-
 func _ready() -> void:
 	print("Saw is ready")
 	visual_origin = visual.global_position # Store the origin position of the saw 
-	#rotation = 45 # tourne la scie
 
 func _process(_delta: float) -> void:
 	if action == 1 && action_distance < sawblade_length:
@@ -44,3 +41,9 @@ func pull():
 
 func idle():
 	action = 0
+	
+func prepare_for_cut(startPoint: Vector2, angle: float) -> void:
+	print("handsaw.prepare_for_cut(",startPoint,"",angle," )")
+	self.global_position = startPoint
+	self.rotate(angle)
+	self.visible = true

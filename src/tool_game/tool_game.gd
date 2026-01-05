@@ -22,5 +22,5 @@ func _unhandled_input(event: InputEvent) -> void:
 		handle_specific_input(event)
 		
 		
-func handle_specific_input(event: InputEvent) -> void:
+func handle_specific_input(_event: InputEvent) -> void:
 	pass # Overide in child

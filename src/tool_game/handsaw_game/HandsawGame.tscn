@@ -13,6 +13,7 @@ position = Vector2(305, 292)
 
 [node name="Handsaw" parent="." index="1" instance=ExtResource("3_ydnle")]
 visible = false
+top_level = true
 
 [node name="VisualMarkers" type="Node2D" parent="." index="2"]
 position = Vector2(305, 292)

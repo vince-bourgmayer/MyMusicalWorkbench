@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
 # CutStartMarker.gd
-# Copyright (c) 2025 Vincent Bourgmayer
+# Copyright (c) 2025-2026 Vincent Bourgmayer
 # License: MIT
 # -----------------------------------------------------------------------------
 extends Marker2D
@@ -16,6 +16,7 @@ var color:Color = Color.RED
 
 func _init(_color:Color = Color.RED) -> void:
 	color = _color
+	direction = 0
 	pass
 	
 func _process(delta: float) -> void:
@@ -39,7 +40,9 @@ func move_along_path(delta: float):
 	while relative_position < 0.0:
 		move_to_previous_segment()
 		relative_position += 1.0
-	update_position()
+		
+	if relative_position != 0:
+		update_position()
 	
 func move_to_next_segment():
 	current_segment_index = (current_segment_index + 1) % path_segments.size()
@@ -50,16 +53,17 @@ func move_to_previous_segment():
 func update_position() -> void:
 	if path_segments.size() == 0:
 		return
+		
 	var segment = path_segments[current_segment_index]
 	var start = segment.start
 	var end = segment.end
 	
 	position = start.lerp(end, relative_position) # issue: smaller segment takes longer to go through
-	
+
 func set_direction(p_direction: int):
 	direction = p_direction
 
-func split_current_segment(): # split the current segment at this marker position
+func split_current_segment() -> void: # split the current segment at this marker position
 	relative_position = 1.0
 
 	#1 on créé deux segment à partir des 3 points
@@ -68,6 +72,7 @@ func split_current_segment(): # split the current segment at this marker positio
 	
 	path_segments[current_segment_index].end = position 
 	path_segments.insert(current_segment_index+1, second_Half)
+
 	update_position()
 
 func dump_segments():
