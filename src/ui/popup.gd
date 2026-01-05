@@ -16,7 +16,12 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("ui_accept") && visible:
 		hide()
 		get_viewport().set_input_as_handled()
+		call_deferred("_emit_popup_closed")
+		
+		
+func _emit_popup_closed():
 		_popup_closed.emit(popup_code)
+		
 
 func setCode(code: int):
 	popup_code = code
