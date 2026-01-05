@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://uivdbrhwviue" path="res://src/tool_game/ToolGame.tscn" id="1_sujg8"]
 [ext_resource type="Script" uid="uid://8b3o3qw8d28x" path="res://src/tool_game/handsaw_game/handsaw_game.gd" id="2_ydnle"]
-[ext_resource type="PackedScene" uid="uid://cwjeojfaayj50" path="res://src/tool_game/tool/Handsaw.tscn" id="3_ydnle"]
+[ext_resource type="PackedScene" uid="uid://cwjeojfaayj50" path="res://src/tool_game/handsaw_game/Handsaw.tscn" id="3_ydnle"]
 [ext_resource type="PackedScene" uid="uid://bje227bx6vvug" path="res://src/tool_game/handsaw_game/Woodboard.tscn" id="4_d6vd3"]
 
 [node name="HandsawGame" instance=ExtResource("1_sujg8")]
