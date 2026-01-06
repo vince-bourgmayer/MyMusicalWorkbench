@@ -6,8 +6,10 @@
 [node name="Woodboard" type="Node2D"]
 script = ExtResource("1_d7usl")
 
-[node name="Body_Blank" type="Sprite2D" parent="."]
+[node name="BodyBlank" type="Sprite2D" parent="."]
 texture = ExtResource("1_ghdje")
+
+[node name="InvisibleCloak" type="Node2D" parent="BodyBlank"]
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-305, -292)
