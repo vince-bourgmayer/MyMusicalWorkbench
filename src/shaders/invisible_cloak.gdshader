@@ -5,6 +5,11 @@ License: MIT
 */
 shader_type canvas_item;
 
+uniform sampler2D mask_texture;
+
 void fragment() {
-    discard;  // Ignore this area, rendant cette partie de la texture "invisible"
+    float m = texture(mask_texture, UV).r;
+    if (m < 0.5) {
+        discard;
+    }
 }
