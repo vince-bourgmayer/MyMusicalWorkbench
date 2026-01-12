@@ -16,3 +16,6 @@ func _init(s: Vector2, e: Vector2):
 
 func duplicate() -> Segment:
 	return Segment.new(start, end)
+
+func _print()-> void:
+	print("Segment [",start,";",end,"]")

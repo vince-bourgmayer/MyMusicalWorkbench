@@ -28,6 +28,10 @@ func start_new_cut():
 	handsaw.hide()
 	cut_increment = 0.0
 	cutLine.start_new_cut(woodboard.get_remaining_wood_border())
+	#debug
+	for segment in woodboard.get_remaining_wood_border():
+		segment._print()
+		
 	currentState = gameState.SET_START_POINT
 	
 func set_start_point(): # user validates the start point
@@ -90,6 +94,7 @@ func make_progress():
 		var cut_end_position = cutLine.get_cut_end_position()
 		handsaw.position = cut_start_position.lerp(cut_end_position, cut_increment) #NC
 	else: #cut is finished
-		cutLine._on_cut_achieved()
+		#cutLine._on_cut_achieved()
+		print("Cut line [",cutLine.startMarker.position,";",cutLine.endMarker.position,"]")
 		woodboard.add_new_cut(cutLine.startMarker.position, cutLine.endMarker.position)
 		start_new_cut()

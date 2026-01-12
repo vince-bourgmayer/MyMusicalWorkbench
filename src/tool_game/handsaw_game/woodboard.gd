@@ -45,8 +45,7 @@ func get_remaining_wood_border() -> Array[Segment]:
 func add_new_cut(startPoint: Vector2, endPoint: Vector2) -> void:
 	var cut_result = polygonSlicer.cut_polygon(remaining_wood_border.polygon, startPoint, endPoint)
 	remaining_wood_border.polygon = cut_result[0]
-	hide_cut_waste(polygon_to_pixel(cut_result[1]))
-	
+	hide_cut_waste(polygon_to_pixel(remaining_wood_border.polygon))
 	
 func polygon_to_pixel(p_polygon: PackedVector2Array) -> PackedVector2Array:
 	var pixel_polygon := PackedVector2Array()
@@ -63,7 +62,8 @@ func local_point_to_pixel_point(point: Vector2) -> Vector2i:
 	)
 		
 func hide_cut_waste(p_polygon: PackedVector2Array) -> void:
-	# 1. Bounding box
+	mask_image.fill(Color.BLACK)
+	
 	var min_x = INF
 	var min_y = INF
 	var max_x = -INF
@@ -79,13 +79,15 @@ func hide_cut_waste(p_polygon: PackedVector2Array) -> void:
 	min_y = int(clamp(min_y, 0, mask_image.get_height() - 1))
 	max_x = int(clamp(max_x, 0, mask_image.get_width() - 1))
 	max_y = int(clamp(max_y, 0, mask_image.get_height() - 1))
-
-	# 2. Rasterisation CPU (brutale mais simple)
-	for y in range(min_y, max_y):
-		for x in range(min_x, max_x):
+	
+# Clamp max values to the last valid pixel index (width-1, height-1)
+# because pixel coordinates start at 0.
+# Then, when iterating, use range(min, max + 1) to include the max pixel,
+# since the 'range' function excludes the upper bound.
+	for y in range(min_y, max_y+1):
+		for x in range(min_x, max_x+1):
 			var point := Vector2(x, y)
 			if Geometry2D.is_point_in_polygon(point, p_polygon):
-				mask_image.set_pixel(x, y, Color.BLACK)
+				mask_image.set_pixel(x, y, Color.WHITE)
 
-	# 3. Upload GPU
 	mask_texture.update(mask_image)
