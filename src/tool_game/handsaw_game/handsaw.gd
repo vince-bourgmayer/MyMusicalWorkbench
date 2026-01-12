@@ -43,7 +43,6 @@ func idle():
 	action = 0
 	
 func prepare_for_cut(startPoint: Vector2, angle: float) -> void:
-	print("handsaw.prepare_for_cut(",startPoint,"",angle," )")
 	self.global_position = startPoint
 	self.rotate(angle)
 	self.visible = true

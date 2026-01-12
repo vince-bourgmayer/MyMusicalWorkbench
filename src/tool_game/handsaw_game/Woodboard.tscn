@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bje227bx6vvug"]
+[gd_scene load_steps=4 format=3 uid="uid://bje227bx6vvug"]
 
 [ext_resource type="Script" uid="uid://dknccwama70o2" path="res://src/tool_game/handsaw_game/woodboard.gd" id="1_d7usl"]
 [ext_resource type="Texture2D" uid="uid://cg78abq0gylbo" path="res://assets/woods/body_blank/ashbody_1_300x425.png" id="1_ghdje"]
+[ext_resource type="Material" uid="uid://dkpvm2boy1kcd" path="res://src/shaders/materials/invisble_cloak_material.tres" id="2_mgmv3"]
 
 [node name="Woodboard" type="Node2D"]
 script = ExtResource("1_d7usl")
 
-[node name="Body_Blank" type="Sprite2D" parent="."]
+[node name="BodyBlank" type="Sprite2D" parent="."]
+material = ExtResource("2_mgmv3")
 texture = ExtResource("1_ghdje")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -21,4 +23,4 @@ monitoring = false
 monitorable = false
 
 [node name="RemainingWoodBorder" type="CollisionPolygon2D" parent="BorderArea2D"]
-polygon = PackedVector2Array(-150, -213, 149, -213, 149, 212, -150, 212)
+polygon = PackedVector2Array(-151, -213, 151, -213, 151, 214, -151, 214)

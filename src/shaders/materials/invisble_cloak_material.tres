@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dkpvm2boy1kcd"]
+
+[ext_resource type="Shader" uid="uid://cw8i533tof2fu" path="res://src/shaders/invisible_cloak.gdshader" id="1_a6lit"]
+
+[resource]
+shader = ExtResource("1_a6lit")

@@ -6,33 +6,38 @@
 extends Marker2D
 class_name CutMarker
 
-const MOVEMENT_SPEED = 1
 var path_segments : Array[Segment] = [] # Segment that define the path for the marker. 
 var current_segment_index := 0 
-var relative_position := 0.0 # used for lerp, it's the position on the current segment
 
+var MOVEMENT_SPEED = 250
+var relative_position := 0.0 # used for lerp, it's the position on the current segment
 var direction = 0 # -1 backward, 0 idle, +1 forward
+
 var color:Color = Color.RED
 
 func _init(_color:Color = Color.RED) -> void:
 	color = _color
 	direction = 0
-	pass
+	set_process(false)
 	
 func _process(delta: float) -> void:
-	move_along_path(delta)
+	if path_segments != null && path_segments.size() > 0:
+		move_along_path(delta)
 	
 func set_path(segments: Array[Segment]) -> void:
 	current_segment_index = 0
 	path_segments = segments
 	update_position()
+	if !is_processing():
+		set_process(true)
 
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, 5, color)
 
 # --- DÉPLACEMENT ---
 func move_along_path(delta: float):
-	relative_position += direction * MOVEMENT_SPEED * delta
+	var distance_per_frame = (MOVEMENT_SPEED * delta) / path_segments[current_segment_index].get_length()
+	relative_position += direction * distance_per_frame
 
 	while relative_position > 1.0:
 		move_to_next_segment()
@@ -74,9 +79,3 @@ func split_current_segment() -> void: # split the current segment at this marker
 	path_segments.insert(current_segment_index+1, second_Half)
 
 	update_position()
-
-func dump_segments():
-	print("=====Dumping segments=====\n[")
-	for i in path_segments:
-		print("		(", i.start, ";", i.end, ")," )
-	print("]\n\n")
