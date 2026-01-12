@@ -44,7 +44,7 @@ func get_remaining_wood_border() -> Array[Segment]:
 
 func add_new_cut(startPoint: Vector2, endPoint: Vector2) -> void:
 	var cut_result = polygonSlicer.cut_polygon(remaining_wood_border.polygon, startPoint, endPoint)
-	remaining_wood_border.polygon = cut_result[0]
+	remaining_wood_border.polygon = cut_result
 	hide_cut_waste(polygon_to_pixel(remaining_wood_border.polygon))
 	
 func polygon_to_pixel(p_polygon: PackedVector2Array) -> PackedVector2Array:
