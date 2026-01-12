@@ -14,6 +14,9 @@ func _init(s: Vector2, e: Vector2):
 	start = s
 	end = e
 
+func get_length() -> float:
+	return (end-start).length()
+	
 func duplicate() -> Segment:
 	return Segment.new(start, end)
 
