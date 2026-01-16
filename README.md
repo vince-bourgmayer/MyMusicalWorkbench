@@ -15,12 +15,13 @@ Early prototype screenshot
 This repository is a POC for a small 2D indie game prototype about crafting stringed musical instruments.
 It is intentionally kept raw.
 
-### game mechanics
-#### POC
-- Workshop management: Place a workbench somewhere in the workshop and interact with it
-- Crafting guitar: handsaw the guitar body's blank:
-	- Define cut line
-	- Push/pull the saw
+### Game mechanics
+- Workshop interaction  
+  The player can place a workbench in the workshop and interact with it to access crafting actions.
+- Manual crafting  
+  Crafting is based on manual tool interactions, focusing on gesture, precision, and feedback rather than abstract timers.
+- Handsaw mini-game  
+  A playable handsaw mechanic allows the player to define a cut and manually perform the sawing gesture to shape a guitar body blank.
 
 #### Ideas
 - Workshop management: Buy, and place tools where you want. Set up show room, painting area, etc. 
@@ -37,8 +38,10 @@ Through lutherie-inspired gameplay, it aims to share an experience that values e
 Early prototype / design phase.  
 The project is currently focused on core mechanics and experimentation.
 
-🔧 Status: handsaw mechanic playable
 🚧 Still missing: return to world, success criteria, GUI
+
+🔧 Current focus: HandPlaneGame V0  
+🧭 Overall direction and planned milestones are described in [ROADMAP.md](ROADMAP.md).
 
 ## Concept, Design & Creative Direction :
 © Vincent Bourgmayer
