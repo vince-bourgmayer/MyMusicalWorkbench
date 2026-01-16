@@ -11,7 +11,7 @@ enum gameState { SET_START_POINT, SET_END_POINT, SET_CUT }
 @onready var handsaw = $Handsaw
 @onready var woodboard = $Woodboard
 @onready var visualMarkers = $VisualMarkers
-const sawing_progress_step = 0.01
+const sawing_progress_step = 0.005
 
 var currentState: gameState = gameState.SET_START_POINT
 
