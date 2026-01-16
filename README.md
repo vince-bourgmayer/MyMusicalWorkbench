@@ -15,12 +15,13 @@ Early prototype screenshot
 This repository is a POC for a small 2D indie game prototype about crafting stringed musical instruments.
 It is intentionally kept raw.
 
-### game mechanics
-#### POC
-- Workshop management: Place a workbench somewhere in the workshop and interact with it
-- Crafting guitar: handsaw the guitar body's blank:
-	- Define cut line
-	- Push/pull the saw
+### Game mechanics
+- Workshop interaction  
+  The player can place a workbench in the workshop and interact with it to access crafting actions.
+- Manual crafting  
+  Crafting is based on manual tool interactions, focusing on gesture, precision, and feedback rather than abstract timers.
+- Handsaw mini-game  
+  A playable handsaw mechanic allows the player to define a cut and manually perform the sawing gesture to shape a guitar body blank.
 
 #### Ideas
 - Workshop management: Buy, and place tools where you want. Set up show room, painting area, etc. 
@@ -37,8 +38,8 @@ Through lutherie-inspired gameplay, it aims to share an experience that values e
 Early prototype / design phase.  
 The project is currently focused on core mechanics and experimentation.
 
-🔧 Status: handsaw mechanic playable
-🚧 Still missing: return to world, success criteria, GUI
+🔧 Current focus: HandPlaneGame V0  
+🧭 Overall direction and planned milestones are described in [ROADMAP.md](ROADMAP.md).
 
 ## Concept, Design & Creative Direction :
 © Vincent Bourgmayer
@@ -55,8 +56,11 @@ PRs optional but expected to be messy :)
 ## License
 The code located in the `src` folder is released under the MIT License.  
 All assets (art, audio, text) are **not** covered by the MIT License and remain proprietary.
+Specific licenses for assets can be found in the assets folders alongside the corresponding files.
+
 
 ## Credits
 - Thanks to Kettoman for the character's spritesheet: [itch.io](https://kettoman.itch.io/free-pixel-characters-pack-32x32)
 - Thanks to Open Window for the metal mania font [1001fonts.com](https://www.1001fonts.com/metal-mania-font.html)
+- Thanks to SOULFULJAMTRACKS for the saw sound effect [Hand Saw 5 FX](https://pixabay.com/sound-effects/film-special-effects-hand-saw-5-fx-378591)
 - Thanks to Godot team! [Godot engine](https://godotengine.org/fr/)
