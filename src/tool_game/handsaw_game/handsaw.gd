@@ -8,8 +8,8 @@ extends Node2D
 @onready var visual = $Visual
 @onready var soundEffect = $SoundEffect
 
-var push_sound = preload("res://assets/sounds/push_saw.ogg")
-var pull_sound = preload("res://assets/sounds/pull_saw.ogg")
+var push_sound = preload("res://assets/audio/push_saw.ogg")
+var pull_sound = preload("res://assets/audio/pull_saw.ogg")
 
 var visual_origin : Vector2 
 var action := 0 # 0: idle, 1: push, 2: pull
