@@ -55,8 +55,11 @@ PRs optional but expected to be messy :)
 ## License
 The code located in the `src` folder is released under the MIT License.  
 All assets (art, audio, text) are **not** covered by the MIT License and remain proprietary.
+Specific licenses for assets can be found in the assets folders alongside the corresponding files.
+
 
 ## Credits
 - Thanks to Kettoman for the character's spritesheet: [itch.io](https://kettoman.itch.io/free-pixel-characters-pack-32x32)
 - Thanks to Open Window for the metal mania font [1001fonts.com](https://www.1001fonts.com/metal-mania-font.html)
+- Thanks to SOULFULJAMTRACKS for the saw sound effect [Hand Saw 5 FX](https://pixabay.com/sound-effects/film-special-effects-hand-saw-5-fx-378591)
 - Thanks to Godot team! [Godot engine](https://godotengine.org/fr/)
