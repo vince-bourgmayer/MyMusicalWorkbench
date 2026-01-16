@@ -10,6 +10,15 @@ are provided to document the workflow and coding standards used.
 - Issues without a milestone are considered future work
 - Side-quests are small, opportunistic improvements outside milestones
 
+## Definition of Done
+
+A milestone is considered complete when:
+- All issues within it are completed or closed as *won't do*
+- The related Pull Request has been reviewed and squash merged into `main`
+- The project remains in a runnable state
+- The implemented feature is playable from end to end
+- The roadmap is updated to reflect the new current focus
+
 ## Branching
 
 - All changes are done on feature branches
