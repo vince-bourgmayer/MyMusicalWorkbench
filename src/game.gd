@@ -9,6 +9,7 @@ const startMessage_popup = 0
 const openWorkshopGame_popup = 1
 const openToolGame_popup = 2
 const handSawGame_popup = 3
+const handPlaneGame_popup = 4
 
 @onready var workshopGame = $WorkshopGame
 

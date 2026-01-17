@@ -49,9 +49,6 @@ func cancel_set_end_point(): # user cancelled the set_end_point action
 	cutLine._on_start_point_reverted()
 	currentState = gameState.SET_START_POINT
 
-func cancel_handsaw_game(): # user leaves the handsaw game and get back to world
-	popup_requested.emit("Do you want to stop sawing ?", "Press A to validate", 1)
-	
 func handle_specific_input(event: InputEvent) -> void:
 	if currentState == gameState.SET_START_POINT:
 		handleStartInputs(event)
@@ -73,7 +70,7 @@ func handleStartInputs(event: InputEvent) -> void:
 			gameState.SET_END_POINT:
 				cancel_set_end_point()
 			gameState.SET_START_POINT:
-				cancel_handsaw_game()
+				cancel_game("Do you want to stop sawing ?", "Press A to validate")
 			gameState.SET_CUT:
 				# Will need extra work, to use the current position of the saw 
 				# as the end point of a new cutline. Except if equal to start point
