@@ -92,6 +92,5 @@ func make_progress():
 		handsaw.position = cut_start_position.lerp(cut_end_position, cut_increment) #NC
 	else: #cut is finished
 		#cutLine._on_cut_achieved()
-		print("Cut line [",cutLine.startMarker.position,";",cutLine.endMarker.position,"]")
 		woodboard.add_new_cut(cutLine.startMarker.position, cutLine.endMarker.position)
 		start_new_cut()

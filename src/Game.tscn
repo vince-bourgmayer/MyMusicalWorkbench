@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bnhj745v7xsmq" path="res://src/game.gd" id="1_lqjwq"]
 [ext_resource type="PackedScene" uid="uid://2jsv77v1ovbm" path="res://src/workshop_game/WorkshopGame.tscn" id="3_lqjwq"]
-[ext_resource type="PackedScene" uid="uid://co70nfo7nvkox" path="res://src/tool_game/handsaw_game/HandsawGame.tscn" id="4_7omc5"]
+[ext_resource type="Script" uid="uid://7lr0aq24haqa" path="res://src/tool_game_slot.gd" id="4_7omc5"]
 [ext_resource type="PackedScene" uid="uid://cue34sxmerl3m" path="res://src/ui/Popup.tscn" id="6_eu8jo"]
 
 [node name="Game" type="Node2D"]
@@ -23,5 +23,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ToolGame" parent="." instance=ExtResource("4_7omc5")]
-visible = false
+[node name="ToolGameSlot" type="Node2D" parent="."]
+script = ExtResource("4_7omc5")

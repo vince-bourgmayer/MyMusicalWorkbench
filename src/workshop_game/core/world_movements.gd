@@ -43,10 +43,8 @@ func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("try_place_tool"):
 		player.get_parent().toggle_placeholder()
 
-		
 	if event.is_action_released("place_tool"):
 		player.get_parent().try_to_place_tool()
-
 		
 	if event.is_action_released("interact_with_tool"):
 		if player.raycast.is_colliding():
