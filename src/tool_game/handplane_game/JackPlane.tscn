@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1syug0b6gwja"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_xr15e"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_8wh7s"]
+
+[node name="JackPlane" type="Node2D"]
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="plate" type="Polygon2D" parent="Visual"]
+color = Color(0.2665752, 0.26657522, 0.26657513, 1)
+texture = SubResource("MeshTexture_xr15e")
+polygon = PackedVector2Array(-20, -50, 20, -50, 20, 70, -20, 70)
+uv = PackedVector2Array(-24.000015, -40, 24, -40, 24, 56, -24.000015, 56)
+
+[node name="inner_front_line" type="Polygon2D" parent="Visual"]
+color = Color(0.3180198, 0.31801978, 0.31801975, 1)
+texture = SubResource("MeshTexture_xr15e")
+polygon = PackedVector2Array(-17, -20, 17, -20, 17, -17, -17, -17)
+uv = PackedVector2Array(-24.000015, -40, 24, -40, 24, 56, -24.000015, 56)
+
+[node name="left_edge" type="Polygon2D" parent="Visual"]
+color = Color(0.40451106, 0.40451124, 0.4045107, 1)
+texture = SubResource("MeshTexture_xr15e")
+polygon = PackedVector2Array(-20, -50, -17, -50, -17, 70, -20, 70)
+uv = PackedVector2Array(-24.000015, -40, 24, -40, 24, 56, -24.000015, 56)
+
+[node name="right_edge" type="Polygon2D" parent="Visual"]
+color = Color(0.40451106, 0.40451124, 0.4045107, 1)
+texture = SubResource("MeshTexture_xr15e")
+polygon = PackedVector2Array(17, -50, 20, -50, 20, 70, 17, 70)
+uv = PackedVector2Array(-24.000015, -40, 24, -40, 24, 56, -24.000015, 56)
+
+[node name="front_handle" type="Polygon2D" parent="Visual"]
+color = Color(0.4325866, 0.20811416, 5.3478495e-08, 1)
+texture = SubResource("MeshTexture_8wh7s")
+polygon = PackedVector2Array(-10.720914, -43.069942, -0.8600273, -48.652702, 10.016216, -43.823326, 10.240024, -31.290737, -0.4924364, -26.533396, -10.25432, -30.874912)
+uv = PackedVector2Array(8, -56, 48, -72, 80, -56, 88, -16, 72, 8, 32, 16, 0, -8)
+
+[node name="rear_handle" type="Polygon2D" parent="Visual"]
+position = Vector2(1, 94)
+color = Color(0.4325866, 0.20811416, 5.3478495e-08, 1)
+texture = SubResource("MeshTexture_8wh7s")
+polygon = PackedVector2Array(-9.18406, -48.778255, -0.42092633, -54.800117, 9.577115, -49.312088, 10.0204735, -31.949389, -0.05333543, -26.533396, -9.376118, -32.192215)
+uv = PackedVector2Array(8, -56, 48, -72, 80, -56, 88, -16, 72, 8, 32, 16, 0, -8)
+
+[node name="blade" type="Polygon2D" parent="Visual"]
+color = Color(0.38170326, 0.38170323, 0.38170323, 1)
+texture = SubResource("MeshTexture_xr15e")
+polygon = PackedVector2Array(-17, 1, 17, 1, 12, 50, -12, 50)
+uv = PackedVector2Array(-24.000015, -40, 24, -40, 24, 56, -24.000015, 56)
+
+[node name="counterblade" type="Polygon2D" parent="Visual"]
+color = Color(0.47397572, 0.47397578, 0.4739756, 1)
+texture = SubResource("MeshTexture_xr15e")
+polygon = PackedVector2Array(-16.5, 1, 16.5, 1, 9, 45, -9, 45)
+uv = PackedVector2Array(-24.000015, -40, 24, -40, 24, 56, -24.000015, 56)
+
+[node name="locker" type="Polygon2D" parent="Visual"]
+color = Color(0.5529558, 0.5529555, 0.55295557, 1)
+texture = SubResource("MeshTexture_xr15e")
+polygon = PackedVector2Array(-12, 3, 12, 3, 5, 30, -5, 30)
+uv = PackedVector2Array(-24.000015, -40, 24, -40, 24, 56, -24.000015, 56)
