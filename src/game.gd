@@ -44,7 +44,7 @@ func start_workshop_game():
 func pause_workshop_game():
 	$WorkshopGame.set_process(false)
 	$WorkshopGame.set_visible(false)
-	if $ToolGameSlot.is_connected("popup_requested", _on_popup_requested):
+	if $WorkshopGame.is_connected("popup_requested", _on_popup_requested):
 		$WorkshopGame.disconnect("popup_requested", _on_popup_requested)
 
 func start_tool_game(code):

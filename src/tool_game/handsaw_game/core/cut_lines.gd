@@ -56,11 +56,11 @@ func _on_cut_achieved() -> void:
 func handle_inputs_for_marker(event: InputEvent, is_start_marker: bool):
 	var marker = startMarker if is_start_marker else endMarker
 	
-	if event.is_action_pressed("move_up"):
+	if event.is_action_pressed("ui_up"):
 		marker.set_direction(-1)
-	elif event.is_action_pressed("move_down"):
+	elif event.is_action_pressed("ui_down"):
 		marker.set_direction(1)
-	elif event.is_action_released("move_up") || event.is_action_released("move_down") || event.is_action_released("ui_cancel") || event.is_action_released("place_tool"):
+	elif event.is_action_released("ui_up") || event.is_action_released("ui_down") || event.is_action_released("ui_cancel") || event.is_action_released("ui_accept"):
 		marker.set_direction(0)
 	
 func start_new_cut(p_wood_edges: Array[Segment]) -> void :

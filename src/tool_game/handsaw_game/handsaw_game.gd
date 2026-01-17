@@ -59,7 +59,7 @@ func handle_specific_input(event: InputEvent) -> void:
 
 func handleStartInputs(event: InputEvent) -> void:
 	cutLine.handle_inputs_for_marker(event, currentState == gameState.SET_START_POINT)
-	if event.is_action_released("place_tool"):
+	if event.is_action_released("ui_accept"):
 		if currentState == gameState.SET_START_POINT:
 			set_start_point()
 		elif currentState == gameState.SET_END_POINT:
