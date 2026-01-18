@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1syug0b6gwja"]
+[gd_scene load_steps=4 format=3 uid="uid://d1syug0b6gwja"]
+
+[ext_resource type="Script" uid="uid://cr0jfousapy7m" path="res://src/tool_game/handplane_game/jack_plane.gd" id="1_8wh7s"]
 
 [sub_resource type="MeshTexture" id="MeshTexture_xr15e"]
 
 [sub_resource type="MeshTexture" id="MeshTexture_8wh7s"]
 
 [node name="JackPlane" type="Node2D"]
+script = ExtResource("1_8wh7s")
 
 [node name="Visual" type="Node2D" parent="."]
+rotation = 1.5707964
 
 [node name="plate" type="Polygon2D" parent="Visual"]
 color = Color(0.2665752, 0.26657522, 0.26657513, 1)
@@ -15,7 +19,7 @@ polygon = PackedVector2Array(-20, -50, 20, -50, 20, 70, -20, 70)
 uv = PackedVector2Array(-24.000015, -40, 24, -40, 24, 56, -24.000015, 56)
 
 [node name="inner_front_line" type="Polygon2D" parent="Visual"]
-color = Color(0.3180198, 0.31801978, 0.31801975, 1)
+color = Color(0.35906905, 0.35906908, 0.35906902, 1)
 texture = SubResource("MeshTexture_xr15e")
 polygon = PackedVector2Array(-17, -20, 17, -20, 17, -17, -17, -17)
 uv = PackedVector2Array(-24.000015, -40, 24, -40, 24, 56, -24.000015, 56)
@@ -48,13 +52,13 @@ uv = PackedVector2Array(8, -56, 48, -72, 80, -56, 88, -16, 72, 8, 32, 16, 0, -8)
 [node name="blade" type="Polygon2D" parent="Visual"]
 color = Color(0.38170326, 0.38170323, 0.38170323, 1)
 texture = SubResource("MeshTexture_xr15e")
-polygon = PackedVector2Array(-17, 1, 17, 1, 12, 50, -12, 50)
+polygon = PackedVector2Array(-17, 0.5, 17, 0.5, 12, 50, -12, 50)
 uv = PackedVector2Array(-24.000015, -40, 24, -40, 24, 56, -24.000015, 56)
 
 [node name="counterblade" type="Polygon2D" parent="Visual"]
 color = Color(0.47397572, 0.47397578, 0.4739756, 1)
 texture = SubResource("MeshTexture_xr15e")
-polygon = PackedVector2Array(-16.5, 1, 16.5, 1, 9, 45, -9, 45)
+polygon = PackedVector2Array(-16.5, 1.5, 16.5, 1.5, 9, 45, -9, 45)
 uv = PackedVector2Array(-24.000015, -40, 24, -40, 24, 56, -24.000015, 56)
 
 [node name="locker" type="Polygon2D" parent="Visual"]
