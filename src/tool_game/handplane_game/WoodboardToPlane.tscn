@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpl3fttmokw20"]
+
+[ext_resource type="Script" uid="uid://dmxo65bh82665" path="res://src/tool_game/handplane_game/woodboard_to_plane.gd" id="1_caw5x"]
+[ext_resource type="Texture2D" uid="uid://c4qyaq8lywele" path="res://assets/woods/body_blank/ashbody_1_300x425.png" id="2_ctu53"]
+
+[node name="WoodboardToPlane" type="Node2D"]
+script = ExtResource("1_caw5x")
+
+[node name="Visual" type="Sprite2D" parent="."]
+texture = ExtResource("2_ctu53")

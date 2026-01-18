@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bje227bx6vvug"]
 
 [ext_resource type="Script" uid="uid://dknccwama70o2" path="res://src/tool_game/handsaw_game/woodboard.gd" id="1_d7usl"]
-[ext_resource type="Texture2D" uid="uid://cg78abq0gylbo" path="res://assets/woods/body_blank/ashbody_1_300x425.png" id="1_ghdje"]
+[ext_resource type="Texture2D" uid="uid://c4qyaq8lywele" path="res://assets/woods/body_blank/ashbody_1_300x425.png" id="1_ghdje"]
 [ext_resource type="Material" uid="uid://dkpvm2boy1kcd" path="res://src/shaders/materials/invisble_cloak_material.tres" id="2_mgmv3"]
 
 [node name="Woodboard" type="Node2D"]
