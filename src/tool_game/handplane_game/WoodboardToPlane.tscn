@@ -11,5 +11,5 @@ texture = ExtResource("2_ctu53")
 
 [node name="CollisionBox" type="Area2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionBox"]
+[node name="CollisionShape" type="CollisionPolygon2D" parent="CollisionBox"]
 polygon = PackedVector2Array(-150, -213, 150, -213, 150, 213, -150, 213)

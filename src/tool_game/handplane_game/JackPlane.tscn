@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1syug0b6gwja"]
+[gd_scene load_steps=8 format=3 uid="uid://d1syug0b6gwja"]
 
 [ext_resource type="Script" uid="uid://cr0jfousapy7m" path="res://src/tool_game/handplane_game/jack_plane.gd" id="1_8wh7s"]
+[ext_resource type="PackedScene" uid="uid://dxipwswckjkhk" path="res://src/tool_game/handplane_game/Shaving.tscn" id="2_qlgc1"]
 
 [sub_resource type="MeshTexture" id="MeshTexture_xr15e"]
 
@@ -76,6 +77,9 @@ texture = SubResource("MeshTexture_xr15e")
 polygon = PackedVector2Array(-12, 3, 12, 3, 5, 30, -5, 30)
 uv = PackedVector2Array(-24.000015, -40, 24, -40, 24, 56, -24.000015, 56)
 
+[node name="Shaving" parent="Visual" instance=ExtResource("2_qlgc1")]
+rotation = 1.5707964
+
 [node name="NoseCollisionBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoseCollisionBox"]
@@ -93,3 +97,8 @@ shape = SubResource("RectangleShape2D_qlgc1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BackCollisionBox"]
 position = Vector2(41.5, 0)
 shape = SubResource("RectangleShape2D_nxhkd")
+
+[connection signal="area_exited" from="NoseCollisionBox" to="." method="_on_nose_collision_box_area_exited"]
+[connection signal="area_entered" from="BladeCollisionBox" to="." method="_on_blade_collision_box_area_entered"]
+[connection signal="area_exited" from="BladeCollisionBox" to="." method="_on_blade_collision_box_area_exited"]
+[connection signal="area_exited" from="BackCollisionBox" to="." method="_on_back_collision_box_area_exited"]

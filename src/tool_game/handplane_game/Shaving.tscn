@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxipwswckjkhk"]
+
+[ext_resource type="Script" uid="uid://cs3aacxrfauv0" path="res://src/tool_game/handplane_game/shaving.gd" id="1_dtvni"]
+
+[node name="Shaving" type="Node2D"]
+script = ExtResource("1_dtvni")
+
+[node name="BackStrip" type="Line2D" parent="."]
+width = 24.0
+default_color = Color(0.7245634, 0.61865693, 0.4264894, 1)
+antialiased = true
+
+[node name="FrontStrip" type="Line2D" parent="."]
+width = 23.0
+default_color = Color(0.8666667, 0.7764706, 0.6156863, 1)
+antialiased = true
+
+[node name="DustParticules" type="GPUParticles2D" parent="."]
+visible = false

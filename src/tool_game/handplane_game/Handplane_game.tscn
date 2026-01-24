@@ -10,7 +10,7 @@ script = ExtResource("2_m15vu")
 
 [node name="WoodboardToPlane" parent="." index="0" instance=ExtResource("3_wq3se")]
 position = Vector2(344, 400)
-rotation = -1.5411258
+rotation = -1.5707964
 
 [node name="JackPlane" parent="." index="1" instance=ExtResource("3_tsia7")]
-position = Vector2(444, 500)
+position = Vector2(661, 500)
