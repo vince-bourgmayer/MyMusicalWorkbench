@@ -77,7 +77,20 @@ func _draw_line_float(from: Vector2, to: Vector2, strength: float):
 		pix.x = clamp(pix.x, 0, mask_thickess_image.get_width() - 1)
 		pix.y = clamp(pix.y, 0, mask_thickess_image.get_height() - 1)
 		
-		_apply_cut_at_pixel(pix, strength)
+		_apply_rect_brush(pix, strength, 8, 1)
+
+
+func _apply_rect_brush(center: Vector2i, strength: float, half_w: int, half_h: int) -> void:
+	var w = mask_thickess_image.get_width()
+	var h = mask_thickess_image.get_height()
+
+	for dy in range(-half_h, half_h + 1):
+		for dx in range(-half_w, half_w + 1):
+			var x = center.x + dx
+			var y = center.y + dy
+			if x < 0 or y < 0 or x >= w or y >= h:
+				continue
+			_apply_cut_at_pixel(Vector2i(x, y), strength)
 
 func _apply_cut_at_pixel(pix: Vector2i, strength: float) -> void:
 	var old = mask_thickess_image.get_pixel(pix.x, pix.y).r  # 0..1
