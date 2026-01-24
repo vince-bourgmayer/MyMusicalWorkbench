@@ -10,8 +10,8 @@ var front_len := 0.0
 var back_len_max := 40
 var front_len_max := 20.0
 
-var back_speed := 150.0
-var front_speed := 75.0
+var back_speed := 200.0
+var front_speed := 100.0
 
 var step := 8.0
 
@@ -25,9 +25,10 @@ func start():
 	backstrip.add_point(Vector2.ZERO)
 	frontstrip.add_point(Vector2.ZERO)
 
-func update(delta: float, _pressure: float):
-	var back_rate := back_speed 
-	var front_rate := front_speed 
+func update(delta: float, relative_speed: float):
+	var back_rate := back_speed * relative_speed
+	var front_rate := front_speed * relative_speed
+	
 	if phase == 0:
 		# sort vers l’arrière : +X
 		back_len = min(back_len + back_rate * delta, back_len_max)

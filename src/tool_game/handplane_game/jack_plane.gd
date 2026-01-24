@@ -38,11 +38,11 @@ func _process(delta: float) -> void:
 
 		position -= transform.x * delta * final_speed # -= because I forced visual rotation to -90°
 		if is_stroking:
-			shaving.update(delta, hands_pressure.x)
+			shaving.update(delta, relative_speed)
 
 func set_hands_pressure(value: Vector2):
 	hands_pressure = value
-	if hands_pressure.x > 0.05 && hands_pressure.y > 0.05:
+	if hands_pressure.x > 0.005 && hands_pressure.y > 0.005:
 		push(true)
 	else:
 		push (false)
@@ -92,7 +92,8 @@ func _get_pressure_balance_factor() -> float:
 	var distance_to_idal = abs(balance_raw-ideal_balance)
 	
 	# From which distance it starts to be bad
-	var tolerance = 0.3
+	# Higher value, easier process
+	var tolerance = 0.45
 
 	# How many times, It was a bad value
 	var error_ratio = distance_to_idal / tolerance
