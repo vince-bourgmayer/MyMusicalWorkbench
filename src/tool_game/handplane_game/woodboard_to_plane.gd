@@ -12,8 +12,11 @@ class_name WoodBoardToPlane
 var mask_thickess_image : Image
 var mask_thickness_texture : ImageTexture
 
+var last_plane_pos: Vector2 = Vector2.INF
+
 func _ready() -> void:
 	init_thickness_mask()
+	visual.texture = mask_thickness_texture
 	
 # mask that represent wood's thickness. White => highest depth, black: a hole
 func init_thickness_mask(): 
@@ -43,5 +46,44 @@ func get_wood_edges() -> Array[Segment]:
 		result.append(Segment.new(start_global, end_global))
 	return result
 
-func _process(_delta: float) -> void:
-	pass
+func local_point_to_pixel_point(point: Vector2) -> Vector2i:
+	var size := mask_thickess_image.get_size()
+	return Vector2i(
+		int(point.x + size.x * 0.5),
+		int(point.y + size.y * 0.5)
+	)
+	
+func plane_at(global_position: Vector2, strength: float) -> void:
+	var local_pos = to_local(global_position)
+	
+	if last_plane_pos == Vector2.INF:
+		last_plane_pos = local_pos
+		return
+	
+	_draw_line_float(last_plane_pos, local_pos, strength)
+	last_plane_pos = local_pos
+	mask_thickness_texture.update(mask_thickess_image)
+
+func _draw_line_float(from: Vector2, to: Vector2, strength: float):
+	var steps = int(from.distance_to(to)) + 1
+	if steps <= 0:
+		return
+
+	for i in range(steps + 1):
+		var t = float(i) / steps
+		var p = from.lerp(to, t)
+		var pix = local_point_to_pixel_point(p)
+
+		pix.x = clamp(pix.x, 0, mask_thickess_image.get_width() - 1)
+		pix.y = clamp(pix.y, 0, mask_thickess_image.get_height() - 1)
+		
+		_apply_cut_at_pixel(pix, strength)
+
+func _apply_cut_at_pixel(pix: Vector2i, strength: float) -> void:
+	var old = mask_thickess_image.get_pixel(pix.x, pix.y).r  # 0..1
+	var amount = strength * 0.02 # à tuner
+	var newv = clamp(old - amount, 0.0, 1.0)
+	mask_thickess_image.set_pixel(pix.x, pix.y, Color(newv, newv, newv))
+	
+func _reset_last_plane_pos():
+	last_plane_pos = Vector2.INF

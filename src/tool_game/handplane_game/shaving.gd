@@ -10,8 +10,8 @@ var front_len := 0.0
 var back_len_max := 40
 var front_len_max := 20.0
 
-var back_speed := 200.0
-var front_speed := 100.0
+var back_speed := 400.0
+var front_speed := 200.0
 
 var step := 8.0
 
@@ -26,24 +26,25 @@ func start():
 	frontstrip.add_point(Vector2.ZERO)
 
 func update(delta: float, relative_speed: float):
+	
+	if relative_speed < 0.05: # break shaving when plane stops
+		return
+		
 	var back_rate := back_speed * relative_speed
 	var front_rate := front_speed * relative_speed
 	
 	if phase == 0:
-		# sort vers l’arrière : +X
 		back_len = min(back_len + back_rate * delta, back_len_max)
 		_update_line(backstrip, back_len, +1)
 		if back_len >= back_len_max:
 			phase = 1
 	elif phase == 1:
 		frontstrip.position = Vector2(back_len, 0)
-		# face qui “revient” vers le nez : -X
 		front_len = min(front_len + front_rate * delta, front_len_max)
 		_update_line(frontstrip, front_len, -1)
 
 func end():
 	reset()
-
 
 func reset():
 	backstrip.clear_points()

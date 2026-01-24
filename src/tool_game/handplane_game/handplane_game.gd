@@ -13,6 +13,7 @@ enum gameState { PLACE=0, PLANE=1, RESTART=2 }
 
 var state : gameState
 var plane_operation : PlaneOperation
+var is_planing := false
 
 
 func _ready() -> void:
@@ -26,7 +27,6 @@ func get_start_line() -> Segment:
 func set_plane_on_start_line() -> void:
 	state = gameState.RESTART
 	var start_point = plane_operation.get_start_position()
-	
 	var tw := create_tween()
 	tw.tween_property(jackplane, "position", start_point, 0.5)
 	await tw.finished
@@ -51,25 +51,22 @@ func handle_specific_input(event: InputEvent) -> void:
 			handle_place_input(event)
 		gameState.PLANE:
 			handle_planing_input(event)
+			if is_planing:
+				woodboard.plane_at(jackplane.position, jackplane._get_total_pressure())
 		_: pass
+
 
 func handle_place_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		state = gameState.PLANE
 		jackplane.back_area_exited.connect(_on_stroke_finished)	
+		jackplane.blade_area_entered.connect(_on_stroke_started)
 		return
 
 	var direction = sign(Input.get_axis("ui_up", "ui_down"))
 	plane_operation.set_direction(direction)
 
-
 func handle_planing_input(event: InputEvent) -> void:
-	#if event.is_action("ui_accept"):
-		#if event.is_pressed():
-			#jackplane.push(true)
-		#elif event.is_released():
-			#jackplane.push(false)
-
 	if event.is_action_released("trigger_left"):
 		jackplane.press_front(event.get_action_strength("trigger_left"))
 			
@@ -77,10 +74,17 @@ func handle_planing_input(event: InputEvent) -> void:
 		jackplane.press_back(event.get_action_strength("trigger_right"))
 
 func _on_stroke_finished() -> void:
+	is_planing = false
+	woodboard.plane_at(jackplane.position, jackplane._get_total_pressure())
+	woodboard._reset_last_plane_pos()
 	jackplane.push(false)
 	if jackplane.is_connected("back_area_exited", _on_stroke_finished):
 		jackplane.disconnect("back_area_exited", _on_stroke_finished)
 	set_plane_on_start_line()
+	
+func _on_stroke_started() -> void:
+	is_planing = true
+
 	
 func _read_hands_pressure() -> Vector2:
 	var left_hand_pressure = Input.get_action_strength("ui_left")

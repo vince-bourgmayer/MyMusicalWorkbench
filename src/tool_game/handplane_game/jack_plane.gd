@@ -8,6 +8,7 @@ class_name JackPlane
 
 signal nose_area_exited
 signal back_area_exited
+signal blade_area_entered
 
 @onready var visual = $Visual
 @onready var shaving = $Visual/Shaving
@@ -66,6 +67,7 @@ func _on_blade_collision_box_area_entered(_area: Area2D) -> void:
 	if is_stroking == false:
 		shaving.start()
 		is_stroking = true
+		blade_area_entered.emit()
 
 func _on_back_collision_box_area_exited(_area: Area2D) -> void:
 	back_area_exited.emit()
