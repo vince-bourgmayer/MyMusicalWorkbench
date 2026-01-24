@@ -44,12 +44,12 @@ func handle_specific_input(event: InputEvent) -> void:
 		
 	match state:
 		gameState.PLACE:
-			handle_place_plane_input(event)
+			handle_place_input(event)
 		gameState.PLANE:
 			handle_planing_input(event)
 		_: pass
 
-func handle_place_plane_input(event: InputEvent) -> void:
+func handle_place_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		state = gameState.PLANE
 		jackplane.back_area_exited.connect(_on_stroke_finished)	
@@ -73,6 +73,7 @@ func handle_planing_input(event: InputEvent) -> void:
 		jackplane.press_back(event.get_action_strength("trigger_right"))
 
 func _on_stroke_finished() -> void:
+	jackplane.push(false)
 	if jackplane.is_connected("back_area_exited", _on_stroke_finished):
 		jackplane.disconnect("back_area_exited", _on_stroke_finished)
 	set_plane_on_start_line()
