@@ -34,8 +34,12 @@ func set_plane_on_start_line() -> void:
 
 
 func _process(_delta: float) -> void:
-	if state == gameState.PLACE:
-		jackplane.position = plane_operation.update_start_position(_delta)
+	match state:
+		gameState.PLACE:
+			jackplane.position = plane_operation.update_start_position(_delta)
+		gameState.PLANE:
+			jackplane.set_hands_pressure(_read_hands_pressure())
+	
 
 func handle_specific_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
@@ -60,11 +64,11 @@ func handle_place_input(event: InputEvent) -> void:
 
 
 func handle_planing_input(event: InputEvent) -> void:
-	if event.is_action("ui_accept"):
-		if event.is_pressed():
-			jackplane.push(true)
-		elif event.is_released():
-			jackplane.push(false)
+	#if event.is_action("ui_accept"):
+		#if event.is_pressed():
+			#jackplane.push(true)
+		#elif event.is_released():
+			#jackplane.push(false)
 
 	if event.is_action_released("trigger_left"):
 		jackplane.press_front(event.get_action_strength("trigger_left"))
@@ -77,3 +81,9 @@ func _on_stroke_finished() -> void:
 	if jackplane.is_connected("back_area_exited", _on_stroke_finished):
 		jackplane.disconnect("back_area_exited", _on_stroke_finished)
 	set_plane_on_start_line()
+	
+func _read_hands_pressure() -> Vector2:
+	var left_hand_pressure = Input.get_action_strength("ui_left")
+	var right_hand_pressure = Input.get_action_strength("plane_right_hand")
+	
+	return Vector2(left_hand_pressure, right_hand_pressure)
