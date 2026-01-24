@@ -61,23 +61,17 @@ func set_rotating(b:bool) -> void:
 
 func _on_nose_collision_box_area_exited(_area: Area2D) -> void:
 	nose_area_exited.emit()
-	print("Full pressure need to be on back")
 
 
 func _on_blade_collision_box_area_exited(_area: Area2D) -> void:
 	shaving.end()
 	is_stroking = false
 
-	print("CoPeAu is over")
-
 
 func _on_blade_collision_box_area_entered(_area: Area2D) -> void:
 	if is_stroking == false:
 		shaving.start()
 		is_stroking = true
-		print("CoPeAu!")
-
 
 func _on_back_collision_box_area_exited(_area: Area2D) -> void:
-
 	back_area_exited.emit()
