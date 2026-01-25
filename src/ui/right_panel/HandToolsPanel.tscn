@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://mrxcc4anww6b"]
+
+[node name="HandToolsPanel" type="Control"]
+custom_minimum_size = Vector2(320, 60)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -960.0
+offset_bottom = -660.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(320, 60)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.50140655, 0.5014065, 0.5014065, 1)
+
+[node name="ToolIconsContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="SawIcon" type="TextureButton" parent="ToolIconsContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
+
+[node name="JackplaneIcon" type="TextureButton" parent="ToolIconsContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
