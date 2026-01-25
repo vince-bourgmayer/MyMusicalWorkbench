@@ -1,3 +1,8 @@
+# -----------------------------------------------------------------------------
+# shaving.gd
+# Copyright (c) 2026 Vincent Bourgmayer
+# License: MIT
+# -----------------------------------------------------------------------------
 extends Node2D
 class_name Shaving
 
@@ -16,7 +21,6 @@ var front_speed := 200.0
 var step := 8.0
 
 var phase := 0 # 0 = back grows, 1 = front grows
-
 
 func start():
 	reset()

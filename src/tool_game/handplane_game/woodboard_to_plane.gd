@@ -22,9 +22,7 @@ func _ready() -> void:
 		"thickness_mask_texture",
 		mask_thickness_texture
 	)
-	#visual.texture = mask_thickness_texture
-	
-# mask that represent wood's thickness. White => highest depth, black: a hole
+
 func init_thickness_mask(): 
 	var size = visual.texture.get_size()
 

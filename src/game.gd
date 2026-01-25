@@ -54,7 +54,6 @@ func start_tool_game(code):
 	$ToolGameSlot.popup_requested.connect(_on_popup_requested)
 
 func pause_tool_game():
-	print("pause Tool game scene")
 	$ToolGameSlot.set_process(false)
 	$ToolGameSlot.set_visible(false)
 	if $ToolGameSlot.is_connected("popup_requested", _on_popup_requested):

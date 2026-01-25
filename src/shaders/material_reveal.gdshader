@@ -1,6 +1,6 @@
 /*
-invisible_cloak.shader
-Copyright (c) 2025-2026 Vincent Bourgmayer
+material_reveal.shader
+Copyright (c) 2026 Vincent Bourgmayer
 License: MIT
 */
 shader_type canvas_item;
