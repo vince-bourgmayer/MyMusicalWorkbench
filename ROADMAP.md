@@ -7,8 +7,8 @@ Only one milestone is considered active at a time.
 
 ## Current Focus
 
-▶ HandPlaneGame V0  
-Manual hand planing mini-game focusing on gesture, feedback, and material interaction.
+▶ Controls UX
+  Display a panel with controls & corresponding action
 
 ---
 
@@ -23,13 +23,16 @@ Manual hand planing mini-game focusing on gesture, feedback, and material intera
 - HandsawGame V1
   Workbench integration, and wood piece manipulation to expose edge to cut.
 
-- Controls UX
-  Display a panel with controls & corresponding action
+- Prototype: Workshop and character's movement
 
 ---
 
 ## Completed Milestones
-- HandsawGame V0
+
+- HandPlaneGame V0  
+  Manual hand planing mini-game focusing on gesture, feedback, and material interaction.
+
+- HandsawGame V0  
   Saw placement and cut simulation on a wood piece
 
 ---
