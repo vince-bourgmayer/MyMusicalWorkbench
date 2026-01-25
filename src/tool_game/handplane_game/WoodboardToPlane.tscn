@@ -1,13 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpl3fttmokw20"]
+[gd_scene load_steps=5 format=3 uid="uid://bpl3fttmokw20"]
 
 [ext_resource type="Script" uid="uid://dmxo65bh82665" path="res://src/tool_game/handplane_game/woodboard_to_plane.gd" id="1_caw5x"]
 [ext_resource type="Texture2D" uid="uid://c4qyaq8lywele" path="res://assets/woods/body_blank/ashbody_1_300x425.png" id="2_ctu53"]
+[ext_resource type="Material" uid="uid://3ladtej24vq8" path="res://src/shaders/materials/material_reveal.tres" id="2_vp4b1"]
+[ext_resource type="Texture2D" uid="uid://wx42hhivikqb" path="res://assets/woods/body_blank/ashbody_1_overlay_300x425.png" id="4_qv520"]
 
 [node name="WoodboardToPlane" type="Node2D"]
 script = ExtResource("1_caw5x")
 
 [node name="Visual" type="Sprite2D" parent="."]
 texture = ExtResource("2_ctu53")
+
+[node name="Overlay" type="Sprite2D" parent="."]
+material = ExtResource("2_vp4b1")
+texture = ExtResource("4_qv520")
 
 [node name="CollisionBox" type="Area2D" parent="."]
 

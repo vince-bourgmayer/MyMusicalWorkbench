@@ -8,6 +8,7 @@ class_name WoodBoardToPlane
 
 @onready var visual = $Visual
 @onready var collisionShape = $CollisionBox/CollisionShape
+@onready var overlay = $Overlay
 
 var mask_thickess_image : Image
 var mask_thickness_texture : ImageTexture
@@ -16,7 +17,12 @@ var last_plane_pos: Vector2 = Vector2.INF
 
 func _ready() -> void:
 	init_thickness_mask()
-	visual.texture = mask_thickness_texture
+	
+	overlay.material.set_shader_parameter(
+		"thickness_mask_texture",
+		mask_thickness_texture
+	)
+	#visual.texture = mask_thickness_texture
 	
 # mask that represent wood's thickness. White => highest depth, black: a hole
 func init_thickness_mask(): 
@@ -53,8 +59,8 @@ func local_point_to_pixel_point(point: Vector2) -> Vector2i:
 		int(point.y + size.y * 0.5)
 	)
 	
-func plane_at(global_position: Vector2, strength: float) -> void:
-	var local_pos = to_local(global_position)
+func plane_at(global_pos: Vector2, strength: float) -> void:
+	var local_pos = to_local(global_pos)
 	
 	if last_plane_pos == Vector2.INF:
 		last_plane_pos = local_pos
