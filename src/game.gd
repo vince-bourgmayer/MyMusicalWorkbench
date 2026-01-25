@@ -9,6 +9,7 @@ const startMessage_popup = 0
 const openWorkshopGame_popup = 1
 const openToolGame_popup = 2
 const handSawGame_popup = 3
+const handPlaneGame_popup = 4
 
 @onready var workshopGame = $WorkshopGame
 
@@ -17,7 +18,6 @@ func _ready() -> void:
 	workshopGame.popup_requested.connect(_on_popup_requested)
 	$UI/Popup._popup_closed.connect(_on_popup_closed)
 	showPopup()
-	
 
 func _on_popup_requested(text1:String, text2:String, code: int):
 	$UI/Popup.setCode(code)
@@ -29,38 +29,33 @@ func showPopup():
 
 func _on_popup_closed(code: int):
 	$UI/Popup.hide()
-	if code == openToolGame_popup:
+	if code == handSawGame_popup || code == handPlaneGame_popup:
 		pause_workshop_game()
-		start_tool_game()
+		start_tool_game(code)
 	elif code == openWorkshopGame_popup:
 		pause_tool_game()
 		start_workshop_game()
 
-		
-
 func start_workshop_game():
-	print("Open Workshop game scene")
 	$WorkshopGame.set_process(true)
 	$WorkshopGame.set_visible(true)
 	$WorkshopGame.popup_requested.connect(_on_popup_requested)
-	$ToolGame.disconnect("popup_requested", _on_popup_requested)
 
 func pause_workshop_game():
-	print("pause workshop game scene")
 	$WorkshopGame.set_process(false)
 	$WorkshopGame.set_visible(false)
-	$WorkshopGame.disconnect("popup_requested", _on_popup_requested)
+	if $WorkshopGame.is_connected("popup_requested", _on_popup_requested):
+		$WorkshopGame.disconnect("popup_requested", _on_popup_requested)
 
-func start_tool_game():
-	print("Open Tool game scene")
-	$ToolGame.set_visible(true)
-	$ToolGame.set_process(true)
-	$ToolGame.popup_requested.connect(_on_popup_requested)
-	$WorkshopGame.disconnect("popup_requested", _on_popup_requested)
+func start_tool_game(code):
+	$ToolGameSlot.open_game(code)
+	$ToolGameSlot.set_visible(true)
+	$ToolGameSlot.set_process(true)
+	$ToolGameSlot.popup_requested.connect(_on_popup_requested)
 
 func pause_tool_game():
-	print("pause Tool game scene")
-	$ToolGame.set_process(false)
-	$ToolGame.set_visible(false)
-	$ToolGame.disconnect("popup_requested", _on_popup_requested)
+	$ToolGameSlot.set_process(false)
+	$ToolGameSlot.set_visible(false)
+	if $ToolGameSlot.is_connected("popup_requested", _on_popup_requested):
+		$ToolGameSlot.disconnect("popup_requested", _on_popup_requested)
 	

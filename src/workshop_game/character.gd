@@ -6,6 +6,8 @@
 extends CharacterBody2D
 class_name Player
 
+signal switch_tool
+
 const idle_animation = "idle_"
 const walk_animation = "walk_"
 
@@ -15,9 +17,9 @@ var animation := ""
 @onready var raycast = $Raycast
 
 func _ready() -> void:
-
 	movement_system.set_character(self)
 	add_child(movement_system)
+	movement_system.switch_tool.connect(_forward_switch_tool)
 
 ## should be moved elsewhere. not a part of this class task
 func _unhandled_input(event: InputEvent) -> void:
@@ -57,3 +59,6 @@ func getAnimationName(isWalking: bool) ->String:
 		return walk_animation+string_direction
 	else:
 		return idle_animation+string_direction
+
+func _forward_switch_tool():
+	switch_tool.emit()

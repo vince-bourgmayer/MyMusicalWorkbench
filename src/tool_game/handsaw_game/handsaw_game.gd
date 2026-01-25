@@ -49,9 +49,6 @@ func cancel_set_end_point(): # user cancelled the set_end_point action
 	cutLine._on_start_point_reverted()
 	currentState = gameState.SET_START_POINT
 
-func cancel_handsaw_game(): # user leaves the handsaw game and get back to world
-	popup_requested.emit("Do you want to stop sawing ?", "Press A to validate", 1)
-	
 func handle_specific_input(event: InputEvent) -> void:
 	if currentState == gameState.SET_START_POINT:
 		handleStartInputs(event)
@@ -62,7 +59,7 @@ func handle_specific_input(event: InputEvent) -> void:
 
 func handleStartInputs(event: InputEvent) -> void:
 	cutLine.handle_inputs_for_marker(event, currentState == gameState.SET_START_POINT)
-	if event.is_action_released("place_tool"):
+	if event.is_action_released("ui_accept"):
 		if currentState == gameState.SET_START_POINT:
 			set_start_point()
 		elif currentState == gameState.SET_END_POINT:
@@ -73,7 +70,7 @@ func handleStartInputs(event: InputEvent) -> void:
 			gameState.SET_END_POINT:
 				cancel_set_end_point()
 			gameState.SET_START_POINT:
-				cancel_handsaw_game()
+				cancel_game("Do you want to stop sawing ?", "Press A to validate")
 			gameState.SET_CUT:
 				# Will need extra work, to use the current position of the saw 
 				# as the end point of a new cutline. Except if equal to start point
@@ -95,6 +92,5 @@ func make_progress():
 		handsaw.position = cut_start_position.lerp(cut_end_position, cut_increment) #NC
 	else: #cut is finished
 		#cutLine._on_cut_achieved()
-		print("Cut line [",cutLine.startMarker.position,";",cutLine.endMarker.position,"]")
 		woodboard.add_new_cut(cutLine.startMarker.position, cutLine.endMarker.position)
 		start_new_cut()
