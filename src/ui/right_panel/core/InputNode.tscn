@@ -1,4 +1,11 @@
-[gd_scene format=3 uid="uid://b5yvfxoibcovy"]
+[gd_scene load_steps=4 format=3 uid="uid://b5yvfxoibcovy"]
+
+[ext_resource type="Script" uid="uid://d0xeaw5fkcted" path="res://src/ui/right_panel/core/input_node.gd" id="1_06klv"]
+[ext_resource type="Texture2D" uid="uid://bn04i5oy7si4c" path="res://assets/tilesets/MMW_icons.png" id="1_six83"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06klv"]
+atlas = ExtResource("1_six83")
+region = Rect2(0, 150, 50, 50)
 
 [node name="InputNode" type="HBoxContainer"]
 anchors_preset = 8
@@ -12,11 +19,12 @@ offset_right = 2.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+script = ExtResource("1_06klv")
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 2
+texture = SubResource("AtlasTexture_06klv")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
-text = "Button X: Do action"
+text = "Do action"

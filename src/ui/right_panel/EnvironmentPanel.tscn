@@ -1,4 +1,22 @@
-[gd_scene format=3 uid="uid://b3w0ekimfij5n"]
+[gd_scene load_steps=6 format=3 uid="uid://b3w0ekimfij5n"]
+
+[ext_resource type="Texture2D" uid="uid://bn04i5oy7si4c" path="res://assets/tilesets/MMW_icons.png" id="1_p58bd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bijdu"]
+atlas = ExtResource("1_p58bd")
+region = Rect2(200, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p58bd"]
+atlas = ExtResource("1_p58bd")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew0ot"]
+atlas = ExtResource("1_p58bd")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61gaw"]
+atlas = ExtResource("1_p58bd")
+region = Rect2(100, 0, 50, 50)
 
 [node name="EnvironmentPanel" type="Control"]
 custom_minimum_size = Vector2(320, 120)
@@ -34,13 +52,10 @@ layout_mode = 2
 [node name="CalendarIcon" type="TextureRect" parent="ColorRect/VBoxContainer/DateContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+texture = SubResource("AtlasTexture_bijdu")
 
-[node name="Title" type="Label" parent="ColorRect/VBoxContainer/DateContainer/CalendarIcon"]
-layout_mode = 0
-offset_left = 54.0
-offset_top = 9.0
-offset_right = 278.0
-offset_bottom = 40.0
+[node name="Title" type="Label" parent="ColorRect/VBoxContainer/DateContainer"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
 text = "Sunday, January 25th"
@@ -53,6 +68,7 @@ layout_mode = 2
 [node name="ClockIcon" type="TextureRect" parent="ColorRect/VBoxContainer/OthersContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+texture = SubResource("AtlasTexture_p58bd")
 
 [node name="Time" type="Label" parent="ColorRect/VBoxContainer/OthersContainer"]
 layout_mode = 2
@@ -65,6 +81,7 @@ vertical_alignment = 1
 [node name="TemperatureIcon" type="TextureRect" parent="ColorRect/VBoxContainer/OthersContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+texture = SubResource("AtlasTexture_ew0ot")
 
 [node name="Temperature" type="Label" parent="ColorRect/VBoxContainer/OthersContainer"]
 layout_mode = 2
@@ -77,6 +94,7 @@ vertical_alignment = 1
 [node name="HumidityIcon" type="TextureRect" parent="ColorRect/VBoxContainer/OthersContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+texture = SubResource("AtlasTexture_61gaw")
 
 [node name="Humidity" type="Label" parent="ColorRect/VBoxContainer/OthersContainer"]
 layout_mode = 2

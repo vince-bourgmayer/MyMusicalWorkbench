@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://dh57hkjl8s326"]
+[gd_scene load_steps=3 format=3 uid="uid://dh57hkjl8s326"]
+
+[ext_resource type="Texture2D" uid="uid://bn04i5oy7si4c" path="res://assets/tilesets/MMW_icons.png" id="1_vm5tn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stxld"]
+atlas = ExtResource("1_vm5tn")
+region = Rect2(0, 0, 50, 50)
 
 [node name="MoneyPanel" type="Control"]
 custom_minimum_size = Vector2(320, 60)
@@ -33,6 +39,7 @@ alignment = 1
 [node name="MoneyIcon" type="TextureRect" parent="MoneyContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+texture = SubResource("AtlasTexture_stxld")
 
 [node name="Title" type="Label" parent="MoneyContainer"]
 layout_mode = 2
