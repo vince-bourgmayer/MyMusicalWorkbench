@@ -7,7 +7,6 @@ extends Node2D
 class_name WorkshopGame
 
 signal popup_requested(text1: String, text2:String)
-enum handTools {SAW = 3, PLANE = 4} # TODO refactor this withing an autoload, because it is same as Game.gd's popup code
 
 @onready var player := $Player
 
@@ -16,7 +15,7 @@ var is_tool_to_place = true
 
 var table_scene: PackedScene = preload("res://src/workshop_game/tools/Table.tscn")
 var table_instance : Node2D
-var active_tool : handTools = handTools.SAW
+
 
 func _ready() -> void:
 	table_instance = table_scene.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
@@ -24,8 +23,6 @@ func _ready() -> void:
 	$ToolPlaceholder.set_size(table_instance.tool_size)
 	placementManager.init($Player, $ToolPlaceholder)
 	add_child(placementManager)
-	
-	player.switch_tool.connect(_switch_tool)
 
 func toggle_placeholder():
 	if is_tool_to_place:
@@ -47,11 +44,13 @@ func try_to_place_tool():
 		print("you can't place here")
 
 func interact_with_tool() -> void:
-	popup_requested.emit("You're going to use the table as a workbench", "Press A to start", active_tool)
-	
-func _switch_tool() -> void:
-	print("switching tool")
-	if active_tool == handTools.SAW:
-		active_tool = handTools.PLANE
-	elif active_tool == handTools.PLANE:
-		active_tool = handTools.SAW
+	popup_requested.emit("You're going to use the table as a workbench", "Press A to start", get_game_mode_code())
+
+func get_game_mode_code():
+	match Globals.current_hand_tools:
+		Globals.hand_tools.SAW:
+			return Globals.game_mode.HANDSAW
+		Globals.hand_tools.PLANE:
+			return Globals.game_mode.HANDPLANE
+		_: return Globals.game_mode.WORKSHOP 
+			

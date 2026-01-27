@@ -5,8 +5,6 @@
 # -----------------------------------------------------------------------------
 extends Node
 
-signal switch_tool
-
 @export var speed := 100
 
 var velocity := Vector2.ZERO
@@ -54,4 +52,4 @@ func unhandled_input(event: InputEvent) -> void:
 			player.get_parent().interact_with_tool()
 	
 	if event.is_action_released("switch_tool"):
-		switch_tool.emit()
+		Globals.switch_current_hand_tools()

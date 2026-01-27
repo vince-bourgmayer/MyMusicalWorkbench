@@ -29,10 +29,10 @@ func showPopup():
 
 func _on_popup_closed(code: int):
 	$UI/Popup.hide()
-	if code == handSawGame_popup || code == handPlaneGame_popup:
+	if code == Globals.game_mode.HANDSAW || code == Globals.game_mode.HANDPLANE:
 		pause_workshop_game()
 		start_tool_game(code)
-	elif code == openWorkshopGame_popup:
+	elif code == Globals.game_mode.WORKSHOP:
 		pause_tool_game()
 		start_workshop_game()
 

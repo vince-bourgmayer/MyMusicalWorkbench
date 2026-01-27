@@ -18,7 +18,10 @@ func _ready() -> void:
 	
 	for icon in tool_buttons:
 		icon.button_group  = btn_group
+		
+	Signals.switch_hand_tools.connect(select_next_tool)
 	
-func select_next_tool() -> void:
+func select_next_tool(_tool: Globals.hand_tools) -> void:
+	print("Current hand tools is: ", _tool)
 	active_tool_index = (active_tool_index + 1) % tool_buttons.size()
 	tool_buttons[active_tool_index].set_pressed(true)
