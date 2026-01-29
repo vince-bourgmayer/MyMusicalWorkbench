@@ -7,8 +7,8 @@ Only one milestone is considered active at a time.
 
 ## Current Focus
 
-▶ Controls UX
-  Display a panel with controls & corresponding action
+▶ Workshop Systems  
+  Time, climate, and environmental simulation affecting materials.
 
 ---
 
@@ -17,23 +17,23 @@ Only one milestone is considered active at a time.
 - TemplatingGame V0  
   Template placement and material optimization before cutting.
 
-- Workshop Systems  
-  Time, climate, and environmental simulation affecting materials.
-
 - HandsawGame V1
   Workbench integration, and wood piece manipulation to expose edge to cut.
-
-- Prototype: Workshop and character's movement
 
 ---
 
 ## Completed Milestones
+
+- Controls UX
+  Display a panel with controls & corresponding action
 
 - HandPlaneGame V0  
   Manual hand planing mini-game focusing on gesture, feedback, and material interaction.
 
 - HandsawGame V0  
   Saw placement and cut simulation on a wood piece
+
+- Prototype: Workshop and character's movement
 
 ---
 

@@ -2,13 +2,12 @@
 A hands-on journey into lutherie
 
 🎥 Demo video  
-<!--https://github.com/vince-bourgmayer/MyMusicalWorkbench/raw/main/screenshots/MyMusicalWorkbench_demo_27012026_compressed.mp4-->
-https://github.com/vince-bourgmayer/MyMusicalWorkbench/raw/refs/heads/feat-right-panel/screenshots/MyMusicalWorkbench_demo_27012026_compressed.mp4
+https://github.com/vince-bourgmayer/MyMusicalWorkbench/raw/main/screenshots/MyMusicalWorkbench_demo_27012026_compressed.mp4
 
 Early prototype screenshot
 
 ![World](screenshots/step4.jpg)
-![Handsaw](screenshots/step10.jpg)
+![Handsaw](screenshots/step7.jpg)
 ![Handplane](screenshots/hand_plane_screenshot.jpg)
 
 ## What it is
@@ -40,7 +39,7 @@ Through lutherie-inspired gameplay, it aims to share an experience that values e
 Early prototype / design phase.  
 The project is currently focused on core mechanics and experimentation.
 
-🔧 Current focus: Controls UX  
+🔧 Current focus: Workshop Systems  
 🧭 Overall direction and planned milestones are described in [ROADMAP.md](ROADMAP.md).
 
 ## Concept, Design & Creative Direction :
