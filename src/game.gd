@@ -15,6 +15,7 @@ const handPlaneGame_popup = 4
 
 func _ready() -> void:
 	pause_tool_game()
+	Signals.switch_game_mode.emit(Globals.game_mode.WORKSHOP)
 	workshopGame.popup_requested.connect(_on_popup_requested)
 	$UI/Popup._popup_closed.connect(_on_popup_closed)
 	showPopup()
@@ -37,6 +38,7 @@ func _on_popup_closed(code: int):
 		start_workshop_game()
 
 func start_workshop_game():
+	Signals.switch_game_mode.emit(Globals.game_mode.WORKSHOP)
 	$WorkshopGame.set_process(true)
 	$WorkshopGame.set_visible(true)
 	$WorkshopGame.popup_requested.connect(_on_popup_requested)
