@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=3 uid="uid://mrxcc4anww6b"]
+
+[ext_resource type="Script" uid="uid://bc72qo02uuj5e" path="res://src/ui/right_panel/hand_tools_panel.gd" id="1_anyg2"]
+[ext_resource type="Texture2D" uid="uid://bn04i5oy7si4c" path="res://assets/tilesets/MMW_icons.png" id="1_loxk7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anyg2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6425426, 0.8815183, 0.49689275, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_anyg2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anyg2"]
+atlas = ExtResource("1_loxk7")
+region = Rect2(250, 0, 50, 50)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i22if"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6425426, 0.8815183, 0.49689275, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i22if"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqlar"]
+atlas = ExtResource("1_loxk7")
+region = Rect2(300, 0, 50, 50)
+
+[node name="HandToolsPanel" type="Control"]
+custom_minimum_size = Vector2(320, 60)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -960.0
+offset_bottom = -660.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_anyg2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(320, 60)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.50140655, 0.5014065, 0.5014065, 1)
+
+[node name="ToolIconsContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="SawIcon" type="CheckButton" parent="ToolIconsContainer"]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_anyg2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_anyg2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_anyg2")
+theme_override_icons/checked = SubResource("AtlasTexture_anyg2")
+theme_override_icons/unchecked = SubResource("AtlasTexture_anyg2")
+theme_override_icons/checked_disabled = SubResource("AtlasTexture_anyg2")
+theme_override_icons/unchecked_disabled = SubResource("AtlasTexture_anyg2")
+theme_override_icons/checked_mirrored = SubResource("AtlasTexture_anyg2")
+theme_override_icons/unchecked_mirrored = SubResource("AtlasTexture_anyg2")
+theme_override_icons/checked_disabled_mirrored = SubResource("AtlasTexture_anyg2")
+theme_override_icons/unchecked_disabled_mirrored = SubResource("AtlasTexture_anyg2")
+button_pressed = true
+
+[node name="PlaneIcon" type="CheckButton" parent="ToolIconsContainer"]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i22if")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_anyg2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i22if")
+theme_override_icons/checked = SubResource("AtlasTexture_gqlar")
+theme_override_icons/unchecked = SubResource("AtlasTexture_gqlar")
+theme_override_icons/checked_disabled = SubResource("AtlasTexture_gqlar")
+theme_override_icons/unchecked_disabled = SubResource("AtlasTexture_gqlar")
+theme_override_icons/checked_mirrored = SubResource("AtlasTexture_gqlar")
+theme_override_icons/unchecked_mirrored = SubResource("AtlasTexture_gqlar")
+theme_override_icons/checked_disabled_mirrored = SubResource("AtlasTexture_gqlar")
+theme_override_icons/unchecked_disabled_mirrored = SubResource("AtlasTexture_gqlar")

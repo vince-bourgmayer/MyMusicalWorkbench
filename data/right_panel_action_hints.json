@@ -1,0 +1,23 @@
+{
+	"workshop" : [
+		{ "id": "ui_accept", "x": 0, "y": 3, "text": "Validation" },
+		{ "id": "try_place_tool", "x": 1, "y": 3, "text": "Place Workbench" },
+		{ "id": "ui_select", "x": 2, "y": 3, "text": "Interaction" },
+		{ "id": "ui_cancel", "x": 3, "y": 3, "text": "Cancel/Exit" },
+		{ "id": "move", "x": 0, "y": 5, "text": "Move" },
+		{ "id": "switch_tool", "x": 2, "y": 4, "text": "switch hand tools" }
+	],
+	"handsaw": [
+		{ "id": "ui_accept", "x": 0, "y": 3, "text": "Set marker position" },
+		{ "id": "ui_cancel", "x": 3, "y": 3, "text": "Cancel/exit" },
+		{ "id": "move", "x": 0, "y": 5, "text": "Move cut marker" },
+		{ "id": "push-pull_saw", "x": 1, "y": 5, "text": "Push/pull saw" }
+	],
+	"handplane": [
+		{ "id": "ui_accept", "x": 0, "y": 3, "text": "validate plane position" },
+		{ "id": "ui_cancel", "x": 3, "y": 3, "text": "exit" },
+		{ "id": "move", "x": 0, "y": 5, "text": "up/down : adjust plane position" },
+		{ "id": "plane_left_hand", "x": 0, "y": 5, "text": "left : left hand push & press" },
+		{ "id": "plane_right_hand", "x": 1, "y": 5, "text": "left: right hand push & press" }
+	]
+}

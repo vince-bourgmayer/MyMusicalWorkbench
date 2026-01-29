@@ -6,19 +6,16 @@
 extends Node
 class_name ToolGameSlot
 
-signal popup_requested(text1: String, text2: String, code: int)
+signal popup_requested(text1: String, text2: String, code: Globals.game_mode)
 
 var current_game: Node = null
 
-func _ready() -> void:
-	pass # Replace with function body.
-
-func open_game(code: int) -> void:
+func open_game(code: Globals.game_mode) -> void:
 	var scene_to_load: String = "res://src/tool_game/handsaw_game/HandsawGame.tscn"
 
-	if code == 3:
+	if code == Globals.game_mode.HANDSAW:
 		scene_to_load = "res://src/tool_game/handsaw_game/HandsawGame.tscn"
-	elif code == 4:
+	elif code == Globals.game_mode.HANDPLANE:
 		scene_to_load = "res://src/tool_game/handplane_game/Handplane_game.tscn"
 	else:
 		push_error("Unknown tool game code: %s" % code)
@@ -45,5 +42,5 @@ func _clear_current_game() -> void:
 	current_game.queue_free()
 	current_game = null
 
-func _forward_popup(text1: String, text2: String, code: int) -> void:
+func _forward_popup(text1: String, text2: String, code: Globals.game_mode) -> void:
 	popup_requested.emit(text1, text2, code)

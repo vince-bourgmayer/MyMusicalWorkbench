@@ -15,6 +15,7 @@ const handPlaneGame_popup = 4
 
 func _ready() -> void:
 	pause_tool_game()
+	Signals.switch_game_mode.emit(Globals.game_mode.WORKSHOP)
 	workshopGame.popup_requested.connect(_on_popup_requested)
 	$UI/Popup._popup_closed.connect(_on_popup_closed)
 	showPopup()
@@ -29,14 +30,15 @@ func showPopup():
 
 func _on_popup_closed(code: int):
 	$UI/Popup.hide()
-	if code == handSawGame_popup || code == handPlaneGame_popup:
+	if code == Globals.game_mode.HANDSAW || code == Globals.game_mode.HANDPLANE:
 		pause_workshop_game()
 		start_tool_game(code)
-	elif code == openWorkshopGame_popup:
+	elif code == Globals.game_mode.WORKSHOP:
 		pause_tool_game()
 		start_workshop_game()
 
 func start_workshop_game():
+	Signals.switch_game_mode.emit(Globals.game_mode.WORKSHOP)
 	$WorkshopGame.set_process(true)
 	$WorkshopGame.set_visible(true)
 	$WorkshopGame.popup_requested.connect(_on_popup_requested)
@@ -48,6 +50,7 @@ func pause_workshop_game():
 		$WorkshopGame.disconnect("popup_requested", _on_popup_requested)
 
 func start_tool_game(code):
+	Signals.switch_game_mode.emit(code)
 	$ToolGameSlot.open_game(code)
 	$ToolGameSlot.set_visible(true)
 	$ToolGameSlot.set_process(true)
