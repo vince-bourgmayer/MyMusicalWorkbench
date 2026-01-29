@@ -50,6 +50,7 @@ func pause_workshop_game():
 		$WorkshopGame.disconnect("popup_requested", _on_popup_requested)
 
 func start_tool_game(code):
+	Signals.switch_game_mode.emit(code)
 	$ToolGameSlot.open_game(code)
 	$ToolGameSlot.set_visible(true)
 	$ToolGameSlot.set_process(true)
