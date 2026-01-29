@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://2jsv77v1ovbm" path="res://src/workshop_game/WorkshopGame.tscn" id="3_lqjwq"]
 [ext_resource type="Script" uid="uid://7lr0aq24haqa" path="res://src/tool_game_slot.gd" id="4_7omc5"]
 [ext_resource type="PackedScene" uid="uid://b3w0ekimfij5n" path="res://src/ui/right_panel/EnvironmentPanel.tscn" id="4_eu8jo"]
-[ext_resource type="PackedScene" uid="uid://djgd4dakyisj4" path="res://src/ui/right_panel/InputPanel.tscn" id="4_km1yn"]
+[ext_resource type="PackedScene" uid="uid://djgd4dakyisj4" path="res://src/ui/right_panel/ActionsPanel.tscn" id="4_km1yn"]
 [ext_resource type="PackedScene" uid="uid://dh57hkjl8s326" path="res://src/ui/right_panel/MoneyPanel.tscn" id="5_dbp7n"]
 [ext_resource type="PackedScene" uid="uid://cue34sxmerl3m" path="res://src/ui/Popup.tscn" id="6_eu8jo"]
 [ext_resource type="PackedScene" uid="uid://mrxcc4anww6b" path="res://src/ui/right_panel/HandToolsPanel.tscn" id="6_rgpsw"]

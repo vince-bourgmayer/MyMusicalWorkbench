@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://djgd4dakyisj4"]
 
-[ext_resource type="Script" uid="uid://buwq38jg3xho6" path="res://src/ui/right_panel/input_panel.gd" id="1_rryln"]
+[ext_resource type="Script" uid="uid://buwq38jg3xho6" path="res://src/ui/right_panel/actions_panel.gd" id="1_rryln"]
 
-[node name="InputsInfo" type="Control"]
+[node name="ActionsPanel" type="Control"]
 custom_minimum_size = Vector2(320, 480)
 layout_mode = 3
 anchors_preset = 15
@@ -40,6 +40,6 @@ text = "Workshop"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InputsContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="ActionHintsContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 alignment = 1

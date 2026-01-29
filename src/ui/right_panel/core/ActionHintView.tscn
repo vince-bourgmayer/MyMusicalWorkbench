@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5yvfxoibcovy"]
 
-[ext_resource type="Script" uid="uid://d0xeaw5fkcted" path="res://src/ui/right_panel/core/input_node.gd" id="1_06klv"]
+[ext_resource type="Script" uid="uid://d0xeaw5fkcted" path="res://src/ui/right_panel/core/action_hint_view.gd" id="1_06klv"]
 [ext_resource type="Texture2D" uid="uid://bn04i5oy7si4c" path="res://assets/tilesets/MMW_icons.png" id="1_six83"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_06klv"]
 atlas = ExtResource("1_six83")
 region = Rect2(0, 150, 50, 50)
 
-[node name="InputNode" type="HBoxContainer"]
+[node name="ActionHintView" type="HBoxContainer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
