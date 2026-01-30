@@ -5,15 +5,18 @@
 # -----------------------------------------------------------------------------
 extends Node2D
 
-const startMessage_popup = 0
-const openWorkshopGame_popup = 1
-const openToolGame_popup = 2
-const handSawGame_popup = 3
-const handPlaneGame_popup = 4
-
 @onready var workshopGame = $WorkshopGame
+@onready var rightPanel = $UI/RightPanel
+@onready var ambiancePanel = $UI/RightPanel/AmbiancePanel
+
+var clockService: ClockService
 
 func _ready() -> void:
+	clockService = ClockService.new()
+	clockService.time_changed.connect(ambiancePanel.on_time_changed)
+	add_child(clockService)
+
+	
 	pause_tool_game()
 	Signals.switch_game_mode.emit(Globals.game_mode.WORKSHOP)
 	workshopGame.popup_requested.connect(_on_popup_requested)
