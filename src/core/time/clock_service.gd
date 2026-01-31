@@ -12,7 +12,7 @@ signal hour_changed(hour: int)
 
 # --- Config ---
 @export var real_seconds_per_tick := 1.0
-@export var ingame_minutes_per_tick := 45
+@export var ingame_minutes_per_tick := 1
 
 # --- State ---
 var _ingame_elapsed_minutes: int = 0
