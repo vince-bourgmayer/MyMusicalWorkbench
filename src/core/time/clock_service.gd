@@ -7,10 +7,12 @@ extends Node
 class_name ClockService
 
 signal time_changed(current_datetime: Dictionary)
+signal day_changed(day: int)
+signal hour_changed(hour: int)
 
 # --- Config ---
 @export var real_seconds_per_tick := 1.0
-@export var ingame_minutes_per_tick := 1.0
+@export var ingame_minutes_per_tick := 240#1.0
 
 # --- State ---
 var _ingame_elapsed_minutes: int = 0
@@ -24,15 +26,26 @@ func _ready() -> void:
 	add_child(_timer)
 	_timer.start()
 
-	_emit_time_changed()
+	_signals_emit_on_tick(_get_current_ingame_time())
 
 func _on_tick() -> void:
 	_ingame_elapsed_minutes += ingame_minutes_per_tick
-	_emit_time_changed()
+	
+	var datetime = _get_current_ingame_time()
+	_signals_emit_on_tick(datetime)
+	
+
+func _signals_emit_on_tick(datetime: Dictionary):
+	_emit_time_changed(datetime)
+	
+	if datetime.get("minute", 1) == 0:
+		hour_changed.emit(datetime.get("hour", 12))
+		if datetime.get("hour", 1) % 24 == 0:
+			day_changed.emit(datetime.get("day_in_year", -1))
 	
 	
-func _emit_time_changed() -> void:
-	time_changed.emit(_get_current_ingame_time())
+func _emit_time_changed(datetime: Dictionary) -> void:
+	time_changed.emit(datetime)
 	
 @warning_ignore("integer_division")
 func _get_current_ingame_time() -> Dictionary:
@@ -50,11 +63,14 @@ func _get_current_ingame_time() -> Dictionary:
 	var month := total_months % 12 + 1
 	var year := total_months / 12
 
+	var day_in_year = int(_ingame_elapsed_minutes / 1440)
+	
 	return {
 		"year": year,
 		"month": month,
 		"day": day,
 		"hour": hour,
-		"minute": minute
+		"minute": minute,
+		"day_in_year": day_in_year
 	}
  

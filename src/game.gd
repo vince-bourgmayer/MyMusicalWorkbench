@@ -10,11 +10,20 @@ extends Node2D
 @onready var ambiancePanel = $UI/RightPanel/AmbiancePanel
 
 var clockService: ClockService
+var weatherService : WeatherService
 
 func _ready() -> void:
+	weatherService = WeatherService.new()
+	weatherService.weather_changed.connect(ambiancePanel.on_weather_changed)
+	add_child(weatherService)
+	
 	clockService = ClockService.new()
 	clockService.time_changed.connect(ambiancePanel.on_time_changed)
+	clockService.day_changed.connect(weatherService.on_new_day)
+	clockService.hour_changed.connect(weatherService.on_new_hour)
 	add_child(clockService)
+
+
 
 	
 	pause_tool_game()
