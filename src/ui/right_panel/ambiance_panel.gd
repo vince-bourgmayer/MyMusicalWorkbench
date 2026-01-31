@@ -27,7 +27,7 @@ func on_weather_changed(temperature: float, humidity: float) -> void:
 	var temp_text := "%02d°c" % temperature
 	temperatureLabel.text = temp_text
 	
-	var humidity_text := "%02d" % humidity
+	var humidity_text := "%02d%%" % humidity
 	humidityLabel.text = humidity_text
 
 func get_date(day: int, month: int) -> String:

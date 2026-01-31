@@ -22,9 +22,6 @@ func _ready() -> void:
 	clockService.day_changed.connect(weatherService.on_new_day)
 	clockService.hour_changed.connect(weatherService.on_new_hour)
 	add_child(clockService)
-
-
-
 	
 	pause_tool_game()
 	Signals.switch_game_mode.emit(Globals.game_mode.WORKSHOP)
