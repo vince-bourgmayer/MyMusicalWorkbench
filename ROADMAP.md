@@ -7,15 +7,12 @@ Only one milestone is considered active at a time.
 
 ## Current Focus
 
-▶ Workshop Systems  
-  Time, climate, and environmental simulation affecting materials.
+▶ TemplatingGame V0  
+  Template placement and material optimization before cutting.
 
 ---
 
 ## Planned Milestones
-
-- TemplatingGame V0  
-  Template placement and material optimization before cutting.
 
 - HandsawGame V1
   Workbench integration, and wood piece manipulation to expose edge to cut.
@@ -23,6 +20,9 @@ Only one milestone is considered active at a time.
 ---
 
 ## Completed Milestones
+
+- Workshop Systems  
+  Time, climate which will later affect materials & process.
 
 - Controls UX
   Display a panel with controls & corresponding action

@@ -23,6 +23,8 @@ It is intentionally kept raw.
   A playable handsaw mechanic allows the player to define a cut and manually perform the sawing gesture to shape a guitar body blank.
 - Handplane mini-game  
   A playable handplane mechanic allows the player to use a jackplane to plane the wood
+- Workshop management  
+  Time and climate is running and will affect some process or materials later
 
 #### Ideas
 - Workshop management: Buy, and place tools where you want. Set up show room, painting area, etc. 
@@ -39,7 +41,7 @@ Through lutherie-inspired gameplay, it aims to share an experience that values e
 Early prototype / design phase.  
 The project is currently focused on core mechanics and experimentation.
 
-🔧 Current focus: Workshop Systems  
+🔧 Current focus: Templating Game mode  
 🧭 Overall direction and planned milestones are described in [ROADMAP.md](ROADMAP.md).
 
 ## Concept, Design & Creative Direction :
