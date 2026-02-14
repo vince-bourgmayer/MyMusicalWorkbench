@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://tokpj1gvnq7j"]
+
+[ext_resource type="Script" uid="uid://cmyg5pqhyxdxv" path="res://src/tool_game/core/wood_shape.gd" id="1_uvgkq"]
+
+[node name="WoodShape" type="Node2D"]
+script = ExtResource("1_uvgkq")
+
+[node name="ShapeLayer" type="Area2D" parent="."]
+
+[node name="ShapePolygon" type="CollisionPolygon2D" parent="ShapeLayer"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3vrvljm6wbka"]
+
+[ext_resource type="Script" uid="uid://o7u560wai7nn" path="res://src/tool_game/wood_piece.gd" id="1_lgh6l"]
+[ext_resource type="Shader" uid="uid://cw8i533tof2fu" path="res://src/shaders/invisible_cloak.gdshader" id="2_63ijx"]
+[ext_resource type="PackedScene" uid="uid://tokpj1gvnq7j" path="res://src/tool_game/core/WoodShape.tscn" id="2_humqj"]
+[ext_resource type="Texture2D" uid="uid://c4qyaq8lywele" path="res://assets/woods/body_blank/ashbody_1_300x425.png" id="3_rluh4"]
+[ext_resource type="PackedScene" uid="uid://dathaj5iho5jt" path="res://src/tool_game/core/WoodRawOverlay.tscn" id="4_y2b04"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rluh4"]
+shader = ExtResource("2_63ijx")
+
+[node name="WoodPiece" type="Node2D"]
+material = SubResource("ShaderMaterial_rluh4")
+script = ExtResource("1_lgh6l")
+
+[node name="Visual" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("3_rluh4")
+
+[node name="FeaturesLayer" type="Node2D" parent="."]
+visible = false
+
+[node name="WoodRawOverlay" parent="FeaturesLayer" instance=ExtResource("4_y2b04")]
+
+[node name="GuidesLayer" type="Node2D" parent="."]
+
+[node name="Shape" parent="." instance=ExtResource("2_humqj")]
