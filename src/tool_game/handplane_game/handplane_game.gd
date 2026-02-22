@@ -7,22 +7,29 @@ extends ToolGame
 class_name HandPlaneGame
 
 @onready var jackplane = $JackPlane
-@onready var woodboard = $WoodboardToPlane
+@onready var woodpiece = $WoodPiece
 
 enum gameState { PLACE=0, PLANE=1, RESTART=2 }
 
 var state : gameState
 var plane_operation : PlaneOperation
 var is_planing := false
+var raw_overlay: WoodRawOverlay
 
 
 func _ready() -> void:
+	raw_overlay = woodpiece.get_raw_overlay()
 	plane_operation = PlaneOperation.new()
 	plane_operation.set_start_edge(get_start_line())
 	set_plane_on_start_line()
 
 func get_start_line() -> Segment:
-	return woodboard.get_wood_edges()[2]
+	var segment = woodpiece.get_shape().get_edges_as_segment()[2]
+	
+	var global_start_point = woodpiece.to_global(segment.start)
+	var global_end_point = woodpiece.to_global(segment.end)
+
+	return Segment.new(global_start_point, global_end_point)
 	
 func set_plane_on_start_line() -> void:
 	state = gameState.RESTART
@@ -52,7 +59,7 @@ func handle_specific_input(event: InputEvent) -> void:
 		gameState.PLANE:
 			handle_planing_input(event)
 			if is_planing:
-				woodboard.plane_at(jackplane.position, jackplane._get_total_pressure())
+				raw_overlay.plane_at(jackplane.position, jackplane._get_total_pressure())
 		_: pass
 
 
@@ -75,8 +82,8 @@ func handle_planing_input(event: InputEvent) -> void:
 
 func _on_stroke_finished() -> void:
 	is_planing = false
-	woodboard.plane_at(jackplane.position, jackplane._get_total_pressure())
-	woodboard._reset_last_plane_pos()
+	raw_overlay.plane_at(jackplane.position, jackplane._get_total_pressure())
+	raw_overlay._reset_last_plane_pos()
 	jackplane.push(false)
 	if jackplane.is_connected("back_area_exited", _on_stroke_finished):
 		jackplane.disconnect("back_area_exited", _on_stroke_finished)

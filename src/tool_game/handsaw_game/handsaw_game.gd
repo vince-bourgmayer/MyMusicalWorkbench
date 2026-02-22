@@ -7,29 +7,32 @@ extends ToolGame
 class_name HandsawGame
 
 enum gameState { SET_START_POINT, SET_END_POINT, SET_CUT }
-
-@onready var handsaw = $Handsaw
-@onready var woodboard = $Woodboard
-@onready var visualMarkers = $VisualMarkers
 const sawing_progress_step = 0.005
-
-var currentState: gameState = gameState.SET_START_POINT
-
-var cutLine: CutLines
 var cut_increment := 0.0 # step of the cut progress
 
+@onready var handsaw = $Handsaw
+@onready var woodpiece = $WoodPiece
+@onready var visualMarkers = $VisualMarkers
+
+var currentState: gameState = gameState.SET_START_POINT
+var cutLine: CutLines
+var woodshape : WoodShape
+
 func _ready() -> void:
+	woodshape = woodpiece.get_shape()
 	cutLine = CutLines.new()
 	visualMarkers.add_child(cutLine)
 	start_new_cut()
+
 	
 func start_new_cut():
 	handsaw.rotate(handsaw.rotation*-1)
 	handsaw.hide()
 	cut_increment = 0.0
-	cutLine.start_new_cut(woodboard.get_remaining_wood_border())
+	var wood_edges = woodshape.get_edges_as_segment()
+	cutLine.start_new_cut(wood_edges)
 	#debug
-	for segment in woodboard.get_remaining_wood_border():
+	for segment in wood_edges:
 		segment._print()
 		
 	currentState = gameState.SET_START_POINT
@@ -92,5 +95,5 @@ func make_progress():
 		handsaw.position = cut_start_position.lerp(cut_end_position, cut_increment) #NC
 	else: #cut is finished
 		#cutLine._on_cut_achieved()
-		woodboard.add_new_cut(cutLine.startMarker.position, cutLine.endMarker.position)
+		woodshape.add_new_cut(cutLine.startMarker.position, cutLine.endMarker.position)
 		start_new_cut()

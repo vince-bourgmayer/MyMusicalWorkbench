@@ -1,3 +1,8 @@
+# -----------------------------------------------------------------------------
+# wood_shape.gd
+# Copyright (c) 2026 Vincent Bourgmayer
+# License: MIT
+# -----------------------------------------------------------------------------
 extends Node2D
 class_name WoodShape
 
@@ -7,7 +12,6 @@ signal shape_updated()
 var polygonSlicer : PolygonSlicer
 var layerMask: WoodLayerMask
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	polygonSlicer = PolygonSlicer.new(Vector2.ZERO)
 	
