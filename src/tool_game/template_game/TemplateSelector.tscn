@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd2djun0e4xuu"]
+
+[ext_resource type="Script" uid="uid://c1po27jbqdji5" path="res://src/tool_game/template_game/template_selector.gd" id="1_rbns7"]
+[ext_resource type="Texture2D" uid="uid://cm58hwdp4aais" path="res://assets/shapes/black_boden.png" id="2_3021t"]
+
+[node name="TemplateSelector" type="Node2D"]
+script = ExtResource("1_rbns7")
+
+[node name="PreviousShape" type="Sprite2D" parent="."]
+position = Vector2(0, 360)
+
+[node name="CurrentShape" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+texture = ExtResource("2_3021t")
+
+[node name="NextShape" type="Sprite2D" parent="."]
+position = Vector2(960, 360)

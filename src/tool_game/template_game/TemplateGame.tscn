@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt3rdvbwje4fu"]
+
+[ext_resource type="PackedScene" uid="uid://uivdbrhwviue" path="res://src/tool_game/ToolGame.tscn" id="1_u6aoy"]
+[ext_resource type="Script" uid="uid://bfvk0ihejgs2o" path="res://src/tool_game/template_game/template_game.gd" id="2_4pi28"]
+[ext_resource type="PackedScene" uid="uid://c3vrvljm6wbka" path="res://src/tool_game/WoodPiece.tscn" id="2_5upu0"]
+[ext_resource type="PackedScene" uid="uid://dd2djun0e4xuu" path="res://src/tool_game/template_game/TemplateSelector.tscn" id="4_4pi28"]
+
+[node name="TemplateGame" instance=ExtResource("1_u6aoy")]
+script = ExtResource("2_4pi28")
+
+[node name="WoodPiece" parent="." index="0" instance=ExtResource("2_5upu0")]
+visible = false
+position = Vector2(180, 225)
+
+[node name="TemplateSelector" parent="." index="1" instance=ExtResource("4_4pi28")]
