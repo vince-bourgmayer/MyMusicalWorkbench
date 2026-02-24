@@ -9,7 +9,6 @@
 script = ExtResource("2_4pi28")
 
 [node name="WoodPiece" parent="." index="0" instance=ExtResource("2_5upu0")]
-visible = false
 position = Vector2(180, 225)
 
 [node name="TemplateSelector" parent="." index="1" instance=ExtResource("4_4pi28")]

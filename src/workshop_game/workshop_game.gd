@@ -52,5 +52,7 @@ func get_game_mode_code():
 			return Globals.game_mode.HANDSAW
 		Globals.hand_tools.PLANE:
 			return Globals.game_mode.HANDPLANE
+		Globals.hand_tools.PENCIL:
+			return Globals.game_mode.TEMPLATE
 		_: return Globals.game_mode.WORKSHOP 
 			

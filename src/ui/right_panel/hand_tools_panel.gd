@@ -7,6 +7,7 @@ extends Control
 
 @onready var saw_icon = $ToolIconsContainer/SawIcon
 @onready var plane_icon = $ToolIconsContainer/PlaneIcon
+@onready var pen_icon = $ToolIconsContainer/PenIcon
 
 var btn_group = ButtonGroup.new()
 var tool_buttons : Array[BaseButton]
@@ -14,7 +15,7 @@ var tool_buttons : Array[BaseButton]
 var active_tool_index := 0
 
 func _ready() -> void:
-	tool_buttons = [saw_icon, plane_icon]
+	tool_buttons = [saw_icon, plane_icon, pen_icon]
 	
 	for icon in tool_buttons:
 		icon.button_group  = btn_group

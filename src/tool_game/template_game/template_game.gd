@@ -63,6 +63,8 @@ func _set_select_jig_state():
 
 func _set_place_jig_state():
 	templateSelector.visible = false
+	var jig_node = templateSelector.get_selected_shape().duplicate()
+	self.add_child(jig_node) #TODO: TO BE REMOVED IF CANCEL
 	currentState = gameState.PLACE_JIG
 	
 func _set_draw_shape_state():

@@ -18,6 +18,7 @@ use_parent_material = true
 texture = ExtResource("3_rluh4")
 
 [node name="FeaturesLayer" type="Node2D" parent="."]
+visible = false
 
 [node name="WoodRawOverlay" parent="FeaturesLayer" instance=ExtResource("4_y2b04")]
 
