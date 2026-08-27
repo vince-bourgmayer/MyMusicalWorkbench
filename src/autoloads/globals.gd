@@ -1,3 +1,8 @@
+# -----------------------------------------------------------------------------
+# globals.gd
+# Copyright (c) 2026 Vincent Bourgmayer
+# License: MIT
+# -----------------------------------------------------------------------------
 extends Node
 
 enum game_mode {WORKSHOP = 0, HANDSAW = 1, HANDPLANE = 2, TEMPLATE = 3}
