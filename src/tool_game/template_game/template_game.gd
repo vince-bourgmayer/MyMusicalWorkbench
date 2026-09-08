@@ -8,6 +8,7 @@ class_name TemplateGame
 
 enum gameState { SELECT_JIG, PLACE_JIG, DRAW_SHAPE }
 var currentState : gameState
+var directionalInputReader = DirectionalInputReader.new()
 
 @onready var templateSelector = $TemplateSelector
 
@@ -52,7 +53,7 @@ func handle_place_jig_input(event: InputEvent) -> void:
 		_set_draw_shape_state()
 	elif event.is_action_released("ui_cancel"):
 		_set_select_jig_state()
-	
+
 func handle_draw_shape_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
 		_set_place_jig_state()
@@ -63,9 +64,14 @@ func _set_select_jig_state():
 
 func _set_place_jig_state():
 	templateSelector.visible = false
+	self.add_child(directionalInputReader)
 	var jig_node = templateSelector.get_selected_shape().duplicate()
+
+	jig_node.set_movement_bounds(self.get_viewport_rect()) #TODO provide view bound so the jig stay in the view
+	directionalInputReader.direction_changed.connect(jig_node.set_move_direction)
+
 	self.add_child(jig_node) #TODO: TO BE REMOVED IF CANCEL
 	currentState = gameState.PLACE_JIG
-	
+
 func _set_draw_shape_state():
 	currentState = gameState.DRAW_SHAPE
