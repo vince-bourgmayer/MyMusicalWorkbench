@@ -68,7 +68,7 @@ func _set_place_jig_state():
 	var jig_node = templateSelector.get_selected_shape().duplicate()
 
 	jig_node.set_movement_bounds(self.get_viewport_rect()) #TODO provide view bound so the jig stay in the view
-	directionalInputReader.direction_changed.connect(jig_node.set_move_direction)
+	directionalInputReader.left_stick_direction_changeds.connect(jig_node.set_move_direction)
 
 	self.add_child(jig_node) #TODO: TO BE REMOVED IF CANCEL
 	currentState = gameState.PLACE_JIG
