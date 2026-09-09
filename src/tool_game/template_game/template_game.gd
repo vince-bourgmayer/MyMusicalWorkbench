@@ -72,13 +72,16 @@ func _set_place_jig_state():
 	if (!self.get_children().has(jig)):
 		jig = templateSelector.get_selected_shape().duplicate()
 		jig.set_movement_bounds(self.get_viewport_rect()) 
-		directionalInputReader.left_stick_direction_changed.connect(jig.set_move_direction)
+
+	directionalInputReader.left_stick_direction_changed.connect(jig.set_move_direction)
+	directionalInputReader.right_stick_direction_changed.connect(jig.set_rotation_direction)
 
 	self.add_child(jig)
 	currentState = gameState.PLACE_JIG
 
 func _set_draw_shape_state():
 	pencil = pencil_scene.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
+	directionalInputReader.right_stick_direction_changed.disconnect(jig.set_rotation_direction)
 
 	pencil.set_movement_bounds(self.get_viewport_rect())
 	directionalInputReader.right_stick_direction_changed.connect(pencil.set_move_direction)

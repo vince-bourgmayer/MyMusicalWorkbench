@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
 # pencil.gd
-# Copyright (c) s2026 Vincent Bourgmayer
+# Copyright (c) 2026 Vincent Bourgmayer
 # License: MIT
 # -----------------------------------------------------------------------------
 extends Node2D
