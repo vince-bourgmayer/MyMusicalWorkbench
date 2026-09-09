@@ -11,7 +11,9 @@ var currentState : gameState
 var directionalInputReader = DirectionalInputReader.new()
 
 @onready var templateSelector = $TemplateSelector
-
+var pencil : Pencil
+var pencil_scene: PackedScene = preload("res://src/tool_game/template_game/Pencil.tscn")
+var jig : Jig
 
 # The game will let the player:
 # 1. Choose a template/jig
@@ -31,7 +33,7 @@ func handle_specific_input(_event: InputEvent) -> void:
 			handle_draw_shape_input(_event)
 		_:
 			print("TemplateGame.handle_specific_input: Invalid gameState")
-			
+
 func handle_select_jig_input(event: InputEvent) -> void:
 	# B button: leave template game
 	# A button: validate jig selected
@@ -45,17 +47,18 @@ func handle_select_jig_input(event: InputEvent) -> void:
 		templateSelector.handle_input(event)
 	
 func handle_place_jig_input(event: InputEvent) -> void:
-	#Left stick move the template
-	#Right stick rotate the template
 	#B button: back to previous gamemode
 	#A validate go to next step
 	if event.is_action_released("ui_accept"):
 		_set_draw_shape_state()
+		print("check")
 	elif event.is_action_released("ui_cancel"):
+		self.remove_child(jig)
 		_set_select_jig_state()
 
 func handle_draw_shape_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
+		self.remove_child(pencil)
 		_set_place_jig_state()
 
 func _set_select_jig_state():
@@ -65,13 +68,21 @@ func _set_select_jig_state():
 func _set_place_jig_state():
 	templateSelector.visible = false
 	self.add_child(directionalInputReader)
-	var jig_node = templateSelector.get_selected_shape().duplicate()
+	
+	if (!self.get_children().has(jig)):
+		jig = templateSelector.get_selected_shape().duplicate()
+		jig.set_movement_bounds(self.get_viewport_rect()) 
+		directionalInputReader.left_stick_direction_changed.connect(jig.set_move_direction)
 
-	jig_node.set_movement_bounds(self.get_viewport_rect()) #TODO provide view bound so the jig stay in the view
-	directionalInputReader.left_stick_direction_changed.connect(jig_node.set_move_direction)
-
-	self.add_child(jig_node) #TODO: TO BE REMOVED IF CANCEL
+	self.add_child(jig)
 	currentState = gameState.PLACE_JIG
 
 func _set_draw_shape_state():
+	pencil = pencil_scene.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
+
+	pencil.set_movement_bounds(self.get_viewport_rect())
+	directionalInputReader.right_stick_direction_changed.connect(pencil.set_move_direction)
+
+	self.add_child(pencil)
+
 	currentState = gameState.DRAW_SHAPE
