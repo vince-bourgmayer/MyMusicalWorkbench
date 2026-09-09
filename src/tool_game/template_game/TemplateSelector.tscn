@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c1po27jbqdji5" path="res://src/tool_game/template_game/template_selector.gd" id="1_rbns7"]
 [ext_resource type="Texture2D" uid="uid://bkpg6adk1cyj0" path="res://assets/shapes/black_boden.png" id="2_3021t"]
 [ext_resource type="Texture2D" uid="uid://cxl0xtj1u5al" path="res://assets/shapes/black_machine.png" id="2_toube"]
-[ext_resource type="Script" uid="uid://21r83db4jp27" path="res://src/tool_game/template_game/core/jig.gd" id="3_76elp"]
+[ext_resource type="Script" uid="uid://21r83db4jp27" path="res://src/tool_game/template_game/jig.gd" id="3_76elp"]
 [ext_resource type="Texture2D" uid="uid://dqhnc7gdhd2py" path="res://assets/shapes/strandberg_boden.png" id="4_ry64b"]
 
 [node name="TemplateSelector" type="Node2D"]
