@@ -9,6 +9,8 @@ class_name TemplateGame
 enum gameState { SELECT_JIG, PLACE_JIG, DRAW_SHAPE }
 var currentState : gameState
 var directionalInputReader = DirectionalInputReader.new()
+var triggersInputReader = TriggersInputReader.new()
+var maskDrawer : MaskDrawer
 
 @onready var templateSelector = $TemplateSelector
 var pencil : Pencil
@@ -22,6 +24,9 @@ var jig : Jig
 	
 func _ready() -> void:
 	currentState = gameState.SELECT_JIG
+	maskDrawer = MaskDrawer.new($WoodPiece.get_size())
+	self.add_child(directionalInputReader)
+	self.add_child(triggersInputReader)
 
 func handle_specific_input(_event: InputEvent) -> void:
 	match currentState:
@@ -60,6 +65,13 @@ func handle_draw_shape_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
 		self.remove_child(pencil)
 		_set_place_jig_state()
+	elif event.is_action_pressed("trigger_right"):
+		#TODO find a way to make visua clue that something happens
+		# May be a slight scale up/down ...
+		# So... inform pencil to let it give visual output
+		# And then...kinda...connect woodPiece to pencil, so
+		# pencil position let a mark on the wood..
+		print("Pencil is marking")
 
 func _set_select_jig_state():
 	currentState = gameState.SELECT_JIG
@@ -67,7 +79,6 @@ func _set_select_jig_state():
 
 func _set_place_jig_state():
 	templateSelector.visible = false
-	self.add_child(directionalInputReader)
 	
 	if (!self.get_children().has(jig)):
 		jig = templateSelector.get_selected_shape().duplicate()
@@ -84,8 +95,10 @@ func _set_draw_shape_state():
 	directionalInputReader.right_stick_direction_changed.disconnect(jig.set_rotation_direction)
 
 	pencil.set_movement_bounds(self.get_viewport_rect())
-	directionalInputReader.right_stick_direction_changed.connect(pencil.set_move_direction)
-
 	self.add_child(pencil)
-
+	directionalInputReader.right_stick_direction_changed.connect(pencil.set_move_direction)
+	triggersInputReader.right_trigger_pressure_changed.connect(pencil.set_drawing)
+	
+	pencil.drawing.connect(maskDrawer.draw_at)
+	
 	currentState = gameState.DRAW_SHAPE
