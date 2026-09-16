@@ -12,6 +12,7 @@ signal drawing(position: Vector2)
 var movement_bounds: Rect2 = Rect2()
 var _current_direction := Vector2.ZERO
 var _is_drawing := false
+var _last_draw_position := Vector2.INF
 
 func set_movement_bounds(bounds: Rect2) -> void:
 	movement_bounds = bounds
@@ -20,6 +21,11 @@ func set_move_direction(direction: Vector2) -> void:
 	_current_direction = direction
 
 func set_drawing(pressure: float):
+	#TODO find a way to make visua clue that something happens
+	# May be a slight scale up/down ...
+	# So... inform pencil to let it give visual output
+	# And then...kinda...connect woodPiece to pencil, so
+	# pencil position let a mark on the wood..
 	_is_drawing = (pressure >= 0.1)
 
 func _process(delta: float) -> void:
@@ -31,4 +37,8 @@ func _process(delta: float) -> void:
 		self.position = new_position
 
 	if _is_drawing:
-		drawing.emit(self.position)
+		if _last_draw_position != Vector2.INF:
+			drawing.emit(_last_draw_position, self.position)
+		_last_draw_position = self.position
+	else:
+		_last_draw_position = Vector2.INF

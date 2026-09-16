@@ -4,7 +4,7 @@
 # License: MIT
 # -----------------------------------------------------------------------------
 extends Node2D
-class_name WoodPiece
+class_name WoodPieceVisual
 
 @onready var shape = $Shape
 @onready var visual = $Visual

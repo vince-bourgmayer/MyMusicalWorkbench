@@ -10,8 +10,9 @@ enum gameState { SELECT_JIG, PLACE_JIG, DRAW_SHAPE }
 var currentState : gameState
 var directionalInputReader = DirectionalInputReader.new()
 var triggersInputReader = TriggersInputReader.new()
-var maskDrawer : MaskDrawer
+var woodPiece : WoodPiece
 
+@onready var woodRenderer = $WoodRenderer
 @onready var templateSelector = $TemplateSelector
 var pencil : Pencil
 var pencil_scene: PackedScene = preload("res://src/tool_game/template_game/Pencil.tscn")
@@ -24,9 +25,15 @@ var jig : Jig
 	
 func _ready() -> void:
 	currentState = gameState.SELECT_JIG
-	maskDrawer = MaskDrawer.new($WoodPiece.get_size())
+	woodPiece = WoodPiece.new("Ash", $WoodPiece.get_size())
+	woodRenderer.bind(woodPiece)
+	#woodPiece.surface_changed.connect(func(): print("surface changed, pixel count check ok"))
+	
 	self.add_child(directionalInputReader)
 	self.add_child(triggersInputReader)
+
+
+
 
 func handle_specific_input(_event: InputEvent) -> void:
 	match currentState:
@@ -56,7 +63,6 @@ func handle_place_jig_input(event: InputEvent) -> void:
 	#A validate go to next step
 	if event.is_action_released("ui_accept"):
 		_set_draw_shape_state()
-		print("check")
 	elif event.is_action_released("ui_cancel"):
 		self.remove_child(jig)
 		_set_select_jig_state()
@@ -65,13 +71,9 @@ func handle_draw_shape_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
 		self.remove_child(pencil)
 		_set_place_jig_state()
-	elif event.is_action_pressed("trigger_right"):
-		#TODO find a way to make visua clue that something happens
-		# May be a slight scale up/down ...
-		# So... inform pencil to let it give visual output
-		# And then...kinda...connect woodPiece to pencil, so
-		# pencil position let a mark on the wood..
-		print("Pencil is marking")
+	#elif event.is_action_pressed("trigger_right"):
+	#	print("Pencil is marking")
+	#	pass
 
 func _set_select_jig_state():
 	currentState = gameState.SELECT_JIG
@@ -95,10 +97,15 @@ func _set_draw_shape_state():
 	directionalInputReader.right_stick_direction_changed.disconnect(jig.set_rotation_direction)
 
 	pencil.set_movement_bounds(self.get_viewport_rect())
+	
 	self.add_child(pencil)
 	directionalInputReader.right_stick_direction_changed.connect(pencil.set_move_direction)
 	triggersInputReader.right_trigger_pressure_changed.connect(pencil.set_drawing)
 	
-	pencil.drawing.connect(maskDrawer.draw_at)
+	
+	pencil.drawing.connect(func(from, to):
+		woodPiece.apply(PencilOperation.new(woodRenderer.to_local(from), woodRenderer.to_local(to), 5))
+	)
+	
 	
 	currentState = gameState.DRAW_SHAPE

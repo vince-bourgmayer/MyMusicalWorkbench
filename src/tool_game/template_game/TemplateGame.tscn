@@ -1,15 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt3rdvbwje4fu"]
+[gd_scene load_steps=9 format=3 uid="uid://bt3rdvbwje4fu"]
 
 [ext_resource type="PackedScene" uid="uid://uivdbrhwviue" path="res://src/tool_game/ToolGame.tscn" id="1_u6aoy"]
 [ext_resource type="Script" uid="uid://bfvk0ihejgs2o" path="res://src/tool_game/template_game/template_game.gd" id="2_4pi28"]
 [ext_resource type="PackedScene" uid="uid://c3vrvljm6wbka" path="res://src/tool_game/WoodPiece.tscn" id="2_5upu0"]
+[ext_resource type="Shader" uid="uid://hq56o201nys8" path="res://src/shaders/pencil_mark.gdshader" id="3_uesus"]
 [ext_resource type="PackedScene" uid="uid://dd2djun0e4xuu" path="res://src/tool_game/template_game/TemplateSelector.tscn" id="4_4pi28"]
+[ext_resource type="Texture2D" uid="uid://cg78abq0gylbo" path="res://assets/woods/body_blank/ashbody_1_300x425.png" id="5_aec6q"]
+[ext_resource type="Script" uid="uid://c0hcrbb3ndxee" path="res://src/core/woods/renderer/wood_renderer.gd" id="6_uesus"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ajw1w"]
+shader = ExtResource("3_uesus")
+shader_parameter/line_color = Color(0.2, 0.2, 0.2, 1)
 
 [node name="TemplateGame" instance=ExtResource("1_u6aoy")]
 script = ExtResource("2_4pi28")
 
-[node name="WoodPiece" parent="." index="0" instance=ExtResource("2_5upu0")]
+[node name="WoodRenderer" type="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_ajw1w")
+position = Vector2(180, 225)
+texture = ExtResource("5_aec6q")
+script = ExtResource("6_uesus")
+metadata/_custom_type_script = "uid://c0hcrbb3ndxee"
+
+[node name="WoodPiece" parent="." index="1" instance=ExtResource("2_5upu0")]
+visible = false
 position = Vector2(180, 225)
 
-[node name="TemplateSelector" parent="." index="1" instance=ExtResource("4_4pi28")]
+[node name="TemplateSelector" parent="." index="2" instance=ExtResource("4_4pi28")]
 position = Vector2(165, 0)
