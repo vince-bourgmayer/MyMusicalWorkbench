@@ -8,9 +8,9 @@ class_name carousel
 
 signal selection_changed()
 
-@export var previousSlot: Vector2
-@export var currentSlot: Vector2
-@export var nextSlot: Vector2
+@export var previousSlot: Vector2 = Vector2(0,360)
+@export var currentSlot: Vector2 = Vector2(480,360)
+@export var nextSlot: Vector2 = Vector2(960,360)
 
 var _item_paths: Array[String] = []
 var _items: Array[CarouselItem] = []
@@ -75,3 +75,10 @@ func _get_circular_distance(index: int) -> int:
 	elif distance < -size / 2.0:
 		distance += size
 	return distance
+
+func on_input_received(direction: Vector2):
+	if direction.x < 0.0:
+		select_previous()
+	elif direction.x > 0.0:
+		select_next()
+	

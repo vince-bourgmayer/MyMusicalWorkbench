@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8v2cecj6wg1g"]
+[gd_scene load_steps=3 format=3 uid="uid://c8v2cecj6wg1g"]
 
 [ext_resource type="Script" uid="uid://21r83db4jp27" path="res://src/tool_game/template_game/jig.gd" id="1_k3gm3"]
 
-[node name="Jig" type="Sprite2D"]
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_io2bo"]
+
+[node name="Jig" type="AnimatableBody2D"]
 script = ExtResource("1_k3gm3")
+
+[node name="Visual" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_io2bo")
