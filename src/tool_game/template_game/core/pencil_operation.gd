@@ -20,5 +20,4 @@ func _init(from: Vector2, to: Vector2, diameter: int):
 func apply_to_surface(current: WoodSurface) -> bool:
 	if _from == _to:
 		return false
-	print("I'm applyng to surface")
 	return current.get_data().draw_line(_from, _to, _pencil_diameter, _toolEffect)

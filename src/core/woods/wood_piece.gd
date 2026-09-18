@@ -25,7 +25,6 @@ func _init(specy: String, size: Vector2):
 	_geometry = WoodGeometry.new(_origin_size)
 
 func apply(woodOperation: WoodOperation):
-	print("Im applying operation")
 	if woodOperation.apply_to_geometry(_geometry):
 		geometry_changed.emit(_geometry)
 

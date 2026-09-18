@@ -33,11 +33,6 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if _current_direction != Vector2.ZERO:
-		#var new_position = self.position + _current_direction * move_speed * _delta
-		#if movement_bounds.has_area():
-		#	new_position.x = clamp(new_position.x, movement_bounds.position.x, movement_bounds.end.x)
-		#	new_position.y = clamp(new_position.y, movement_bounds.position.y, movement_bounds.end.y)
-		#self.position = new_position
 		velocity = _current_direction * move_speed
 		move_and_slide()
 

@@ -103,9 +103,6 @@ func handle_draw_shape_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
 		self.remove_child(pencil)
 		_set_place_jig_state()
-	#elif event.is_action_pressed("trigger_right"):
-	#	print("Pencil is marking")
-	#	pass
 
 func _set_select_jig_state():
 	_currentState = gameState.SELECT_JIG
