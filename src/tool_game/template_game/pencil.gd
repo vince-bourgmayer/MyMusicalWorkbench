@@ -3,7 +3,7 @@
 # Copyright (c) 2026 Vincent Bourgmayer
 # License: MIT
 # -----------------------------------------------------------------------------
-extends Node2D
+extends CharacterBody2D
 class_name Pencil
 
 signal drawing(position: Vector2)
@@ -28,13 +28,18 @@ func set_drawing(pressure: float):
 	# pencil position let a mark on the wood..
 	_is_drawing = (pressure >= 0.1)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	pass
+
+func _physics_process(_delta: float) -> void:
 	if _current_direction != Vector2.ZERO:
-		var new_position = self.position + _current_direction * move_speed * delta
-		if movement_bounds.has_area():
-			new_position.x = clamp(new_position.x, movement_bounds.position.x, movement_bounds.end.x)
-			new_position.y = clamp(new_position.y, movement_bounds.position.y, movement_bounds.end.y)
-		self.position = new_position
+		#var new_position = self.position + _current_direction * move_speed * _delta
+		#if movement_bounds.has_area():
+		#	new_position.x = clamp(new_position.x, movement_bounds.position.x, movement_bounds.end.x)
+		#	new_position.y = clamp(new_position.y, movement_bounds.position.y, movement_bounds.end.y)
+		#self.position = new_position
+		velocity = _current_direction * move_speed
+		move_and_slide()
 
 	if _is_drawing:
 		if _last_draw_position != Vector2.INF:
