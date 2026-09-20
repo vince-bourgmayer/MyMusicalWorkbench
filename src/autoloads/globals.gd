@@ -1,7 +1,12 @@
+# -----------------------------------------------------------------------------
+# globals.gd
+# Copyright (c) 2026 Vincent Bourgmayer
+# License: MIT
+# -----------------------------------------------------------------------------
 extends Node
 
-enum game_mode {WORKSHOP = 0, HANDSAW = 1, HANDPLANE = 2}
-enum hand_tools {SAW = 0, PLANE = 1}
+enum game_mode {WORKSHOP = 0, HANDSAW = 1, HANDPLANE = 2, TEMPLATE = 3}
+enum hand_tools {SAW = 0, PLANE = 1, PENCIL = 2}
 
 
 var current_game_mode := game_mode.WORKSHOP
@@ -19,6 +24,8 @@ func switch_current_hand_tools() -> void:
 	if current_hand_tools == hand_tools.SAW:
 		current_hand_tools = hand_tools.PLANE
 	elif current_hand_tools == hand_tools.PLANE:
+		current_hand_tools = hand_tools.PENCIL
+	elif current_hand_tools == hand_tools.PENCIL:
 		current_hand_tools = hand_tools.SAW
 
 	Signals.switch_hand_tools.emit(current_hand_tools)

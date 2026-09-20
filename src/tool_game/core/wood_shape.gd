@@ -1,67 +1,70 @@
 # -----------------------------------------------------------------------------
-# woodboard.gd
-# Copyright (c) 2025-2026 Vincent Bourgmayer
+# wood_shape.gd
+# Copyright (c) 2026 Vincent Bourgmayer
 # License: MIT
 # -----------------------------------------------------------------------------
 extends Node2D
+class_name WoodShape
 
-@onready var remaining_wood_border : CollisionPolygon2D = $BorderArea2D/RemainingWoodBorder
-@onready var border_area2D := $BorderArea2D
+signal shape_updated()
 
-
+@onready var shape_polygon = $ShapeLayer/ShapePolygon
 var polygonSlicer : PolygonSlicer
+var layerMask: WoodLayerMask
 
-var mask_image : Image
-var mask_texture : ImageTexture
-
-func _ready():
+func _ready() -> void:
 	polygonSlicer = PolygonSlicer.new(Vector2.ZERO)
-	init_mask()
 	
-func init_mask(): # The mask used to hide wood wastes
-	var size = $BodyBlank.texture.get_size()
+func initialize(size: Vector2) -> void:
+	var half_width = size.x / 2.0
+	var half_height = size.y / 2.0
+	
+	self.position.x -= half_width
+	self.position.y -= half_height
 
-	mask_image = Image.create(
-		size.x,
-		size.y,
-		false,
-		Image.FORMAT_L8
-	)
+	init_shape(half_width, half_height)
+	init_mask(size)
+	
+	
+func init_shape(half_width: float, half_height: float) -> void:
+	var points: Array[Vector2] = []
+	
+	var top_left = Vector2(half_width, half_height) * -1
+	var top_right = Vector2(half_width, half_height * -1.0)
+	var bottom_right = Vector2(half_width, half_height)
+	var bottom_left = Vector2(half_width * -1.0, half_height)
+	points.append_array([top_left, top_right, bottom_right, bottom_left])
+	
+	shape_polygon.polygon = points
+	
+func init_mask(size: Vector2) -> void:
+	layerMask = WoodLayerMask.new(size)
+	shape_updated.emit()
 
-	mask_image.fill(Color.WHITE)
-	mask_texture = ImageTexture.create_from_image(mask_image)
-	
-	$BodyBlank.material.set_shader_parameter("mask_texture", mask_texture)
-	
-func get_remaining_wood_border() -> Array[Segment]:
+func get_edges_as_segment()-> Array[Segment]:
 	var result: Array[Segment] = []
-	var points = remaining_wood_border.polygon
+	var points = shape_polygon.polygon
 	for i in points.size():
 		var start = points[i]
 		var end = points[(i + 1) % points.size()]  # % is used to loop and then make a continuous the circuit
+
 		result.append(Segment.new(start, end))
 	return result
 
 func add_new_cut(startPoint: Vector2, endPoint: Vector2) -> void:
-	var cut_result = polygonSlicer.cut_polygon(remaining_wood_border.polygon, startPoint, endPoint)
-	remaining_wood_border.polygon = cut_result
-	hide_cut_waste(polygon_to_pixel(remaining_wood_border.polygon))
-	
+	var cut_result = polygonSlicer.cut_polygon(shape_polygon.polygon, startPoint, endPoint)
+	shape_polygon.polygon = cut_result
+	hide_cut_waste(polygon_to_pixel(shape_polygon.polygon))
+	#shape_updated.emit()
+
 func polygon_to_pixel(p_polygon: PackedVector2Array) -> PackedVector2Array:
 	var pixel_polygon := PackedVector2Array()
 	for p in p_polygon:
-		pixel_polygon.append(local_point_to_pixel_point(p))  # Conversion ici !
+		pixel_polygon.append(layerMask.local_point_to_pixel_point(p))  # Conversion ici !
 	return pixel_polygon
 		
-		
-func local_point_to_pixel_point(point: Vector2) -> Vector2i:
-	var size := mask_image.get_size()
-	return Vector2i(
-		int(point.x + size.x * 0.5),
-		int(point.y + size.y * 0.5)
-	)
-		
 func hide_cut_waste(p_polygon: PackedVector2Array) -> void:
+	var mask_image = layerMask.get_image()
 	mask_image.fill(Color.BLACK)
 	
 	var min_x = INF
@@ -90,4 +93,7 @@ func hide_cut_waste(p_polygon: PackedVector2Array) -> void:
 			if Geometry2D.is_point_in_polygon(point, p_polygon):
 				mask_image.set_pixel(x, y, Color.WHITE)
 
-	mask_texture.update(mask_image)
+	layerMask.update_texture()
+
+func get_mask_texture() -> ImageTexture:
+	return layerMask.get_texture()

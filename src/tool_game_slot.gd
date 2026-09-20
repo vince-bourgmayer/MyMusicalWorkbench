@@ -17,6 +17,8 @@ func open_game(code: Globals.game_mode) -> void:
 		scene_to_load = "res://src/tool_game/handsaw_game/HandsawGame.tscn"
 	elif code == Globals.game_mode.HANDPLANE:
 		scene_to_load = "res://src/tool_game/handplane_game/Handplane_game.tscn"
+	elif code == Globals.game_mode.TEMPLATE:
+		scene_to_load = "res://src/tool_game/template_game/TemplateGame.tscn"
 	else:
 		push_error("Unknown tool game code: %s" % code)
 		return

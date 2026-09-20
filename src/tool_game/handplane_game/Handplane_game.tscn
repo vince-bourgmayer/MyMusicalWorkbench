@@ -1,16 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://r83yuhicup1b"]
+[gd_scene load_steps=6 format=3 uid="uid://r83yuhicup1b"]
 
 [ext_resource type="PackedScene" uid="uid://uivdbrhwviue" path="res://src/tool_game/ToolGame.tscn" id="1_4mgoc"]
 [ext_resource type="Script" uid="uid://cp12lcfgw2b3j" path="res://src/tool_game/handplane_game/handplane_game.gd" id="2_m15vu"]
 [ext_resource type="PackedScene" uid="uid://d1syug0b6gwja" path="res://src/tool_game/handplane_game/JackPlane.tscn" id="3_tsia7"]
 [ext_resource type="PackedScene" uid="uid://bpl3fttmokw20" path="res://src/tool_game/handplane_game/WoodboardToPlane.tscn" id="3_wq3se"]
+[ext_resource type="PackedScene" uid="uid://c3vrvljm6wbka" path="res://src/tool_game/WoodPiece.tscn" id="5_4un0t"]
 
 [node name="HandPlaneGame" instance=ExtResource("1_4mgoc")]
 script = ExtResource("2_m15vu")
 
-[node name="WoodboardToPlane" parent="." index="0" instance=ExtResource("3_wq3se")]
+[node name="WoodPiece" parent="." index="0" instance=ExtResource("5_4un0t")]
 position = Vector2(344, 400)
 rotation = -1.5707964
 
-[node name="JackPlane" parent="." index="1" instance=ExtResource("3_tsia7")]
+[node name="WoodboardToPlane" parent="." index="1" instance=ExtResource("3_wq3se")]
+visible = false
+position = Vector2(344, 400)
+rotation = -1.5707964
+
+[node name="JackPlane" parent="." index="2" instance=ExtResource("3_tsia7")]
 position = Vector2(661, 500)

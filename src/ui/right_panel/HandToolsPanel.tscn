@@ -110,3 +110,9 @@ theme_override_icons/checked_mirrored = SubResource("AtlasTexture_gqlar")
 theme_override_icons/unchecked_mirrored = SubResource("AtlasTexture_gqlar")
 theme_override_icons/checked_disabled_mirrored = SubResource("AtlasTexture_gqlar")
 theme_override_icons/unchecked_disabled_mirrored = SubResource("AtlasTexture_gqlar")
+
+[node name="PenIcon" type="CheckButton" parent="ToolIconsContainer"]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i22if")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_anyg2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i22if")
