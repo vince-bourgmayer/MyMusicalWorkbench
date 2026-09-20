@@ -6,10 +6,12 @@
 radius = 2.0
 
 [node name="Pencil" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_p0o1t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_p0o1t")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="Visual" type="Node2D" parent="."]
 
@@ -39,3 +41,10 @@ position = Vector2(-3, -1)
 color = Color(0.043263286, 0.14179102, 0.2590969, 1)
 polygon = PackedVector2Array(32.900166, 58.710846, 9.546318, 59.137665, 7.3118286, 90.63461, 36.16324, 90.12009)
 uv = PackedVector2Array(12.236656, 294.04733, -13.569809, 294.31064, -13.188171, 326.1346, 17.134811, 326.60114)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_p0o1t")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)

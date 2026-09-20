@@ -4,7 +4,7 @@
 # License: MIT
 # -----------------------------------------------------------------------------
 extends Node2D
-class_name carousel
+class_name Carousel
 
 signal selection_changed()
 
