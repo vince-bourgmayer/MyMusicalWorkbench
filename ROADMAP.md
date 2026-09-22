@@ -7,12 +7,25 @@ Only one milestone is considered active at a time.
 
 ## Current Focus
 
-▶ TemplatingGame V0  
-  Template placement and material optimization before cutting.
+▶ Refactoring
+  Some class and element have been designed to be reused in different context.
+  Improved signal usage, player movement, woodPiece, etc.
 
 ---
 
 ## Planned Milestones
+
+- PLayable Game loop
+  Fix remaining templating game mode issues (draw state exit, cleanup), connect everything into a single playable loop.
+
+- Release with github
+  Let github provide some release
+
+- Buying tool, materials game V0
+  Add the possibility to buy tools, decoration, etc. Checking catalogue, ...
+
+- Receiving client's order V0
+  Receive client order with some basic description, etc. and possibility to accept/refuse
 
 - HandsawGame V1
   Workbench integration, and wood piece manipulation to expose edge to cut.
@@ -20,6 +33,10 @@ Only one milestone is considered active at a time.
 ---
 
 ## Completed Milestones
+*More recent first*
+
+- TemplatingGame V0  
+  Template placement and material optimization before cutting.
 
 - Workshop Systems  
   Time, climate which will later affect materials & process.
