@@ -4,6 +4,7 @@
 # License: MIT
 # -----------------------------------------------------------------------------
 extends Node2D
+class_name Handsaw
 
 @onready var visual = $Visual
 @onready var soundEffect = $SoundEffect
