@@ -28,7 +28,6 @@ func _on_accept_pressed() -> void:
 
 	var next_step = _current_state + 1
 	if next_step <= _get_final_state():
-
 		_change_state(next_step)
 
 func _on_cancel_pressed() -> void:
