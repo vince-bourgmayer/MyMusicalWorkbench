@@ -25,7 +25,6 @@ func _get_final_state() -> int:
 	return 0 # Overide in child.  Must return the highest game_state's value
 	
 func _on_accept_pressed() -> void:
-
 	var next_step = _current_state + 1
 	if next_step <= _get_final_state():
 		_change_state(next_step)
