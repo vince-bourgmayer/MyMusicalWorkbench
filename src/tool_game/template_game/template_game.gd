@@ -27,7 +27,6 @@ var _jig_scene : PackedScene = preload("res://src/tool_game/template_game/Jig.ts
 var _jig : Jig
 
 func _ready() -> void:
-	_current_state = 0
 	_carousel.setup(JIG_PATHS)
 	
 	var woodTexture = woodRenderer.texture
@@ -42,7 +41,7 @@ func _ready() -> void:
 
 	_jig = _jig_scene.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
 
-	_change_state(gameState.SELECT_JIG)
+	_start_state(gameState.SELECT_JIG)
 	
 	directionalInputReader.left_stick_direction_changed.connect(_on_left_stick_changed)
 	directionalInputReader.right_stick_direction_changed.connect(_on_right_stick_changed)

@@ -14,6 +14,12 @@ func _change_state(new_state: int) -> void:
 	_exit_state(_current_state)
 	_current_state = new_state
 	_enter_state(new_state)
+
+# let the game enter in the initial state
+func _start_state(initial_state: int) -> void:
+	assert( initial_state >= 0 or initial_state < _get_final_state(),"Invalid initial state: %d" % initial_state)
+	_current_state = initial_state
+	_enter_state(_current_state)
 	
 func _exit_state(state: int) -> void:
 	pass # Overide in child
