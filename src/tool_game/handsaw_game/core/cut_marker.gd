@@ -13,10 +13,10 @@ var _path_length := 0.0
 var _distance_on_path := 0.0
 var _direction : float = 0.0 # -1 backward, 0 idle, +1 forward
 
-var color:Color = Color.RED
+var _color:Color = Color.RED
 
 func _init(_color:Color = Color.RED) -> void:
-	color = _color
+	_color = _color
 	
 func _process(delta: float) -> void:
 	_move_along_path(delta)
@@ -32,7 +32,7 @@ func set_path(segments: Array[Segment]) -> void:
 	_update_position()
 
 func _draw() -> void:
-	draw_circle(Vector2.ZERO, 5, color)
+	draw_circle(Vector2.ZERO, 5, _color)
 
 # --- MOVE Logic ---
 # The marker's position is stored as a distance (px) travelled along the whole contour,
