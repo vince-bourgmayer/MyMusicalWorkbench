@@ -6,76 +6,66 @@
 extends Marker2D
 class_name CutMarker
 
-var path_segments : Array[Segment] = [] # Segment that define the path for the marker. 
-var current_segment_index := 0 
+const MOVEMENT_SPEED = 250
 
-var MOVEMENT_SPEED = 250
-var relative_position := 0.0 # used for lerp, it's the position on the current segment
-var direction = 0 # -1 backward, 0 idle, +1 forward
+var _path_segments : Array[Segment] = []
+var _path_length := 0.0
+var _distance_on_path := 0.0
+var _direction : float = 0.0 # -1 backward, 0 idle, +1 forward
 
 var color:Color = Color.RED
 
 func _init(_color:Color = Color.RED) -> void:
 	color = _color
-	direction = 0
-	set_process(false)
 	
 func _process(delta: float) -> void:
-	if path_segments != null && path_segments.size() > 0:
-		move_along_path(delta)
-	
+	_move_along_path(delta)
+
 func set_path(segments: Array[Segment]) -> void:
-	current_segment_index = 0
-	path_segments = segments
-	update_position()
-	if !is_processing():
-		set_process(true)
+	_path_segments = segments
+	_path_length = 0.0
+	_distance_on_path =0.0
+	
+	for segment in _path_segments:
+		_path_length += segment.get_length()
+		
+	_update_position()
 
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, 5, color)
 
-# --- DÉPLACEMENT ---
-func move_along_path(delta: float):
-	var distance_per_frame = (MOVEMENT_SPEED * delta) / path_segments[current_segment_index].get_length()
-	relative_position += direction * distance_per_frame
+# --- MOVE Logic ---
+# The marker's position is stored as a distance (px) travelled along the whole contour,
+# like a tape measure unrolled. update_position() finds which segment that distance falls in.
+func _move_along_path(delta: float):
+	if _direction == 0.0 or _path_length == 0.0:
+		return   # idle, or no usable path (the loops below would never end)
 
-	while relative_position > 1.0:
-		move_to_next_segment()
-		relative_position -= 1.0 # Don't reset to 0 to avoid raw change
-	while relative_position < 0.0:
-		move_to_previous_segment()
-		relative_position += 1.0
-		
-	if relative_position != 0:
-		update_position()
-	
-func move_to_next_segment():
-	current_segment_index = (current_segment_index + 1) % path_segments.size()
-	
-func move_to_previous_segment():
-	current_segment_index = (current_segment_index - 1 + path_segments.size()) % path_segments.size()
-	
-func update_position() -> void:
-	if path_segments.size() == 0:
-		return
-		
-	var segment = path_segments[current_segment_index]
-	var start = segment.start
-	var end = segment.end
-	
-	position = start.lerp(end, relative_position) # issue: smaller segment takes longer to go through
+	_distance_on_path += _direction * MOVEMENT_SPEED * delta
 
-func set_direction(p_direction: int):
-	direction = p_direction
+	while _distance_on_path > _path_length:
+		_distance_on_path -= _path_length
+	while _distance_on_path < 0.0:
+		_distance_on_path += _path_length
 
-func split_current_segment() -> void: # split the current segment at this marker position
-	relative_position = 1.0
+	_update_position()
 
-	#1 on créé deux segment à partir des 3 points
-	var second_Half = path_segments[current_segment_index].duplicate()
-	second_Half.start = position
+func _update_position() -> void:
+	var remaining := _distance_on_path
+	for segment in _path_segments:
+		var segment_length = segment.get_length()
+		if segment_length == 0.0:
+			continue   # skip zero-length segments (avoids dividing by zero)
+		if remaining <= segment_length:
+			position = segment.start.lerp(segment.end, remaining / segment_length)
+			return
+		remaining -= segment_length
+
+func set_direction(direction: float)-> void:
+	_direction = direction
+
+func get_distance_on_path() -> float:
+	return _distance_on_path
 	
-	path_segments[current_segment_index].end = position 
-	path_segments.insert(current_segment_index+1, second_Half)
-
-	update_position()
+func set_distance_on_path(distance: float) -> void:
+	_distance_on_path = distance
