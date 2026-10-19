@@ -3,22 +3,32 @@
 # Copyright (c) 2025-2026 Vincent Bourgmayer
 # License: MIT
 # -----------------------------------------------------------------------------
-extends Object
+extends RefCounted
 class_name Segment
 
+var _start: Vector2
+var _end: Vector2
 
-var start: Vector2
-var end: Vector2
+static func from_polygon(polygon: PackedVector2Array) -> Array[Segment]:
+	var result : Array[Segment] = []
+	var polygon_size = polygon.size()
+	for point_index in range(polygon_size):
+		var current_point = polygon[point_index]
+		var next_point = polygon[point_index+1] if point_index+1 < polygon_size else polygon[0]
+		var segment = Segment.new(current_point, next_point)
+		result.append(segment)
 
-func _init(s: Vector2, e: Vector2):
-	start = s
-	end = e
+	return result
+
+func _init(start: Vector2, end: Vector2):
+	_start = start
+	_end = end
 
 func get_length() -> float:
-	return (end-start).length()
+	return (_end-_start).length()
 	
 func duplicate() -> Segment:
-	return Segment.new(start, end)
+	return Segment.new(_start, _end)
 
-func _print()-> void:
-	print("Segment [",start,";",end,"]")
+func print()-> void:
+	print("Segment [",_start,";",_end,"]")
