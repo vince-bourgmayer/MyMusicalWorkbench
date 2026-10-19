@@ -15,8 +15,8 @@ var _direction : float = 0.0 # -1 backward, 0 idle, +1 forward
 
 var _color:Color = Color.RED
 
-func _init(_color:Color = Color.RED) -> void:
-	_color = _color
+func _init(color:Color = Color.RED) -> void:
+	_color = color
 	
 func _process(delta: float) -> void:
 	_move_along_path(delta)
