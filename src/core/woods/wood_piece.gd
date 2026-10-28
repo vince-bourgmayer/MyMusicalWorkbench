@@ -6,9 +6,9 @@
 extends RefCounted
 class_name WoodPiece
 
-signal thickness_changed(thickness)
-signal geometry_changed(geometry)
-signal surface_changed(surface)
+signal thickness_changed(thickness: WoodThickness)
+signal geometry_changed(geometry: PackedVector2Array)
+signal surface_changed(surface: WoodSurface)
 
 var _thickness : WoodThickness
 var _geometry : WoodGeometry
@@ -26,7 +26,7 @@ func _init(specy: String, size: Vector2):
 
 func apply(woodOperation: WoodOperation):
 	if woodOperation.apply_to_geometry(_geometry):
-		geometry_changed.emit(_geometry)
+		geometry_changed.emit(_geometry.get_points().duplicate())
 
 	if woodOperation.apply_to_surface(_surfaceStates):
 		surface_changed.emit(_surfaceStates)
@@ -36,3 +36,6 @@ func apply(woodOperation: WoodOperation):
 
 func get_surface_data() -> Image:
 	return _surfaceStates.get_data().get_image()
+
+func get_geometry_polygon() -> PackedVector2Array:
+	return _geometry.get_points().duplicate()
