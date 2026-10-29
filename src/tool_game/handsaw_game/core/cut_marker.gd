@@ -57,7 +57,7 @@ func _update_position() -> void:
 		if segment_length == 0.0:
 			continue   # skip zero-length segments (avoids dividing by zero)
 		if remaining <= segment_length:
-			position = segment.start.lerp(segment.end, remaining / segment_length)
+			position = segment.get_start_point().lerp(segment.get_end_point(), remaining / segment_length)
 			return
 		remaining -= segment_length
 

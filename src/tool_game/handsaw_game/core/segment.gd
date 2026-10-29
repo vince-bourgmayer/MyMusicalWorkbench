@@ -32,3 +32,9 @@ func duplicate() -> Segment:
 
 func print()-> void:
 	print("Segment [",_start,";",_end,"]")
+	
+func get_start_point() -> Vector2:
+	return _start
+	
+func get_end_point() -> Vector2:
+	return _end
