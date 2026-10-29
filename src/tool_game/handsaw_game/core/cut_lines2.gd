@@ -25,9 +25,12 @@ func _ready() -> void:
 	add_child(_visual_line)
 
 func _process(_delta: float) -> void:
-	if _endMarker.visible:
+	if _endMarker.visible and _startMarker.visible:
 		_visual_line.set_point_position(0, _startMarker.position)
 		_visual_line.set_point_position(1, _endMarker.position)
+		_visual_line.show()
+	else:
+		_visual_line.hide()
 
 func show_marker(is_first_marker: bool)->void:
 	var marker = _startMarker if is_first_marker else _endMarker
@@ -41,15 +44,10 @@ func move_marker(is_first_marker : bool, direction: Vector2) -> void:
 	var marker = _startMarker if is_first_marker else _endMarker
 	marker.set_direction(direction.y)
 	
-func start_new_cut() -> void :
-	_startMarker.show()
-	_endMarker.hide()
-	_visual_line.hide()
-
 func get_cutline_angle() -> float: # todo check usage... can remove ?
 	return ((_startMarker.position - _endMarker.position).angle_to(Vector2(0,1)) +3.141593 )* -1
 
-func to_line2D() -> Line2D:
+func to_line2D() -> Line2D: #check usage
 	var result = Line2D.new()
 	result.width = 3
 	result.default_color = Color.BLACK
@@ -61,11 +59,3 @@ func on_wood_geometry_changed(new_shape: PackedVector2Array)-> void:
 	var segments = Segment.from_polygon(new_shape)
 	_startMarker.set_path(segments)
 	_endMarker.set_path(segments)
-	start_new_cut()
-	
-func show_line(yes: bool) -> void:
-	#TODO need to harmonize logic with hide_marker(bool) and show_marker(bool) in order to have a single logic
-	if yes:
-		_visual_line.show()
-	else:
-		_visual_line.hide()

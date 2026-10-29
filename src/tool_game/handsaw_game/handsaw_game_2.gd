@@ -3,27 +3,26 @@
 # Copyright (c) 2026 Vincent Bourgmayer
 # License: MIT
 # -----------------------------------------------------------------------------
-
 extends ToolGame
 class_name HandsawGameV2
 
 enum gameState { START_POINT, END_POINT, SAW_ACTION }
 
 @onready var _handsaw : Handsaw = $Handsaw
-@onready var _visualMarkers = $VisualMarkers
 @onready var _cutLine := $VisualMarkers/CutLines
+@onready var _woodRenderer := $WoodRenderer
 
 var _directional_input_reader = DirectionalInputReader.new()
-var _woodPiece: WoodPiece
-
+var _woodPiece: WoodPiece #need to be passed to parent when exiting
 
 func _ready() -> void:
 	_directional_input_reader.right_stick_direction_changed.connect(_on_right_stick_direction_changed)
 	_directional_input_reader.left_stick_direction_changed.connect(_on_left_stick_direction_changed)
 	self.add_child(_directional_input_reader)
 	
-	#TODO how to get the wood piece ?
-	_woodPiece = WoodPiece.new("Alder", $WoodPiece._size)
+	#TODO how to get the wood piece ? I'm not happy with current implementation
+	_woodPiece = WoodPiece.new("Alder", _woodRenderer.get_wood_size())
+	_woodRenderer.bind(_woodPiece)
 	
 	_cutLine.on_wood_geometry_changed(_woodPiece.get_geometry_polygon())
 	_woodPiece.geometry_changed.connect(_cutLine.on_wood_geometry_changed)
@@ -35,6 +34,7 @@ func _exit_tree() -> void:
 	_directional_input_reader.left_stick_direction_changed.disconnect(_on_left_stick_direction_changed)
 	_woodPiece.geometry_changed.disconnect(_cutLine.on_wood_geometry_changed)
 	
+	_woodRenderer.unbind(_woodPiece)
 	_directional_input_reader.queue_free()
 	_handsaw.queue_free()
 	_cutLine.queue_free()
@@ -57,28 +57,27 @@ func _on_left_stick_direction_changed(direction: Vector2) -> void:
 		gameState.END_POINT:
 			_cutLine.move_marker(false, direction)
 		_: 
-			return
+			pass
 
 func _exit_state(state: int) -> void:
 	match state:
 		gameState.START_POINT:
-			_cutLine.hideMarker(false)
+			pass
 		gameState.END_POINT:
-			_cutLine.hideMarker(false)
+			_cutLine.hide_marker(false)
+			_cutLine.hide_marker(true)
 		gameState.SAW_ACTION:
 			self.remove_child(_handsaw)
 	
 func _enter_state(new_state: int) -> void:
 	match new_state:
 		gameState.START_POINT:
-			if (not self.get_children().has(_cutLine)):
-					self.add_child(_cutLine)
-			_cutLine.start_new_cut()
-			_cutLine.showMarker(true)
+			_cutLine.show_marker(true)
+			_cutLine.hide_marker(false)
 		gameState.END_POINT:
-			_cutLine.showMarker(false)
+			_cutLine.show_marker(true)
+			_cutLine.show_marker(false)
 		gameState.SAW_ACTION:
-			_visualMarkers.remove_child(_cutLine)
 			self.add_child(_handsaw)
 
 	
