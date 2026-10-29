@@ -18,7 +18,7 @@ var triggersInputReader = TriggersInputReader.new()
 
 var woodPiece : WoodPiece
 
-@onready var woodRenderer = $WoodRenderer
+@onready var _woodRenderer : WoodRenderer = $WoodRenderer
 @onready var _carousel : Carousel = $Carousel
 
 var _pencil : Pencil
@@ -29,14 +29,12 @@ var _jig : Jig
 func _ready() -> void:
 	_carousel.setup(JIG_PATHS)
 	
-	var woodTexture = woodRenderer.texture
-	var woodPieceSize = Vector2(woodTexture.get_width(), woodTexture.get_height())
-	woodPiece = WoodPiece.new("Ash", woodPieceSize)
+	woodPiece = WoodPiece.new("Ash", _woodRenderer.get_wood_size())
 	
 	_pencil = _pencil_scene.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
 	_pencil.set_movement_bounds(self.get_viewport_rect())
 	_pencil.drawing.connect(func(from, to):
-		woodPiece.apply(PencilOperation.new(woodRenderer.to_local(from), woodRenderer.to_local(to), 1))
+		woodPiece.apply(PencilOperation.new(_woodRenderer.to_local(from), _woodRenderer.to_local(to), 1))
 	)
 
 	_jig = _jig_scene.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
@@ -48,12 +46,13 @@ func _ready() -> void:
 	self.add_child(directionalInputReader)
 	self.add_child(triggersInputReader)
 
-	woodRenderer.bind(woodPiece)
+	_woodRenderer.bind(woodPiece)
 
 func _exit_tree() -> void:
 	_jig.queue_free()
 	_pencil.queue_free()
 	_carousel.queue_free()
+	_woodRenderer.unbind(woodPiece)
 	directionalInputReader.left_stick_direction_changed.disconnect(_on_left_stick_changed)
 	directionalInputReader.right_stick_direction_changed.disconnect(_on_right_stick_changed)
 
