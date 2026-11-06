@@ -6,6 +6,8 @@
 extends Node2D
 class_name Handsaw
 
+signal in_action()
+
 @onready var visual = $Visual
 @onready var soundEffect = $SoundEffect
 
@@ -26,10 +28,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if action == 1 && action_distance < sawblade_length:
 		push_move()
-		get_parent().make_progress()
 	elif action == 2 && action_distance > sawblade_length*-1 :
 		pull_move()
-		get_parent().make_progress()
+	else:
+		return
+		
+	in_action.emit()
 		
 func push_move():
 	action_distance += distance_per_frame
@@ -61,3 +65,6 @@ func prepare_for_cut(startPoint: Vector2, angle: float) -> void:
 	self.global_position = startPoint
 	self.rotate(angle)
 	self.visible = true
+
+func move_to(new_position: Vector2) -> void:
+	self.global_position = new_position
