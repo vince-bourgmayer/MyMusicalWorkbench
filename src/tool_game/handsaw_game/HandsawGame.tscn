@@ -1,17 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://co70nfo7nvkox"]
+[gd_scene load_steps=8 format=3 uid="uid://co70nfo7nvkox"]
 
 [ext_resource type="PackedScene" uid="uid://uivdbrhwviue" path="res://src/tool_game/ToolGame.tscn" id="1_sujg8"]
 [ext_resource type="Script" uid="uid://b845hhonqysej" path="res://src/tool_game/handsaw_game/handsaw_game_2.gd" id="2_d6vd3"]
+[ext_resource type="Script" uid="uid://c0hcrbb3ndxee" path="res://src/core/woods/renderer/wood_renderer.gd" id="3_0scxd"]
+[ext_resource type="Material" uid="uid://dkpvm2boy1kcd" path="res://src/shaders/materials/invisble_cloak_material.tres" id="3_vx2c8"]
+[ext_resource type="Texture2D" uid="uid://cg78abq0gylbo" path="res://assets/woods/body_blank/ashbody_1_300x425.png" id="3_wbxd6"]
 [ext_resource type="PackedScene" uid="uid://cwjeojfaayj50" path="res://src/tool_game/handsaw_game/Handsaw.tscn" id="3_ydnle"]
 [ext_resource type="Script" uid="uid://ptpef7n73arj" path="res://src/tool_game/handsaw_game/core/cut_lines2.gd" id="5_0scxd"]
-[ext_resource type="PackedScene" uid="uid://c3vrvljm6wbka" path="res://src/tool_game/WoodPiece.tscn" id="5_ydnle"]
 
 [node name="HandsawGame" instance=ExtResource("1_sujg8")]
 script = ExtResource("2_d6vd3")
 
-[node name="WoodPiece" parent="." index="0" instance=ExtResource("5_ydnle")]
-position = Vector2(305, 292)
-script = null
+[node name="WoodRenderer" type="Sprite2D" parent="." index="0"]
+material = ExtResource("3_vx2c8")
+position = Vector2(180, 225)
+texture = ExtResource("3_wbxd6")
+script = ExtResource("3_0scxd")
+metadata/_custom_type_script = "uid://c0hcrbb3ndxee"
 
 [node name="Handsaw" parent="." index="1" instance=ExtResource("3_ydnle")]
 visible = false

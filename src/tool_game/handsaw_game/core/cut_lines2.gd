@@ -44,18 +44,13 @@ func move_marker(is_first_marker : bool, direction: Vector2) -> void:
 	var marker = _startMarker if is_first_marker else _endMarker
 	marker.set_direction(direction.y)
 	
-func get_cutline_angle() -> float: # todo check usage... can remove ?
-	return ((_startMarker.position - _endMarker.position).angle_to(Vector2(0,1)) +3.141593 )* -1
-
-func to_line2D() -> Line2D: #check usage
-	var result = Line2D.new()
-	result.width = 3
-	result.default_color = Color.BLACK
-	result.add_point(_startMarker.position)
-	result.add_point(_endMarker.position)
-	return result
-
 func on_wood_geometry_changed(new_shape: PackedVector2Array)-> void:
 	var segments = Segment.from_polygon(new_shape)
 	_startMarker.set_path(segments)
 	_endMarker.set_path(segments)
+
+func get_cut_start_position() -> Vector2:
+	return _startMarker.position #TODO determine whether it should be global or local
+
+func get_cut_end_position() -> Vector2:
+	return _endMarker.position #TODO determine whether it should be global or local
