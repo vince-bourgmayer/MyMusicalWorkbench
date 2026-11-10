@@ -4,7 +4,7 @@
 # License: MIT
 # -----------------------------------------------------------------------------
 extends Node2D
-class_name CutLines2
+class_name CutLines
 
 var _startMarker : CutMarker
 var _endMarker : CutMarker
@@ -52,5 +52,5 @@ func on_wood_geometry_changed(new_shape: PackedVector2Array)-> void:
 func get_cut_start_global_position() -> Vector2:
 	return _startMarker.global_position
 
-func get_cut_end_gloal_position() -> Vector2:
+func get_cut_end_global_position() -> Vector2:
 	return _endMarker.global_position 
