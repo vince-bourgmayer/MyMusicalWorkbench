@@ -7,18 +7,29 @@
 extends RefCounted
 class_name WoodGeometry
 
+#TODO find a way to improve/replace below vector
+const HORIZONTAL_SYMETRY = Vector2(1, -1)
+const VERTICAL_SYMETRY = Vector2(-1, 1)
+const DIAGONAL_SYMETRY = Vector2(-1, -1)
+
 var _points : PackedVector2Array
 var _origin_size : Vector2
 
-#TODO for later: doing this way, considers always a wood piece as a rectangle shape at start
 func _init(size: Vector2):
 	_origin_size = size
 	_points = PackedVector2Array()
-	_points.append_array([Vector2.ZERO, Vector2(_origin_size.x, 0), _origin_size, Vector2(0, _origin_size.y)])
+	
+	var corner = _origin_size/2
+	_points.append(corner * DIAGONAL_SYMETRY) #top left 
+	_points.append(corner * HORIZONTAL_SYMETRY) #top right
+	_points.append(corner) #bottom right
+	_points.append(corner * VERTICAL_SYMETRY) # bottom left
 
 func get_points() -> PackedVector2Array:
 	return _points.duplicate()
 	
 func set_points(points: PackedVector2Array) -> void:
-	#TODO: hande case where points is null or empty
+	if points == null or points.is_empty():
+		#TODO: hande case where points is null or empty
+		return
 	_points = points
