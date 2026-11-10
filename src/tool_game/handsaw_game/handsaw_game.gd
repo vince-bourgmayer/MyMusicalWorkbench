@@ -1,99 +1,113 @@
 # -----------------------------------------------------------------------------
-# handsaw_game.gd
-# Copyright (c) 2025-2026 Vincent Bourgmayer
+# handsaw_game2.gd
+# Copyright (c) 2026 Vincent Bourgmayer
 # License: MIT
 # -----------------------------------------------------------------------------
 extends ToolGame
 class_name HandsawGame
 
-enum gameState { SET_START_POINT, SET_END_POINT, SET_CUT }
-const sawing_progress_step = 0.005
-var cut_increment := 0.0 # step of the cut progress
+enum gameState { START_POINT, END_POINT, SAW_ACTION }
 
-@onready var handsaw = $Handsaw
-@onready var woodpiece = $WoodPiece
-@onready var visualMarkers = $VisualMarkers
+@onready var _handsaw : Handsaw = $Handsaw
+@onready var _cutLine := $VisualMarkers/CutLines
+@onready var _woodRenderer := $WoodRenderer
 
-var currentState: gameState = gameState.SET_START_POINT
-var cutLine: CutLines
-var woodshape : WoodShape
+var _directional_input_reader = DirectionalInputReader.new()
+var _woodPiece : WoodPiece #need to be passed to parent when exiting
+var _saw_operation : SawOperation
 
 func _ready() -> void:
-	woodshape = woodpiece.get_shape()
-	cutLine = CutLines.new()
-	visualMarkers.add_child(cutLine)
-	start_new_cut()
-
+	_directional_input_reader.right_stick_direction_changed.connect(_on_right_stick_direction_changed)
+	_directional_input_reader.left_stick_direction_changed.connect(_on_left_stick_direction_changed)
+	self.add_child(_directional_input_reader)
 	
-func start_new_cut():
-	handsaw.rotate(handsaw.rotation*-1)
-	handsaw.hide()
-	cut_increment = 0.0
-	var wood_edges = woodshape.get_edges_as_segment()
-	cutLine.start_new_cut(wood_edges)
-	#debug
-	for segment in wood_edges:
-		segment._print()
-		
-	currentState = gameState.SET_START_POINT
+	#TODO how to get the wood piece ? I'm not happy with current implementation
+	_woodPiece = WoodPiece.new("Alder", _woodRenderer.get_wood_size())
+	_woodRenderer.bind(_woodPiece)
 	
-func set_start_point(): # user validates the start point
-	cutLine._on_start_point_confirmed()
-	currentState = gameState.SET_END_POINT
-
-func set_end_point(): # user validates end Point
-	cutLine._on_end_point_confirmed()
-	var cut_start_position = cutLine.get_cut_start_position()
+	_cutLine.on_wood_geometry_changed(_woodPiece.get_geometry_polygon())
+	_woodPiece.geometry_changed.connect(_cutLine.on_wood_geometry_changed)
 	
-	handsaw.prepare_for_cut(cut_start_position, cutLine.get_cutline_angle())
-	currentState = gameState.SET_CUT
-		
-func cancel_set_end_point(): # user cancelled the set_end_point action
-	cutLine._on_start_point_reverted()
-	currentState = gameState.SET_START_POINT
+	_handsaw.hide()
+	_handsaw.in_action.connect(_on_saw_action)
+	_start_state(gameState.START_POINT)
 
-func handle_specific_input(event: InputEvent) -> void:
-	if currentState == gameState.SET_START_POINT:
-		handleStartInputs(event)
-	elif currentState == gameState.SET_END_POINT:
-		handleStartInputs(event)
-	elif currentState == gameState.SET_CUT:
-		handleCutInputs(event)
+func _exit_tree() -> void:
+	_directional_input_reader.right_stick_direction_changed.disconnect(_on_right_stick_direction_changed)
+	_directional_input_reader.left_stick_direction_changed.disconnect(_on_left_stick_direction_changed)
+	_woodPiece.geometry_changed.disconnect(_cutLine.on_wood_geometry_changed)
+	_handsaw.in_action.disconnect(_on_saw_action)
+	
+	_woodRenderer.unbind(_woodPiece)
+	_directional_input_reader.queue_free()
+	_handsaw.queue_free()
+	_cutLine.queue_free()
 
-func handleStartInputs(event: InputEvent) -> void:
-	cutLine.handle_inputs_for_marker(event, currentState == gameState.SET_START_POINT)
-	if event.is_action_released("ui_accept"):
-		if currentState == gameState.SET_START_POINT:
-			set_start_point()
-		elif currentState == gameState.SET_END_POINT:
-			set_end_point()
+func _on_right_stick_direction_changed(direction: Vector2) -> void:
+	if not _current_state == gameState.SAW_ACTION:
+		return
+	match direction :
+		Vector2.RIGHT:
+			_handsaw.push()
+		Vector2.LEFT:
+			_handsaw.pull()
+		_:
+			pass
+
+func _on_left_stick_direction_changed(direction: Vector2) -> void:
+	match _current_state:
+		gameState.START_POINT:
+			_cutLine.move_marker(true, direction)
+		gameState.END_POINT:
+			_cutLine.move_marker(false, direction)
+		_: 
+			pass
+
+func _exit_state(state: int) -> void:
+	match state:
+		gameState.START_POINT:
+			pass
+		gameState.END_POINT:
+			_cutLine.hide_marker(false)
+			_cutLine.hide_marker(true)
+		gameState.SAW_ACTION:
+			_handsaw.hide()
+			_handsaw.idle()
+			_saw_operation = null
+	
+func _enter_state(new_state: int) -> void:
+	match new_state:
+		gameState.START_POINT:
+			_cutLine.show_marker(true)
+			_cutLine.hide_marker(false)
+		gameState.END_POINT:
+			_cutLine.show_marker(true)
+			_cutLine.show_marker(false)
+		gameState.SAW_ACTION:
+			var cut_start_position = _cutLine.get_cut_start_global_position()
+			var cut_end_position = _cutLine.get_cut_end_global_position()
+			_saw_operation = SawOperation.new(cut_start_position, cut_end_position)
 			
-	if event.is_action_released("ui_cancel"):
-		match currentState:
-			gameState.SET_END_POINT:
-				cancel_set_end_point()
-			gameState.SET_START_POINT:
-				cancel_game("Do you want to stop sawing ?", "Press A to validate")
-			gameState.SET_CUT:
-				# Will need extra work, to use the current position of the saw 
-				# as the end point of a new cutline. Except if equal to start point
-				pass
+			var cut_angle = _saw_operation.get_cut_angle()
+			_handsaw.prepare_for_cut(cut_start_position, cut_angle)
+			_handsaw.show()
 
-func handleCutInputs(event: InputEvent) -> void:
-	if event.is_action_pressed("push_saw"):
-		handsaw.push()
-	elif event.is_action_pressed("pull_saw"):
-		handsaw.pull()
-	elif event.is_action_released("push_saw") || event.is_action_released("pull_saw"):
-		handsaw.idle()
+func _get_final_state() -> int:
+	return gameState.SAW_ACTION # Overide in child.  Must return the highest game_state's value
+	
+func _on_game_cancelled() -> void:
+	cancel_game("Do you want to stop sawing ?", "Press A to validate")
 
-func make_progress():
-	if cut_increment < 1.0:
-		cut_increment+= sawing_progress_step
-		var cut_start_position = cutLine.get_cut_start_position()
-		var cut_end_position = cutLine.get_cut_end_position()
-		handsaw.position = cut_start_position.lerp(cut_end_position, cut_increment) #NC
-	else: #cut is finished
-		#cutLine._on_cut_achieved()
-		woodshape.add_new_cut(cutLine.startMarker.position, cutLine.endMarker.position)
-		start_new_cut()
+func _on_saw_action() -> void:
+	if _saw_operation == null or _current_state != gameState.SAW_ACTION:
+		#error to handle
+		return
+	_saw_operation.update_progression()
+	
+	var new_saw_position = _saw_operation.get_current_position()
+	_handsaw.move_to(new_saw_position)
+	
+	if _saw_operation.is_complete():
+		_woodPiece.apply(_saw_operation)
+		_change_state(gameState.START_POINT)
+	
