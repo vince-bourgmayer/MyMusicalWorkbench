@@ -49,8 +49,8 @@ func on_wood_geometry_changed(new_shape: PackedVector2Array)-> void:
 	_startMarker.set_path(segments)
 	_endMarker.set_path(segments)
 
-func get_cut_start_position() -> Vector2:
-	return _startMarker.position #TODO determine whether it should be global or local
+func get_cut_start_global_position() -> Vector2:
+	return _startMarker.global_position
 
-func get_cut_end_position() -> Vector2:
-	return _endMarker.position #TODO determine whether it should be global or local
+func get_cut_end_gloal_position() -> Vector2:
+	return _endMarker.global_position 

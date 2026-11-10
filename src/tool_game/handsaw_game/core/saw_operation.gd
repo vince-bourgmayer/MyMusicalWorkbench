@@ -22,6 +22,9 @@ func update_progression():
 func get_current_position() -> Vector2:
 	return _start_point.lerp(_end_point, _progression)
 
+func get_cut_angle() -> float:
+	return ((_start_point - _end_point).angle_to(Vector2(0,1)) +3.141593 )* -1
+
 func apply_to_geometry(woodGeometry: WoodGeometry) -> bool:
 	if is_complete():
 		return true

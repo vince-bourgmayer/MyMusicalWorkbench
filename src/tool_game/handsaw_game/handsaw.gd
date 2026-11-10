@@ -22,7 +22,6 @@ const sawblade_length:= 100 # depend on the sawblade's length
 const distance_per_frame := 15 # speed of the sawing movement
 
 func _ready() -> void:
-	print("Saw is ready")
 	visual_origin = visual.global_position # Store the origin position of the saw 
 
 func _process(_delta: float) -> void:
@@ -63,8 +62,7 @@ func idle():
 	
 func prepare_for_cut(startPoint: Vector2, angle: float) -> void:
 	self.global_position = startPoint
-	self.rotate(angle)
-	self.visible = true
+	self.rotation = angle
 
 func move_to(new_position: Vector2) -> void:
 	self.global_position = new_position

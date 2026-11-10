@@ -28,6 +28,7 @@ func _ready() -> void:
 	_cutLine.on_wood_geometry_changed(_woodPiece.get_geometry_polygon())
 	_woodPiece.geometry_changed.connect(_cutLine.on_wood_geometry_changed)
 	
+	_handsaw.hide()
 	_handsaw.in_action.connect(_on_saw_action)
 	_start_state(gameState.START_POINT)
 
@@ -70,7 +71,9 @@ func _exit_state(state: int) -> void:
 			_cutLine.hide_marker(false)
 			_cutLine.hide_marker(true)
 		gameState.SAW_ACTION:
-			self.remove_child(_handsaw)
+			_handsaw.hide()
+			_handsaw.idle()
+			_saw_operation = null
 	
 func _enter_state(new_state: int) -> void:
 	match new_state:
@@ -81,10 +84,13 @@ func _enter_state(new_state: int) -> void:
 			_cutLine.show_marker(true)
 			_cutLine.show_marker(false)
 		gameState.SAW_ACTION:
-			var cut_start_position = _cutLine.get_cut_start_position()
-			var cut_end_position = _cutLine.get_cut_end_position()
+			var cut_start_position = _cutLine.get_cut_start_global_position()
+			var cut_end_position = _cutLine.get_cut_end_global_position()
 			_saw_operation = SawOperation.new(cut_start_position, cut_end_position)
-			self.add_child(_handsaw)
+			
+			var cut_angle = _saw_operation.get_cut_angle()
+			_handsaw.prepare_for_cut(cut_start_position, cut_angle)
+			_handsaw.show()
 
 func _get_final_state() -> int:
 	return gameState.SAW_ACTION # Overide in child.  Must return the highest game_state's value
@@ -93,9 +99,15 @@ func _on_game_cancelled() -> void:
 	cancel_game("Do you want to stop sawing ?", "Press A to validate")
 
 func _on_saw_action() -> void:
-	if _saw_operation == null or not get_children().has(_handsaw):
+	if _saw_operation == null or _current_state != gameState.SAW_ACTION:
 		#error to handle
 		return
 	_saw_operation.update_progression()
+	
 	var new_saw_position = _saw_operation.get_current_position()
 	_handsaw.move_to(new_saw_position)
+	
+	if _saw_operation.is_complete():
+		_woodPiece.apply(_saw_operation)
+		_change_state(gameState.START_POINT)
+	
