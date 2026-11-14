@@ -27,6 +27,11 @@ func get_cut_angle() -> float:
 
 func apply_to_geometry(woodGeometry: WoodGeometry) -> bool:
 	if is_complete():
+		var slicer = PolygonSlicer.new(woodGeometry.get_center())
+
+		var result = slicer.cut_polygon(woodGeometry.get_points(), _start_point, _end_point)
+		woodGeometry.set_points(result)
+
 		return true
 	return false
 

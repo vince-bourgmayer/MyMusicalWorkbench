@@ -20,14 +20,14 @@ func _ready() -> void:
 	_directional_input_reader.right_stick_direction_changed.connect(_on_right_stick_direction_changed)
 	_directional_input_reader.left_stick_direction_changed.connect(_on_left_stick_direction_changed)
 	self.add_child(_directional_input_reader)
-	
+
 	#TODO how to get the wood piece ? I'm not happy with current implementation
 	_woodPiece = WoodPiece.new("Alder", _woodRenderer.get_wood_size())
 	_woodRenderer.bind(_woodPiece)
-	
+
 	_cutLine.on_wood_geometry_changed(_woodPiece.get_geometry_polygon())
 	_woodPiece.geometry_changed.connect(_cutLine.on_wood_geometry_changed)
-	
+
 	_handsaw.hide()
 	_handsaw.in_action.connect(_on_saw_action)
 	_start_state(gameState.START_POINT)
@@ -37,7 +37,7 @@ func _exit_tree() -> void:
 	_directional_input_reader.left_stick_direction_changed.disconnect(_on_left_stick_direction_changed)
 	_woodPiece.geometry_changed.disconnect(_cutLine.on_wood_geometry_changed)
 	_handsaw.in_action.disconnect(_on_saw_action)
-	
+
 	_woodRenderer.unbind(_woodPiece)
 	_directional_input_reader.queue_free()
 	_handsaw.queue_free()
@@ -74,7 +74,7 @@ func _exit_state(state: int) -> void:
 			_handsaw.hide()
 			_handsaw.idle()
 			_saw_operation = null
-	
+
 func _enter_state(new_state: int) -> void:
 	match new_state:
 		gameState.START_POINT:
@@ -84,17 +84,18 @@ func _enter_state(new_state: int) -> void:
 			_cutLine.show_marker(true)
 			_cutLine.show_marker(false)
 		gameState.SAW_ACTION:
-			var cut_start_position = _cutLine.get_cut_start_global_position()
-			var cut_end_position = _cutLine.get_cut_end_global_position()
+			var cut_start_position = _cutLine.get_cut_start_local_position()
+			var cut_end_position = _cutLine.get_cut_end_local_position()
 			_saw_operation = SawOperation.new(cut_start_position, cut_end_position)
-			
+
 			var cut_angle = _saw_operation.get_cut_angle()
-			_handsaw.prepare_for_cut(cut_start_position, cut_angle)
+			var cut_start_global_position = _woodRenderer.to_global(cut_start_position)
+			_handsaw.prepare_for_cut(cut_start_global_position, cut_angle)
 			_handsaw.show()
 
 func _get_final_state() -> int:
 	return gameState.SAW_ACTION # Overide in child.  Must return the highest game_state's value
-	
+
 func _on_game_cancelled() -> void:
 	cancel_game("Do you want to stop sawing ?", "Press A to validate")
 
@@ -103,11 +104,10 @@ func _on_saw_action() -> void:
 		#error to handle
 		return
 	_saw_operation.update_progression()
-	
-	var new_saw_position = _saw_operation.get_current_position()
+
+	var new_saw_position = _woodRenderer.to_global(_saw_operation.get_current_position())
 	_handsaw.move_to(new_saw_position)
-	
+
 	if _saw_operation.is_complete():
 		_woodPiece.apply(_saw_operation)
 		_change_state(gameState.START_POINT)
-	

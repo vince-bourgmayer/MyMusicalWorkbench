@@ -27,9 +27,12 @@ func _init(size: Vector2):
 
 func get_points() -> PackedVector2Array:
 	return _points.duplicate()
-	
+
 func set_points(points: PackedVector2Array) -> void:
 	if points == null or points.is_empty():
 		#TODO: hande case where points is null or empty
 		return
 	_points = points
+
+func get_center() -> Vector2:
+	return Vector2.ZERO

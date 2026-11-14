@@ -26,6 +26,7 @@ func _init(specy: String, size: Vector2):
 
 func apply(woodOperation: WoodOperation):
 	if woodOperation.apply_to_geometry(_geometry):
+		print("Ouyah")
 		geometry_changed.emit(_geometry.get_points().duplicate())
 
 	if woodOperation.apply_to_surface(_surfaceStates):

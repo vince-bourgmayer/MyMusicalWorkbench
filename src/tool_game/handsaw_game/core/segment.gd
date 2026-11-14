@@ -26,13 +26,13 @@ func _init(start: Vector2, end: Vector2):
 
 func get_length() -> float:
 	return (_end-_start).length()
-	
+
 func duplicate() -> Segment:
 	return Segment.new(_start, _end)
 
 func print()-> void:
 	print("Segment [",_start,";",_end,"]")
-	
+
 func get_start_point() -> Vector2:
 	return _start
 	
