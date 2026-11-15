@@ -15,6 +15,13 @@ func _init(start_point: Vector2, end_point: Vector2):
 	_start_point = start_point
 	_end_point = end_point
 	_progression = 0.0
+	_increment = _compute_increment()
+
+	
+func _compute_increment() -> float:
+	var line_length = _start_point.distance_to(_end_point)
+	return 0.15 / line_length
+
 
 func update_progression():
 	_progression = minf(_progression+_increment, 1.0 )
