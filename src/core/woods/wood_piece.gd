@@ -26,8 +26,7 @@ func _init(specy: String, size: Vector2):
 
 func apply(woodOperation: WoodOperation):
 	if woodOperation.apply_to_geometry(_geometry):
-		print("Ouyah")
-		geometry_changed.emit(_geometry.get_points().duplicate())
+		geometry_changed.emit(_geometry.get_points())
 
 	if woodOperation.apply_to_surface(_surfaceStates):
 		surface_changed.emit(_surfaceStates)
@@ -38,5 +37,8 @@ func apply(woodOperation: WoodOperation):
 func get_surface_data() -> Image:
 	return _surfaceStates.get_data().get_image()
 
+func get_thickness_data() -> Image:
+	return _thickness.get_data().get_image()
+	
 func get_geometry_polygon() -> PackedVector2Array:
 	return _geometry.get_points()

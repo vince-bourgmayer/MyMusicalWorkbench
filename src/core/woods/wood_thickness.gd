@@ -6,7 +6,10 @@
 extends RefCounted
 class_name WoodThickness
 
-var _data : WoodImageData
+var _painter : WoodTexturePainter
 
 func _init(size: Vector2):
-	_data = WoodImageData.new(size, Image.FORMAT_L8, Color.WHITE)
+	_painter = WoodTexturePainter.new(size, Image.FORMAT_LA8, Color.TRANSPARENT) #transparency is temp
+
+func get_data() -> WoodTexturePainter:
+	return _painter

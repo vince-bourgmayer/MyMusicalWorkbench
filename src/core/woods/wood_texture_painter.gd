@@ -1,10 +1,10 @@
 # -----------------------------------------------------------------------------
-# wood_image_data.gd
+# wood_texture_painter.gd
 # Copyright (c) 2026 Vincent Bourgmayer
 # License: MIT
 # -----------------------------------------------------------------------------
 extends RefCounted
-class_name WoodImageData
+class_name WoodTexturePainter
 
 var _image: Image
 var _origin_size: Vector2
@@ -50,5 +50,42 @@ func _apply_rect_brush(center: Vector2i, half_w: int, half_h: int, toolEffect: C
 			var current_pixel = _image.get_pixel(x, y)
 			_image.set_pixel(x, y, toolEffect.call(current_pixel))
 
-func get_image(): # TEMP
+func get_image() -> Image: # TEMP
 	return _image
+	
+func _polygon_to_pixel(p_polygon: PackedVector2Array) -> PackedVector2Array:
+	var pixel_polygon := PackedVector2Array()
+	for p in p_polygon:
+		pixel_polygon.append(_local_point_to_pixel_point(p))  # Conversion ici !
+	return pixel_polygon
+
+func rasterize_shape(polygon: PackedVector2Array) -> void:
+	_image.fill(Color.BLACK)
+	
+	var points = _polygon_to_pixel(polygon)
+	
+	var min_x = INF
+	var min_y = INF
+	var max_x = -INF
+	var max_y = -INF
+
+	for p in points:
+		min_x = min(min_x, p.x)
+		min_y = min(min_y, p.y)
+		max_x = max(max_x, p.x)
+		max_y = max(max_y, p.y)
+
+	min_x = int(clamp(min_x, 0, _image.get_width() - 1))
+	min_y = int(clamp(min_y, 0, _image.get_height() - 1))
+	max_x = int(clamp(max_x, 0, _image.get_width() - 1))
+	max_y = int(clamp(max_y, 0, _image.get_height() - 1))
+
+# Clamp max values to the last valid pixel index (width-1, height-1)
+# because pixel coordinates start at 0.
+# Then, when iterating, use range(min, max + 1) to include the max pixel,
+# since the 'range' function excludes the upper bound.
+	for y in range(min_y, max_y+1):
+		for x in range(min_x, max_x+1):
+			var point := Vector2(x, y)
+			if Geometry2D.is_point_in_polygon(point, points):
+				_image.set_pixel(x, y, Color.WHITE)

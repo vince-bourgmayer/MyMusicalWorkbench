@@ -18,7 +18,7 @@ var _origin_size : Vector2
 func _init(size: Vector2):
 	_origin_size = size
 	_points = PackedVector2Array()
-	
+
 	var corner = _origin_size/2
 	_points.append(corner * DIAGONAL_SYMETRY) #top left 
 	_points.append(corner * HORIZONTAL_SYMETRY) #top right
