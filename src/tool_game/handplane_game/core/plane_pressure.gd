@@ -23,7 +23,7 @@ func _get_pressure_balance() -> float:
 # - how much both hands push
 # - how far the pressure balance is from what feels right
 # Speed is reduced when balance is bad, while damage can still increase.
-func get_pressure_balance_factor() -> float:
+func get_pressures_balance_factor() -> float:
 	var balance_raw = _get_pressure_balance() 
 	var ideal_balance = 0.5
 	# 0: perfect match, higher value, higher distance
