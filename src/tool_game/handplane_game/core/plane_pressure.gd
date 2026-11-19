@@ -8,12 +8,10 @@ class_name PlanePressure
 
 var _right_hand_pressure := 0.0
 var _left_hand_pressure := 0.0
-
-func set_left_hand_pressure(pressure: float) -> void:
-	_left_hand_pressure = pressure
 	
-func set_right_hand_pressure(pressure: float) -> void:
-	_right_hand_pressure = pressure
+func set_hands_pressure(right_pressure: float, left_pressure: float) -> void:
+	_right_hand_pressure = right_pressure
+	_left_hand_pressure = left_pressure
 
 func _get_pressure_balance() -> float:
 	# 0 => both hand put same pressure ; 
@@ -53,5 +51,5 @@ func get_pressure_balance_factor() -> float:
 func get_total_pressure() -> float:
 	return _right_hand_pressure + _left_hand_pressure
 
-func _is_pushing() -> bool:
+func is_enough_pressure() -> bool:
 	return _right_hand_pressure > 0.005 && _left_hand_pressure > 0.005
